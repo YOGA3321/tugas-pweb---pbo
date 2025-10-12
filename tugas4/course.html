@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Web Programing</title>
+    <style>
+        :root {
+            --bg-color: #e0e5ec;
+            --text-color: #3f4a5a;
+            --accent-color: #4a90e2;
+            --shadow-light: rgba(255, 255, 255, 0.7);
+            --shadow-dark: rgba(163, 177, 198, 0.6);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            margin-top: 20px;
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+        h1, p {
+            text-align: center;
+            color: #333;
+            margin-top: 50px;
+        }
+        .container header {
+            background-color: var(--shadow-dark);
+            color: #fff;
+            padding: 20px 0;
+            border-radius: 5px;
+            margin-bottom: 50px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background-color: var(--bg-color);
+            padding: 30px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease-in-out;
+            box-shadow: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+        }
+        .card:hover {
+            box-shadow: inset 7px 7px 15px var(--shadow-dark), inset -7px -7px 15px var(--shadow-light);
+            transform: translateY(2px);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Course Web Programing</h1>
+            <p>Web Ini Merupakan Sebuah Kursus Pemrograman Web Yang Mempelajari HTML, CSS, PHP, dan JavaScript.</p>
+        </header>
+        <div class="grid">
+            <a href="https://www.w3schools.com/css/default.asp" target="_blank" class="card">
+                <div class="card-icon">...</div>
+                <h2>CSS</h2>
+                <p>CSS (Cascading Style Sheets) adalah bahasa yang digunakan untuk mendesain dan mengatur tampilan halaman web.</p>
+            </a>
+            <a href="https://www.w3schools.com/html/default.asp" target="_blank" class="card">
+                <div class="card-icon">...</div>
+                <h2>HTML</h2>
+                <p>HTML (HyperText Markup Language) adalah bahasa markup standar untuk membuat halaman web.</p>
+            </a>
+            <a href="https://www.w3schools.com/php/default.asp" target="_blank" class="card">
+                <div class="card-icon">...</div>
+                <h2>PHP</h2>
+                <p>PHP (Hypertext Preprocessor) adalah bahasa pemrograman yang digunakan untuk pengembangan web.</p>
+            </a>
+            <a href="https://www.w3schools.com/js/default.asp" target="_blank" class="card">
+                <div class="card-icon">...</div>
+                <h2>JavaScript</h2>
+                <p>JavaScript adalah bahasa pemrograman yang digunakan untuk membuat halaman web interaktif.</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

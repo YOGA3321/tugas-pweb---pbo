@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Tugas Sistem FRS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <style>
+        .code-block-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .code-block-container button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        .code-block-container button:hover {
+            background-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            
+            <h1>Tugas BlueJ: Simulasi Sistem FRS/KRS</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: B</h3>
+            <p class="meta-info">Tugas ini bertujuan untuk membuat simulasi pengisian Formulir Rencana Studi (FRS) menggunakan konsep PBO seperti Overloading, Objek sebagai Parameter, dan keyword `this`.</p>
+            <hr>
+
+            <h2>Hasil Aplikasi</h2>
+            <p>Berikut adalah hasil akhir dari program yang telah dibuat, mencakup diagram kelas di BlueJ dan output dari simulasi yang berjalan di terminal.</p>
+
+            <h3>1. Diagram Kelas di BlueJ</h3>
+            <img src="../../img/18.png" alt="Diagram Kelas Sistem FRS" onclick="openModal(this)">
+            <p class="caption">Struktur kelas yang digunakan, menunjukkan hubungan antar kelas `Mahasiswa`, `Jadwal`, `MataKuliah`, dan `Dosen`.</p>
+
+            <h3>2. Output Simulasi di Terminal</h3>
+            <img src="../../img/19.png" alt="Hasil Output Simulasi FRS" onclick="openModal(this)">
+            <p class="caption">Hasil eksekusi dari kelas `SistemFRS` yang menunjukkan proses mahasiswa memilih mata kuliah hingga batas SKS terpenuhi.</p>
+            
+            <hr>
+
+            <h2>Source Code</h2>
+            <p>Aplikasi ini terdiri dari lima kelas. Berikut adalah kode sumber lengkap untuk setiap kelas yang digunakan dalam simulasi.</p>
+
+            <h3>Kelas: SistemFRS.java (Kelas Utama)</h3>
+            <p>Kelas ini berfungsi sebagai "runner" yang menjalankan skenario simulasi: membuat dosen, mata kuliah, dan mahasiswa, lalu menjalankan proses pemilihan mata kuliah.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'sistemfrsCode')">Copy</button>
+                <pre><code id="sistemfrsCode">
+/**
+ * Kelas utama untuk mensimulasikan proses pengisian FRS.
+ */
+public class SistemFRS {
+    public static void main(String[] args) {
+        // 1. Buat beberapa objek Dosen
+        Dosen dosenPBO = new Dosen("111", "Dr. Endah");
+        Dosen dosenWeb = new Dosen("222", "Prof. Agus");
+        Dosen dosenStatistika = new Dosen("333", "Bu Rini, M.Sc.");
+
+        // 2. Buat beberapa objek MataKuliah
+        MataKuliah pbo = new MataKuliah("IF101", "Pemrograman Berorientasi Objek", 4, dosenPBO);
+        MataKuliah pweb = new MataKuliah("IF102", "Pemrograman Web", 3, dosenWeb);
+        MataKuliah statprob = new MataKuliah("MA101", "Statistika & Probabilitas", 3, dosenStatistika);
+        MataKuliah kalkulus = new MataKuliah("MA102", "Kalkulus Lanjut", 4, dosenStatistika);
+
+        // 3. Buat objek Mahasiswa (menggunakan constructor dengan SKS custom 10)
+        System.out.println("Membuat mahasiswa Ageng Prayogo dengan maks SKS 10.");
+        Mahasiswa mhsAgeng = new Mahasiswa("Ageng Prayogo", "5025241225", 10);
+        
+        // 4. Mahasiswa mulai memilih mata kuliah
+        mhsAgeng.lihatJadwal();
+        
+        mhsAgeng.pilihMataKuliah(pbo);
+        mhsAgeng.pilihMataKuliah(pweb);
+        mhsAgeng.pilihMataKuliah(statprob);
+        mhsAgeng.pilihMataKuliah(kalkulus);
+        
+        // 5. Lihat jadwal akhir mahasiswa
+        mhsAgeng.lihatJadwal();
+    }
+}
+                </code></pre>
+            </div>
+
+            <h3>Kelas: Mahasiswa.java</h3>
+            <p>Merepresentasikan seorang mahasiswa. Kelas ini memiliki dua constructor (overloading) dan metode untuk memilih mata kuliah.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'mahasiswaCode')">Copy</button>
+                <pre><code id="mahasiswaCode">
+/**
+ * Kelas Mahasiswa merepresentasikan seorang mahasiswa.
+ */
+public class Mahasiswa {
+    private String nama;
+    private String nrp;
+    private Jadwal jadwal;
+
+    /**
+     * Constructor 1 (Overloading): Membuat mahasiswa dengan SKS default (24).
+     */
+    public Mahasiswa(String nama, String nrp) {
+        this.nama = nama;
+        this.nrp = nrp;
+        this.jadwal = new Jadwal(24);
+    }
+    
+    /**
+     * Constructor 2 (Overloading): Membuat mahasiswa dengan SKS custom.
+     */
+    public Mahasiswa(String nama, String nrp, int maksSKS) {
+        this.nama = nama;
+        this.nrp = nrp;
+        this.jadwal = new Jadwal(maksSKS);
+    }
+    
+    /**
+     * Mahasiswa memilih mata kuliah.
+     */
+    public void pilihMataKuliah(MataKuliah mk) {
+        System.out.println(nama + " mencoba memilih mata kuliah: " + mk.getInfo().split("\n")[1]);
+        boolean berhasil = jadwal.tambahMataKuliah(mk);
+        if (berhasil) {
+            System.out.println(">> Berhasil ditambahkan!\n");
+        } else {
+            System.out.println(">> GAGAL! Batas SKS akan terlampaui.\n");
+        }
+    }
+    
+    /**
+     * Menampilkan jadwal mahasiswa.
+     */
+    public void lihatJadwal() {
+        System.out.println("Jadwal untuk " + nama + " (NRP: " + nrp + ")");
+        jadwal.tampilkanJadwal();
+    }
+}
+                </code></pre>
+            </div>
+
+            <h3>Kelas: Jadwal.java</h3>
+            <p>Merepresentasikan Jadwal dari matakuliah dan memberlakukan batas SKS.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'jadwalCode')">Copy</button>
+                <pre><code id="jadwalCode">
+import java.util.ArrayList;
+
+/**
+ * Kelas Jadwal merepresentasikan KRS seorang mahasiswa.
+ */
+public class Jadwal {
+    private ArrayList<MataKuliah> daftarMataKuliah;
+    private int maksSKS;
+    private int totalSKS;
+
+    public Jadwal(int maksSKS) {
+        this.maksSKS = maksSKS;
+        this.totalSKS = 0;
+        this.daftarMataKuliah = new ArrayList<>();
+    }
+
+    public boolean tambahMataKuliah(MataKuliah mk) {
+        if ((totalSKS + mk.getSKS()) <= maksSKS) {
+            daftarMataKuliah.add(mk);
+            totalSKS += mk.getSKS();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void tampilkanJadwal() {
+        System.out.println("--- Daftar Mata Kuliah yang Diambil ---");
+        if (daftarMataKuliah.isEmpty()) {
+            System.out.println("Belum ada mata kuliah yang dipilih.");
+        } else {
+            for (MataKuliah mk : daftarMataKuliah) {
+                System.out.println(mk.getInfo());
+            }
+        }
+        System.out.println("Total SKS: " + totalSKS + " / " + maksSKS);
+        System.out.println("---------------------------------------");
+    }
+}
+                </code></pre>
+            </div>
+            
+            <h3>Kelas: MataKuliah.java</h3>
+            <p>Merepresentasikan detail dari setiap mata kuliah yang ada.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'matakuliahCode')">Copy</button>
+                <pre><code id="matakuliahCode">
+/**
+ * Kelas MataKuliah untuk menyimpan detail sebuah mata kuliah.
+ */
+public class MataKuliah {
+    private String kodeMK;
+    private String namaMK;
+    private int sks;
+    private Dosen dosen;
+
+    public MataKuliah(String kodeMK, String namaMK, int sks, Dosen dosen) {
+        this.kodeMK = kodeMK;
+        this.namaMK = namaMK;
+        this.sks = sks;
+        this.dosen = dosen;
+    }
+
+    public int getSKS() {
+        return sks;
+    }
+
+    public String getInfo() {
+        return "Kode: " + kodeMK + "\n" +
+               "Nama: " + namaMK + "\n" +
+               "SKS: " + sks + "\n" +
+               dosen.getInfo() + "\n";
+    }
+}
+                </code></pre>
+            </div>
+            
+            <h3>Kelas: Dosen.java</h3>
+            <p>Merepresentasikan data dosen yang mengajar mata kuliah.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'dosenCode')">Copy</button>
+                <pre><code id="dosenCode">
+/**
+ * Kelas Dosen untuk menyimpan informasi NIP dan nama dosen.
+ */
+public class Dosen {
+    private String nip;
+    private String nama;
+
+    public Dosen(String nip, String nama) {
+        this.nip = nip;
+        this.nama = nama;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+    
+    public String getInfo() {
+        return "Dosen: " + nama + " (NIP: " + nip + ")";
+    }
+}
+                </code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+    function copyCode(button, elementId) {
+        const codeElement = document.getElementById(elementId);
+        navigator.clipboard.writeText(codeElement.innerText).then(function() {
+            button.innerText = 'Copied!';
+            setTimeout(function() { button.innerText = 'Copy'; }, 2000);
+        }, function(err) {
+            button.innerText = 'Gagal';
+        });
+    }
+
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
+    </script>
+</body>
+</html>

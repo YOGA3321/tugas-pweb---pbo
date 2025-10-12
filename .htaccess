@@ -1,0 +1,23 @@
+# Aktifkan Mesin Penulisan Ulang URL
+RewriteEngine On
+
+# =============================================================
+# PENGATURAN HALAMAN ERROR KUSTOM
+# =============================================================
+# Arahkan pengunjung ke halaman kustom jika terjadi error.
+ErrorDocument 403 https://lopyta.com/403
+ErrorDocument 404 https://lopyta.com/404-tolol
+ErrorDocument 500 https://lopyta.com/500
+
+
+# =============================================================
+# ATURAN UNTUK URL YANG RAPI (CLEAN URLS)
+# =============================================================
+
+# Aturan 1: Jangan terapkan aturan ini pada file yang sudah ada.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Aturan 2: Secara internal, arahkan /nama-halaman ke /nama-halaman.php
+# Ini membuat Anda bisa mengakses "tugas/pbo/index.php" melalui "tugas/pbo/" atau "tugas/pbo/index"
+RewriteRule ^([^\.]+)$ $1.php [NC,L]

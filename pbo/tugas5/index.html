@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Tugas Grouping Object</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <style>
+        .code-block-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .code-block-container button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        .code-block-container button:hover {
+            background-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            
+            <h1>Tugas BlueJ: Grouping Object</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: B</h3>
+            <p class="meta-info">Tugas ini bertujuan untuk mempraktikkan konsep "Grouping Object" dengan membuat dua aplikasi konsol sederhana menggunakan `ArrayList` dan `Scanner`.</p>
+            <hr>
+
+            <h2>Proyek 1: Personal Organizer</h2>
+            <p>Aplikasi pertama adalah sebuah pengelola tugas pribadi. Program ini memungkinkan pengguna untuk menambah, melihat, menghapus, dan menandai tugas sebagai selesai melalui menu interaktif di terminal.</p>
+
+            <h3>1. Hasil Aplikasi Personal Organizer</h3>
+            <img src="../../img/25.png" alt="Hasil Personal Organizer" onclick="openModal(this)">
+            <p class="caption">Tampilan menu dan interaksi dengan program Personal Organizer di terminal BlueJ.</p>
+            <img src="../../img/26.png" alt="Hasil Personal Organizer" onclick="openModal(this)">
+            <p class="caption">Tampilan menu dan interaksi dengan program Personal Organizer di terminal BlueJ.</p>
+            <img src="../../img/27.png" alt="Hasil Personal Organizer" onclick="openModal(this)">
+            <p class="caption">Tampilan menu dan interaksi dengan program Personal Organizer di terminal BlueJ.</p>
+            <img src="../../img/28.png" alt="Hasil Personal Organizer" onclick="openModal(this)">
+            <p class="caption">Tampilan menu dan interaksi dengan program Personal Organizer di terminal BlueJ.</p>
+            
+            <h3>2. Source Code (Modifikasi)</h3>
+            <p>Berikut adalah kode lengkap untuk `PersonalOrganizer.java` yang telah dimodifikasi untuk menambahkan fungsionalitas status "selesai" pada setiap tugas.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'organizerCode')">Copy</button>
+                <pre><code id="organizerCode">
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Task {
+    private String title;
+    private String description;
+    private boolean isDone;
+
+    public Task(String title, String description) {
+        this.title = title;
+        this.description = description;
+        this.isDone = false; 
+    }
+
+    public void markAsDone() {
+        this.isDone = true;
+    }
+
+    @Override
+    public String toString() {
+        String status = isDone ? "[Selesai] " : "[Belum] ";
+        return status + "Judul: " + title + " | Deskripsi: " + description;
+    }
+}
+
+public class PersonalOrganizer {
+    public static void main(String[] args) {
+        ArrayList<Task> tasks = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n=== Personal Organizer (MODIFIED) ===");
+            System.out.println("1. Tambah Tugas");
+            System.out.println("2. Lihat Semua Tugas");
+            System.out.println("3. Hapus Tugas");
+            System.out.println("4. Tandai Tugas Selesai");
+            System.out.println("5. Keluar");
+            System.out.print("Pilih menu: ");
+            
+            try {
+                choice = scanner.nextInt();
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Input tidak valid, harap masukkan angka.");
+                choice = 0;
+            }
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Masukkan judul tugas: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Masukkan deskripsi tugas: ");
+                    String description = scanner.nextLine();
+                    tasks.add(new Task(title, description));
+                    System.out.println("Tugas berhasil ditambahkan!");
+                    break;
+                case 2:
+                    System.out.println("\n--- Daftar Tugas ---");
+                    if (tasks.isEmpty()) {
+                        System.out.println("Belum ada tugas.");
+                    } else {
+                        for (int i = 0; i < tasks.size(); i++) {
+                            System.out.println((i + 1) + ". " + tasks.get(i));
+                        }
+                    }
+                    System.out.println("--------------------");
+                    break;
+                case 3:
+                    System.out.print("Masukkan nomor tugas yang akan dihapus: ");
+                    int taskNumber = scanner.nextInt();
+                    if (taskNumber > 0 && taskNumber <= tasks.size()) {
+                        tasks.remove(taskNumber - 1);
+                        System.out.println("Tugas berhasil dihapus.");
+                    } else {
+                        System.out.println("Nomor tugas tidak valid.");
+                    }
+                    break;
+                case 4:
+                    System.out.print("Masukkan nomor tugas yang selesai: ");
+                    int doneNumber = scanner.nextInt();
+                    if (doneNumber > 0 && doneNumber <= tasks.size()) {
+                        tasks.get(doneNumber - 1).markAsDone();
+                        System.out.println("Tugas ditandai sebagai selesai.");
+                    } else {
+                        System.out.println("Nomor tugas tidak valid.");
+                    }
+                    break;
+                case 5:
+                    System.out.println("Terima kasih!");
+                    break;
+                default:
+                    if (choice != 0) {
+                        System.out.println("Pilihan tidak valid.");
+                    }
+            }
+        } while (choice != 5);
+        
+        scanner.close();
+    }
+}
+                </code></pre>
+            </div>
+
+            <hr>
+
+            <h2>Proyek 2: Aplikasi Catatan</h2>
+            <p>Aplikasi kedua adalah pengelola catatan sederhana. Program ini dimodifikasi untuk menambahkan fitur "prioritas" (Tinggi, Sedang, Rendah) pada setiap catatan dan menyediakan menu untuk menampilkan catatan terurut berdasarkan prioritas tersebut.</p>
+
+            <h3>1. Hasil Aplikasi Catatan</h3>
+            <img src="../../img/29.png" alt="Hasil Aplikasi Catatan" onclick="openModal(this)">
+            <p class="caption">Tampilan menu baru dan hasil pengurutan catatan berdasarkan prioritas di terminal.</p>
+            <img src="../../img/30.png" alt="Hasil Aplikasi Catatan" onclick="openModal(this)">
+            <p class="caption">Tampilan menu baru dan hasil pengurutan catatan berdasarkan prioritas di terminal.</p>
+            <img src="../../img/31.png" alt="Hasil Aplikasi Catatan" onclick="openModal(this)">
+            <p class="caption">Tampilan menu baru dan hasil pengurutan catatan berdasarkan prioritas di terminal.</p>
+            <img src="../../img/32.png" alt="Hasil Aplikasi Catatan" onclick="openModal(this)">
+            <p class="caption">Tampilan menu baru dan hasil pengurutan catatan berdasarkan prioritas di terminal.</p>
+            
+            <h3>2. Source Code (Modifikasi)</h3>
+            <p>Berikut adalah kode lengkap untuk `AplikasiCatatan.java` yang telah disempurnakan dengan fitur prioritas dan pengurutan.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'catatanCode')">Copy</button>
+                <pre><code id="catatanCode">
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Collections;
+import java.util.Comparator;
+
+class Note {
+    private String title;
+    private String content;
+    private String priority;
+
+    public Note(String title, String content, String priority) {
+        this.title = title;
+        this.content = content;
+        this.priority = priority;
+    }
+
+    public String getTitle() { return title; }
+    public String getPriority() { return priority; }
+
+    @Override
+    public String toString() {
+        return "Prioritas: " + priority + "\nJudul: " + title + "\nIsi: " + content;
+    }
+}
+
+public class AplikasiCatatan {
+    public static void main(String[] args) {
+        ArrayList<Note> notes = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n=== Aplikasi Catatan (Disempurnakan) ===");
+            System.out.println("1. Tambah Catatan");
+            System.out.println("2. Lihat Semua Catatan (Sesuai Input)");
+            System.out.println("3. Lihat Catatan (Terurut Prioritas)");
+            System.out.println("4. Cari Catatan");
+            System.out.println("5. Hapus Catatan");
+            System.out.println("6. Keluar");
+            System.out.print("Pilih menu: ");
+            
+            try {
+                choice = scanner.nextInt();
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Input tidak valid, harap masukkan angka.");
+                choice = 0;
+            }
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Masukkan judul catatan: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Masukkan isi catatan: ");
+                    String content = scanner.nextLine();
+                    System.out.print("Masukkan prioritas (Tinggi/Sedang/Rendah): ");
+                    String priority = scanner.nextLine();
+                    notes.add(new Note(title, content, priority));
+                    System.out.println("Catatan berhasil ditambahkan!");
+                    break;
+                case 2:
+                    System.out.println("\n--- Daftar Semua Catatan (Sesuai Input) ---");
+                    if (notes.isEmpty()) {
+                        System.out.println("Belum ada catatan.");
+                    } else {
+                        for (int i = 0; i < notes.size(); i++) {
+                            Note note = notes.get(i);
+                            System.out.println((i + 1) + ". [" + note.getPriority() + "] " + note.getTitle());
+                        }
+                    }
+                    System.out.println("-------------------------------------------");
+                    break;
+                case 3:
+                    System.out.println("\n--- Daftar Catatan (Terurut Prioritas) ---");
+                    if (notes.isEmpty()) {
+                        System.out.println("Belum ada catatan.");
+                    } else {
+                        ArrayList<Note> sortedNotes = new ArrayList<>(notes);
+                        Collections.sort(sortedNotes, Comparator.comparing(note -> {
+                            switch (note.getPriority().toLowerCase()) {
+                                case "tinggi": return 0;
+                                case "sedang": return 1;
+                                case "rendah": return 2;
+                                default: return 3;
+                            }
+                        }));
+                        for(Note note : sortedNotes) {
+                            System.out.println("[" + note.getPriority() + "] " + note.getTitle());
+                        }
+                    }
+                    System.out.println("------------------------------------------");
+                    break;
+                case 4:
+                    System.out.print("Masukkan judul catatan yang dicari: ");
+                    String searchTitle = scanner.nextLine().toLowerCase();
+                    boolean found = false;
+                    for (Note note : notes) {
+                        if (note.getTitle().toLowerCase().contains(searchTitle)) {
+                            System.out.println("\nCatatan ditemukan:\n" + note);
+                            found = true;
+                        }
+                    }
+                    if (!found) { System.out.println("Catatan tidak ditemukan."); }
+                    break;
+                case 5:
+                    System.out.print("Masukkan nomor catatan yang akan dihapus: ");
+                    int noteNumber = scanner.nextInt();
+                    if (noteNumber > 0 && noteNumber <= notes.size()) {
+                        notes.remove(noteNumber - 1);
+                        System.out.println("Catatan berhasil dihapus.");
+                    } else {
+                        System.out.println("Nomor catatan tidak valid.");
+                    }
+                    break;
+                case 6:
+                    System.out.println("Terima kasih!");
+                    break;
+                default:
+                    if (choice != 0) {
+                        System.out.println("Pilihan tidak valid.");
+                    }
+            }
+        } while (choice != 6);
+
+        scanner.close();
+    }
+}
+                </code></pre>
+            </div>
+
+        </div>
+    </div>
+    
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+    function copyCode(button, elementId) {
+        const codeElement = document.getElementById(elementId);
+        navigator.clipboard.writeText(codeElement.innerText).then(function() {
+            button.innerText = 'Copied!';
+            setTimeout(function() { button.innerText = 'Copy'; }, 2000);
+        }, function(err) {
+            button.innerText = 'Gagal';
+        });
+    }
+
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modal.style.opacity = "1";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
+    }
+    </script>
+</body>
+</html>

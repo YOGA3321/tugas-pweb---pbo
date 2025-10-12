@@ -1,0 +1,238 @@
+/* --- Pengaturan Dasar & Variabel --- */
+:root {
+    --bg-color: #e0e5ec;
+    --text-color: #3f4a5a;
+    --accent-color: #4a90e2;
+    --shadow-light: rgba(255, 255, 255, 0.7);
+    --shadow-dark: rgba(163, 177, 198, 0.6);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #777;
+}
+
+/* --- Grid untuk Daftar Tugas --- */
+.tugas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+/* --- Desain Kartu Tugas (Neumorphism) --- */
+.tugas-card {
+    background-color: var(--bg-color);
+    padding: 30px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+}
+
+.tugas-card:hover {
+    box-shadow: inset 7px 7px 15px var(--shadow-dark), inset -7px -7px 15px var(--shadow-light);
+    transform: translateY(2px);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.tugas-card h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+
+.tugas-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- Halaman Detail Tugas --- */
+.tombol-kembali {
+    display: inline-block;
+    padding: 12px 24px;
+    margin-bottom: 40px;
+    border-radius: 15px;
+    background-color: var(--bg-color);
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--accent-color);
+    box-shadow: 7px 7px 15px var(--shadow-dark), -7px -7px 15px var(--shadow-light);
+    transition: all 0.3s ease-in-out;
+}
+
+.tombol-kembali:hover {
+    box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
+}
+
+.konten-tugas {
+    background-color: var(--bg-color);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+}
+
+.konten-tugas h1, .konten-tugas h2, .konten-tugas h3 {
+    color: #1a1a1a;
+}
+
+.konten-tugas p {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.konten-tugas img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin: 20px 0 10px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.konten-tugas img:hover {
+    opacity: 0.7;
+}
+
+.caption {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+}
+
+.tombol-demo {
+    display: inline-block;
+    padding: 12px 24px;
+    margin-top: 20px;
+    border-radius: 15px;
+    background: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.konten-tugas .meta-info {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: -15px;
+}
+
+.konten-tugas hr {
+    border: none;
+    height: 2px;
+    background-color: #d1d9e6;
+    margin: 30px 0;
+}
+
+.konten-tugas ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.konten-tugas ul li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* --- Gaya untuk Modal/Popup Gambar --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.85);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: #bbb;
+}
+
+/* --- Gaya untuk Blok Kode dengan Tombol Copy --- */
+.code-block-container {
+    position: relative;
+    margin: 20px 0;
+}
+
+.code-block-container button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 8px 12px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s;
+}
+
+.code-block-container button:hover {
+    background-color: #777;
+}
+
+.konten-tugas pre {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 20px;
+    padding-top: 45px;
+    border-radius: 10px;
+    overflow-x: auto;
+}

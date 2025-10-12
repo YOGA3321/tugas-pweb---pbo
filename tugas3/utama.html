@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Form, Tabel & Frame (Demo 1)</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f4; }
+        .container {
+            width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        /* Style untuk Form */
+        .form-group { margin-bottom: 15px; }    
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group select { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;}
+        .form-group button { padding: 10px 15px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        
+        /* Style untuk Tabel */
+        .custom-table { width: 100%; border-collapse: collapse; text-align: center; }
+        .custom-table th, .custom-table td { border: 1px solid #aaa; padding: 10px; }
+        .custom-table thead { background-color: #333; color: white; }
+        .custom-table th[colspan="2"] { background-color: #555; }
+
+        /* Style untuk Frame Layout */
+        .frame-header, .frame-nav, .frame-footer { background-color: #ddd; padding: 15px; text-align: center; margin-bottom: 5px;}
+        .frame-middle { display: flex; }
+        .frame-sidebar { background-color: #eee; width: 25%; padding: 15px; text-align: center; margin-right: 5px; }
+        .frame-content { background-color: #f9f9f9; width: 75%; padding: 15px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Formulir Registrasi</h2>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" placeholder="Masukkan nama depan">
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" placeholder="Masukkan nama belakang">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="contoh@email.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password">
+            </div>
+            <div class="form-group">
+                <label for="re-password">Re-type Password:</label>
+                <input type="password" id="re-password">
+            </div>
+            <div class="form-group">
+                <label for="contact">Contact:</label>
+                <input type="text" inputmode="numeric" id="contact" placeholder="08xxxxxxxxxx">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender">
+                    <option value="" selected hidden>Pilih Gender</option>
+                    <option value="male">Laki - Laki</option>
+                    <option value="female">Perempuan</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2>Tabel Daftar Nilai Mahasiswa</h2>
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th rowspan="2">No</th>
+                    <th rowspan="2">NPM</th>
+                    <th rowspan="2">Nama</th>
+                    <th colspan="2">Nilai</th>
+                </tr>
+                <tr>
+                    <th>UTS</th>
+                    <th>UAS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.</td>
+                    <td>5025241219</td>
+                    <td>Farrel Prastita Ramadhan</td>
+                    <td>70</td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td>5025241225</td>
+                    <td>Ageng Prayogo</td>
+                    <td>100</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td>5025241227</td>
+                    <td>Safa Maulana Efendi</td>
+                    <td>70</td>
+                    <td>80</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <h2>Struktur Layout Halaman (Frame)</h2>
+        <div class="frame-header">Header</div>
+        <div class="frame-nav">Menu Navigasi</div>
+        <div class="frame-middle">
+            <div class="frame-sidebar">Sidebar</div>
+            <div class="frame-content">Content</div>
+        </div>
+        <div class="frame-footer">Footer</div>
+    </div>
+</body>
+</html>

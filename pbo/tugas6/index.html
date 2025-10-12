@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Tugas Tech Support System</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <style>
+        .code-block-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .code-block-container button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        .code-block-container button:hover {
+            background-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            
+            <h1>Tugas BlueJ: Tech Support System</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: B</h3>
+            <p class="meta-info">Tugas ini bertujuan untuk membuat simulasi sistem dukungan teknis yang dapat memberikan respons acak dan respons berdasarkan kata kunci dari input pengguna.</p>
+            <hr>
+
+            <h2>Hasil Aplikasi</h2>
+            <p>Berikut adalah hasil akhir dari program yang telah dimodifikasi, mencakup diagram kelas di BlueJ dan contoh interaksi di terminal.</p>
+
+            <h3>1. Diagram Kelas di BlueJ</h3>
+            <img src="../../img/techsupport-diagram.png" alt="Diagram Kelas Tech Support" onclick="openModal(this)">
+            <p class="caption">Struktur kelas yang digunakan: `SupportSystem` sebagai kelas utama, `InputReader` untuk memproses input, dan `Responder` untuk menghasilkan respons cerdas.</p>
+
+            <h3>2. Contoh Interaksi di Terminal</h3>
+            <img src="../../img/techsupport-terminal.png" alt="Hasil Interaksi Tech Support" onclick="openModal(this)">
+            <p class="caption">Contoh output program. Terlihat program memberikan respons acak jika tidak ada kata kunci, dan respons spesifik jika menemukan kata kunci seperti "lambat".</p>
+            
+            <hr>
+
+            <h2>Source Code</h2>
+            <p>Aplikasi ini terdiri dari tiga kelas. Berikut adalah kode sumber lengkap untuk versi canggihnya.</p>
+
+            <h3>Kelas: SupportSystem.java (Kelas Utama)</h3>
+            <p>Kelas ini mengatur alur utama aplikasi, membuat loop untuk membaca input dan menampilkan respons hingga pengguna keluar.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'supportSystemCode')">Copy</button>
+                <pre><code id="supportSystemCode">
+import java.util.HashSet;
+
+public class SupportSystem {
+    private InputReader reader;
+    private Responder responder;
+
+    public SupportSystem() {
+        reader = new InputReader();
+        responder = new Responder();
+    }
+
+    public void start() {
+        boolean finished = false;
+        printWelcome();
+
+        while (!finished) {
+            // reader.getInput() sekarang mengembalikan HashSet<String>
+            HashSet<String> input = reader.getInput();
+
+            if (input.contains("bye")) {
+                finished = true;
+            } else {
+                String response = responder.generateResponse(input);
+                System.out.println(response);
+            }
+        }
+        printGoodbye();
+    }
+    
+    // Metode printWelcome() dan printGoodbye() tetap sama
+    private void printWelcome() {
+        System.out.println("Welcome to the DodgySoft Technical Support System.");
+        System.out.println("\nPlease tell us about your problem.");
+        System.out.println("We will assist you with any problem you might have.");
+        System.out.println("Please type 'bye' to exit our system.");
+    }
+    private void printGoodbye() {
+        System.out.println("Nice talking to you. Bye...");
+    }
+}
+                </code></pre>
+            </div>
+
+            <h3>Kelas: InputReader.java</h3>
+            <p>Kelas ini dimodifikasi untuk membaca satu baris input, mengubahnya menjadi huruf kecil, lalu memecahnya menjadi kumpulan kata unik (`HashSet`).</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'inputReaderCode')">Copy</button>
+                <pre><code id="inputReaderCode">
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class InputReader {
+    private Scanner scanner;
+
+    public InputReader() {
+        scanner = new Scanner(System.in);
+    }
+
+    public HashSet<String> getInput() {
+        System.out.print("> ");
+        String inputLine = scanner.nextLine().trim().toLowerCase();
+
+        String[] wordArray = inputLine.split(" ");
+        
+        HashSet<String> words = new HashSet<>();
+        for (String word : wordArray) {
+            words.add(word);
+        }
+        return words;
+    }
+}
+                </code></pre>
+            </div>
+            
+            <h3>Kelas: Responder.java (Versi Canggih)</h3>
+            <p>Ini adalah "otak" dari sistem. Kelas ini menggunakan `HashMap` untuk menyimpan pasangan kata kunci dan respons, serta `ArrayList` untuk respons acak jika tidak ada kata kunci yang cocok.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'responderCode')">Copy</button>
+                <pre><code id="responderCode">
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Random;
+
+public class Responder {
+    private Random randomGenerator;
+    private ArrayList<String> defaultResponses;
+    private HashMap<String, String> responseMap;
+
+    public Responder() {
+        randomGenerator = new Random();
+        defaultResponses = new ArrayList<>();
+        responseMap = new HashMap<>();
+        fillDefaultResponses();
+        fillResponseMap();
+    }
+
+    public String generateResponse(HashSet<String> words) {
+        for (String word : words) {
+            String response = responseMap.get(word);
+            if (response != null) {
+                return response; // Ditemukan kata kunci, kembalikan respons spesifik
+            }
+        }
+        // Jika loop selesai dan tidak ada kata kunci yang cocok
+        return pickDefaultResponse();
+    }
+
+    private String pickDefaultResponse() {
+        int index = randomGenerator.nextInt(defaultResponses.size());
+        return defaultResponses.get(index);
+    }
+
+    private void fillResponseMap() {
+        responseMap.put("lambat", "Sepertinya ini masalah hardware. Coba upgrade prosesor Anda.");
+        responseMap.put("macet", "Bisa jadi ada konflik software. Coba restart komputer Anda.");
+        responseMap.put("error", "Tolong berikan pesan error yang lebih spesifik.");
+        responseMap.put("mahal", "Produk kami sangat kompetitif. Fitur kami jauh lebih lengkap.");
+    }
+    
+    private void fillDefaultResponses() {
+        defaultResponses.add("That sounds interesting. Tell me more...");
+        defaultResponses.add("Could you elaborate on that?");
+        defaultResponses.add("I need a bit more information on that.");
+        defaultResponses.add("Have you checked the manual?");
+    }
+}
+                </code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+    function copyCode(button, elementId) {
+        const codeElement = document.getElementById(elementId);
+        navigator.clipboard.writeText(codeElement.innerText).then(function() {
+            button.innerText = 'Copied!';
+            setTimeout(function() { button.innerText = 'Copy'; }, 2000);
+        }, function(err) {
+            button.innerText = 'Gagal';
+        });
+    }
+
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
+    </script>
+</body>
+</html>

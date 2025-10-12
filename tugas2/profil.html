@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Lengkap - Ageng Prayogo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+        }
+        .profile-container {
+            width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #e6f7e6;
+            border: 2px solid #0056b3;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        /* Styling untuk tabel data diri (tetap sama) */
+        .profile-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        .profile-table td { padding: 10px; vertical-align: top; }
+        .profile-picture-cell { width: 150px; text-align: center; }
+        .profile-picture { width: 120px; height: auto; border: 3px solid #0056b3; }
+        .label-cell { width: 180px; font-weight: bold; color: #b30000; }
+        .colon-cell { width: 10px; }
+        .data-cell { color: #333; }
+        .hobby-button { padding: 5px 10px; cursor: pointer; }
+        
+        /* Styling untuk elemen baru */
+        h1, h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #cccccc;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+        .main-title {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        .description-paragraph {
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .hobby-list {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        .education-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .education-table th, .education-table td {
+            border: 1px solid #0056b3;
+            padding: 8px;
+            text-align: left;
+        }
+        .education-table th {
+            background-color: #add8e6;
+            color: #333;
+        }
+        .contact-form {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border: 1px solid #ccc;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .contact-form button {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .social-links {
+            margin-top: 15px;
+        }
+        .social-links a {
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        
+        <h1 class="main-title">Profil Diri</h1>
+        
+        <table class="profile-table">
+            <tr>
+                <td class="profile-picture-cell" rowspan="9">
+                    <img src="../img/fotoku.jpg" alt="Foto Profil" class="profile-picture">
+                </td>
+                <td class="label-cell">Nama Lengkap</td>
+                <td class="colon-cell">:</td>
+                <td class="data-cell">Ageng Prayogo</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Tempat, Tanggal Lahir</td>
+                <td class="colon-cell">:</td>
+                <td class="data-cell">Gresik, 01 Januari 2000</td>
+            </tr>
+             <tr>
+                <td class="label-cell">Jenis Kelamin</td><td class="colon-cell">:</td><td class="data-cell">Laki - Laki</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Agama</td><td class="colon-cell">:</td><td class="data-cell">Islam</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Alamat</td><td class="colon-cell">:</td><td class="data-cell">Jln. Slamet Wahiddin</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Status</td><td class="colon-cell">:</td><td class="data-cell">Belum Menikah</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Pekerjaan</td><td class="colon-cell">:</td><td class="data-cell">Mahasiswa</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Kewarganegaraan</td><td class="colon-cell">:</td><td class="data-cell">Indonesia</td>
+            </tr>
+        </table>
+
+        <h2>Tentang Saya</h2>
+        <p class="description-paragraph">
+            Saya adalah seorang mahasiswa yang memiliki minat besar pada teknologi dan pemrograman. Saya selalu antusias untuk mempelajari hal-hal baru dan menghadapi tantangan dalam setiap proyek yang saya kerjakan.
+        </p>
+
+        <h2>Riwayat & Hobi</h2>
+        <ul class="hobby-list">
+            <li>Mempelajari bahasa pemrograman terutama php, Js</li>
+            <li>Coding</li>
+            <li>Sound System</li>
+            <li>Elektronik</li>
+        </ul>
+
+        <h2>Riwayat Pendidikan</h2>
+        <table class="education-table">
+            <thead>
+                <tr>
+                    <th>Jenjang</th>
+                    <th>Nama Sekolah</th>
+                    <th>Tahun Lulus</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SD</td>
+                    <td>SDN Gresik</td>
+                    <td>2012</td>
+                </tr>
+                <tr>
+                    <td>SMP</td>
+                    <td>SMPN Gresik</td>
+                    <td>2015</td>
+                </tr>
+                <tr>
+                    <td>SMA</td>
+                    <td>SMAN Gresik</td>
+                    <td>2021</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Hubungi Saya</h2>
+        <form action="#" method="post" class="contact-form">
+            <label for="nama">Nama Anda:</label>
+            <input type="text" id="nama" name="nama" required>
+            
+            <label for="email">Email Anda:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="pesan">Pesan:</label>
+            <textarea id="pesan" name="pesan" rows="4" required></textarea>
+            
+            <button type="submit">Kirim</button>
+        </form>
+
+        <h2>Media Sosial</h2>
+        <div class="social-links">
+            <a href="https://www.instagram.com/yga_46/" target="_blank">Instagram</a>
+            <a href="https://github.com/YOGA3321/" target="_blank">GitHub</a>
+        </div>
+    </div>
+</body>
+</html>

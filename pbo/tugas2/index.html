@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Tugas Ticket Machine</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            
+            <h1>Tugas BlueJ: Ticket Machine</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: B</h3>
+            <p class="meta-info">Tugas ini bertujuan untuk membuat dan mendokumentasikan program Ticket Machine menggunakan BlueJ.</p>
+            <hr>
+
+            <h2>Langkah-langkah Pengerjaan</h2>
+            <p>Berikut adalah langkah-langkah yang saya lakukan, disertai dengan screenshot.</p>
+            
+            <h3>1. Membuat Proyek dan Kelas</h3>
+            <img src="../../img/6.png" alt="Membuat Proyek BlueJ">
+            <p class="caption">Screenshot saat membuat Project TicketMachine.</p>
+            <img src="../../img/7.png" alt="Membuat Proyek BlueJ">
+            <p class="caption">Screenshot saat membuat kelas TicketMachine.</p>
+            
+            <h3>2. Mengisi Kode dan Compile</h3>
+            <img src="../../img/8.png" alt="Compile Kode">
+            <p class="caption">Screenshot setelah kode berhasil di-compile tanpa error.</p>
+
+            <h3>3. Hasil Interaksi dengan Objek</h3>
+            <img src="../../img/9.png" alt="Hasil Interaksi">
+            <p class="caption">Screenshot create objek di BlueJ.</p>
+            <img src="../../img/10.png" alt="Hasil Interaksi">
+            <p class="caption">Screenshot getPrice() di BlueJ.</p>
+            <img src="../../img/11.png" alt="Hasil Interaksi">
+            <p class="caption">Screenshot insertMoney(int amount) di BlueJ.</p>
+            <img src="../../img/12.png" alt="Hasil Interaksi">
+            <p class="caption">Screenshot getBalance() di BlueJ.</p>
+            <img src="../../img/13.png" alt="Hasil Interaksi">
+            <p class="caption">Screenshot print() di BlueJ.</p>
+            <img src="../../img/14.png" alt="Hasil Interaksi">
+            <p class="caption">Screenshot getBalance() di BlueJ.</p>
+            
+            <hr>
+
+            <h2>Source Code</h2>
+            <p>Kode yang saya gunakan pada kelas `TicketMachine` adalah sebagai berikut:</p>
+
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'ticketMachineCode')">Copy</button>
+                <pre><code id="ticketMachineCode">/**
+ * TicketMachine memodelkan mesin tiket naif yang mengeluarkan
+ * tiket dengan tarif tetap.
+ * Harga tiket ditentukan melalui constructor.
+ * Ini adalah mesin naif dalam artian ia mempercayai penggunanya
+ * untuk memasukkan cukup uang sebelum mencoba mencetak tiket.
+ * Ia juga berasumsi bahwa pengguna memasukkan jumlah yang masuk akal.
+ *
+ * @author David J. Barnes and Michael Kölling
+ * @version 2011.07.31
+ */
+public class TicketMachine
+{
+    // Harga tiket dari mesin ini.
+    private int price;
+    // Jumlah uang yang dimasukkan oleh pelanggan sejauh ini.
+    private int balance;
+    // Jumlah total uang yang dikumpulkan oleh mesin ini.
+    private int total;
+
+    /**
+     * Buat mesin yang mengeluarkan tiket dengan harga yang diberikan.
+     * Perhatikan bahwa harga harus lebih besar dari nol, dan tidak
+     * ada pemeriksaan untuk memastikan ini.
+     */
+    public TicketMachine(int cost)
+    {
+        price = cost;
+        balance = 0;
+        total = 0;
+    }
+
+    /**
+     * Mengembalikan harga tiket.
+     */
+    public int getPrice()
+    {
+        return price;
+    }
+
+    /**
+     * Mengembalikan jumlah uang yang sudah dimasukkan untuk
+     * tiket berikutnya.
+     */
+    public int getBalance()
+    {
+        return balance;
+    }
+
+    /**
+     * Menerima sejumlah uang dari pelanggan.
+     */
+    public void insertMoney(int amount)
+    {
+        balance = balance + amount;
+    }
+
+    /**
+     * Cetak tiket.
+     * Perbarui total yang terkumpul dan
+     * kurangi saldo menjadi nol.
+     */
+    public void printTicket()
+    {
+        // Simulasi pencetakan tiket.
+        System.out.println("##################");
+        System.out.println("# The BlueJ Line");
+        System.out.println("# Ticket");
+        System.out.println("# " + price + " cents.");
+        System.out.println("##################");
+        System.out.println();
+
+        // Perbarui total yang terkumpul dengan saldo.
+        total = total + balance;
+        // Kosongkan saldo.
+        balance = 0;
+    }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    function copyCode(button, elementId) {
+        const codeElement = document.getElementById(elementId);
+        const codeToCopy = codeElement.innerText;
+
+        navigator.clipboard.writeText(codeToCopy).then(function() {
+            // Berhasil! Beri feedback ke user.
+            button.innerText = 'Copied!';
+            setTimeout(function() {
+                button.innerText = 'Copy';
+            }, 2000); // Kembalikan teks tombol setelah 2 detik
+        }, function(err) {
+            // Gagal. Mungkin karena browser tidak mendukung.
+            console.error('Gagal menyalin teks: ', err);
+            button.innerText = 'Gagal';
+        });
+    }
+    </script>
+</body>
+</html>

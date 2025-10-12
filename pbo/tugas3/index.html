@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Tugas Ticket Machine</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            
+            <h1>Tugas BlueJ: Jam Digital Sederhana</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: B</h3>
+            <p class="meta-info">Tugas ini bertujuan untuk membuat dan mendokumentasikan program Jam Digital Sederhana menggunakan BlueJ.</p>
+            <hr>
+
+            <h2>Langkah-langkah Pengerjaan</h2>
+            <p>Berikut adalah langkah-langkah yang saya lakukan.</p>
+            <h3>1. Membuat Jam Digital</h3>
+            <h3>2. Membuat Hari, Tanggal, Tahun</h3>
+            <h3>3. Menambahkan Detik Ke Jam</h3>
+            <hr>
+            
+            <h1>Berikut Jam  Yang Telah Saya Buat</h1>
+            <h3>Hasil Rangkaian Class</h3>
+            <img src="../../img/16.png" alt="Class Jam Digital">
+            <p class="caption">Gambar Tersebut Adalah Rangkaian Class Yang Digunakan.</p>
+
+            <h3>Hasil Tampilan Jam Digital Sederhana</h3>
+            <img src="../../img/17.png" alt="Hasil Jam Digital Sederhana">
+            <p class="caption">Screenshot create objek di BlueJ.</p>
+            
+            <hr>
+
+            <h2>Source Code</h2>
+            <p>Kode yang saya gunakan pada kelas `Clock` adalah sebagai berikut:</p>
+
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'ticketMachineCode')">Copy</button>
+                <pre><code id="ticketMachineCode">import javax.swing.*;
+                    import java.awt.*;
+                    import java.awt.event.*;
+                    import java.time.LocalDateTime;
+                    import java.time.format.DateTimeFormatter;
+                    import java.util.Locale;
+                    
+                    /**
+                     * Kelas ini membuat GUI untuk menampilkan jam digital live.
+                     * Ia menggunakan objek ClockDisplay untuk mengelola logika waktu.
+                     */
+                    public class Clock
+                    {
+                        private JFrame frame;
+                        private JLabel timeLabel;
+                        private JLabel dateLabel;
+                        private Timer timer;
+                        private ClockDisplay clockLogic; // Menggunakan ClockDisplay untuk logika
+                    
+                        public Clock()
+                        {
+                            clockLogic = new ClockDisplay(); // Membuat objek logika
+                            makeFrame();
+                            startClock();
+                        }
+                    
+                        /**
+                         * Mengatur dan menampilkan frame GUI.
+                         */
+                        private void makeFrame()
+                        {
+                            frame = new JFrame("Jam Digital");
+                            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            
+                            JPanel contentPane = new JPanel(new BorderLayout(10, 10));
+                            contentPane.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
+                            contentPane.setBackground(new Color(240, 240, 240)); // Latar belakang abu-abu terang
+                            frame.setContentPane(contentPane);
+                    
+                            // Label untuk Waktu
+                            timeLabel = new JLabel("", SwingConstants.CENTER);
+                            timeLabel.setFont(new Font("Arial", Font.BOLD, 80));
+                            timeLabel.setForeground(new Color(40, 40, 40));
+                            contentPane.add(timeLabel, BorderLayout.CENTER);
+                            
+                            // Label untuk Tanggal
+                            dateLabel = new JLabel("", SwingConstants.CENTER);
+                            dateLabel.setFont(new Font("Arial", Font.PLAIN, 22));
+                            dateLabel.setForeground(new Color(100, 100, 100));
+                            contentPane.add(dateLabel, BorderLayout.SOUTH);
+                    
+                            frame.pack();
+                            frame.setLocationRelativeTo(null);
+                            frame.setVisible(true);
+                        }
+                        
+                        /**
+                         * Memulai timer untuk memperbarui tampilan setiap detik.
+                         */
+                        private void startClock()
+                        {
+                            timer = new Timer(1000, new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    updateDisplay();
+                                }
+                            });
+                            timer.start();
+                        }
+                    
+                        /**
+                         * Memperbarui tampilan waktu dan tanggal.
+                         */
+                        private void updateDisplay()
+                        {
+                            // 1. Minta logika jam untuk update ke waktu sekarang
+                            clockLogic.updateToRealTime();
+                            // 2. Ambil string waktu yang sudah diformat dari logika jam
+                            String currentTime = clockLogic.getTime();
+                            // 3. Tampilkan di label
+                            timeLabel.setText(currentTime);
+                            
+                            // Mengambil dan memformat tanggal (ini bisa tetap di kelas GUI)
+                            LocalDateTime now = LocalDateTime.now();
+                            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(
+                                "EEEE, dd MMMM yyyy", new Locale("id", "ID")
+                            );
+                            dateLabel.setText(now.format(dateFormatter));
+                        }
+                        
+                        /**
+                         * Metode main untuk menjalankan aplikasi.
+                         */
+                        public static void main(String[] args) {
+                            SwingUtilities.invokeLater(() -> new Clock());
+                        }
+                    }</code></pre>
+            </div>
+            <!--selanjutnya-->
+            <p>Kode yang saya gunakan pada kelas `ClockDisplay` adalah sebagai berikut:</p>
+
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'ticketMachineCode')">Copy</button>
+                <pre><code id="ticketMachineCode">import java.time.LocalDateTime;
+                /**
+                 * Kelas ini menyimpan logika untuk jam digital 24 jam.
+                 * Jam ini menampilkan jam, menit, dan detik.
+                 */
+                public class ClockDisplay
+                {
+                    private NumberDisplay hours;
+                    private NumberDisplay minutes;
+                    private NumberDisplay seconds; // Penambahan detik
+                    private String displayString;
+                    
+                    /**
+                     * Constructor untuk objek ClockDisplay.
+                     * Membuat jam baru yang diatur ke 00:00:00.
+                     */
+                    public ClockDisplay()
+                    {
+                        hours = new NumberDisplay(24);
+                        minutes = new NumberDisplay(60);
+                        seconds = new NumberDisplay(60);
+                        updateDisplay();
+                    }
+                    
+                    /**
+                     * Metode ini harus dipanggil berulang kali untuk memperbarui
+                     * waktu jam sesuai dengan waktu sistem saat ini.
+                     */
+                    public void updateToRealTime()
+                    {
+                        LocalDateTime now = LocalDateTime.now();
+                        int currentHour = now.getHour();
+                        int currentMinute = now.getMinute();
+                        int currentSecond = now.getSecond();
+                        
+                        hours.setValue(currentHour);
+                        minutes.setValue(currentMinute);
+                        seconds.setValue(currentSecond);
+                        
+                        updateDisplay();
+                    }
+                
+                    /**
+                     * Mengembalikan waktu saat ini dalam format HH:MM:SS.
+                     */
+                    public String getTime()
+                    {
+                        return displayString;
+                    }
+                    
+                    /**
+                     * Memperbarui string tampilan internal yang merepresentasikan waktu.
+                     */
+                    private void updateDisplay()
+                    {
+                        displayString = hours.getDisplayValue() + ":" + 
+                                        minutes.getDisplayValue() + ":" + 
+                                        seconds.getDisplayValue();
+                    }
+                }</code></pre>
+            </div>
+            <!--selanjutnya-->
+            <p>Kode yang saya gunakan pada kelas `NumberDisplay` adalah sebagai berikut:</p>
+
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'ticketMachineCode')">Copy</button>
+                <pre><code id="ticketMachineCode">/**
+                * The NumberDisplay class represents a digital number display that can hold
+                * values from zero to a given limit. The limit can be specified when creating
+                * the display. The values range from zero (inclusive) to limit-1. If used,
+                * for example, for the seconds on a digital clock, the limit would be 60,
+                * resulting in display values from 0 to 59. When incremented, the display
+                automatically rolls over to zero when reaching the limit.
+                * @author Michael Kölling and David J. Barnes
+                @version 2016.02.29
+                */
+                public class NumberDisplay
+                {
+                private int limit;
+                private int value;
+                
+                /**
+                * Constructor for objects of class NumberDisplay.
+                * Set the limit at which the display rolls over.
+                */
+                public NumberDisplay(int rollOverLimit)
+                {
+                limit = rollOverLimit;
+                value = 0;
+                }
+                public int getValue()
+                {
+                return value;
+                }
+                /**
+                * Return the display value (that is, the current value as a two-digit
+                * String. If the value is less than ten, it will be padded with a leading
+                * zero).
+                */
+                
+                public String getDisplayValue()
+                {
+                if(value < 10) {
+                return "0" + value;
+                }else{
+                    return "" + value;
+                    }
+                }
+                
+                public void setValue(int replacementValue){
+                    if((replacementValue >= 0) && (replacementValue < limit)){
+                        value = replacementValue;
+                    }
+                }
+                
+                public void increment(){
+                    value = (value + 1) % limit;
+                    }
+                }</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    function copyCode(button, elementId) {
+        const codeElement = document.getElementById(elementId);
+        const codeToCopy = codeElement.innerText;
+
+        navigator.clipboard.writeText(codeToCopy).then(function() {
+            // Berhasil! Beri feedback ke user.
+            button.innerText = 'Copied!';
+            setTimeout(function() {
+                button.innerText = 'Copy';
+            }, 2000); // Kembalikan teks tombol setelah 2 detik
+        }, function(err) {
+            // Gagal. Mungkin karena browser tidak mendukung.
+            console.error('Gagal menyalin teks: ', err);
+            button.innerText = 'Gagal';
+        });
+    }
+    </script>
+</body>
+</html>
