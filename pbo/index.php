@@ -41,24 +41,16 @@
                 <p>Simulasi pengisian FRS mahasiswa dengan konsep Overloading dan Objek sebagai Parameter.</p>
             </a>
             <a href="tugas5/" class="tugas-card">
-                <div class="card-icon">🎓</div>
+                <div class="card-icon">📋</div>
                 <h2>Tugas Pertemuan 6: Grouping Object</h2>
-                <p>Pembuatan Grouping Object.</p>
+                <p>Mempraktikkan `ArrayList` dan `Scanner` untuk membuat aplikasi konsol interaktif.</p>
             </a>
-
-            <!--<a href="tugas2/" class="tugas-card">-->
-            <!--    <div class="card-icon">👤</div>-->
-            <!--    <h2>Tugas Pertemuan 2: Profil Lengkap</h2>-->
-            <!--    <p>Membuat halaman profil diri statis yang memuat semua elemen HTML dasar.</p>-->
-            <!--</a>-->
-
-            <!--<a href="tugas-3.html" class="tugas-card">-->
-            <!--    <div class="card-icon">✨</div>-->
-            <!--    <h2>Tugas 3: Interaktivitas JavaScript</h2>-->
-            <!--    <p>Menambahkan interaksi pada halaman web menggunakan JavaScript DOM Manipulation dan Events.</p>-->
-            <!--</a>-->
-            
-            </main>
+            <a href="tugas6/" class="tugas-card">
+                <div class="card-icon">💬</div>
+                <h2>Tugas Pertemuan 7: Tech Support System</h2>
+                <p>Membuat sistem dukungan teknis cerdas dengan `HashMap` dan respons acak.</p>
+            </a>
+        </main>
     </div>
 
 </body>

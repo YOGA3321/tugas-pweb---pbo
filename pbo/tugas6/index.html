@@ -51,11 +51,11 @@
             <p>Berikut adalah hasil akhir dari program yang telah dimodifikasi, mencakup diagram kelas di BlueJ dan contoh interaksi di terminal.</p>
 
             <h3>1. Diagram Kelas di BlueJ</h3>
-            <img src="../../img/techsupport-diagram.png" alt="Diagram Kelas Tech Support" onclick="openModal(this)">
+            <img src="../../img/33.png" alt="Diagram Kelas Tech Support" onclick="openModal(this)">
             <p class="caption">Struktur kelas yang digunakan: `SupportSystem` sebagai kelas utama, `InputReader` untuk memproses input, dan `Responder` untuk menghasilkan respons cerdas.</p>
 
             <h3>2. Contoh Interaksi di Terminal</h3>
-            <img src="../../img/techsupport-terminal.png" alt="Hasil Interaksi Tech Support" onclick="openModal(this)">
+            <img src="../../img/34.png" alt="Hasil Interaksi Tech Support" onclick="openModal(this)">
             <p class="caption">Contoh output program. Terlihat program memberikan respons acak jika tidak ada kata kunci, dan respons spesifik jika menemukan kata kunci seperti "lambat".</p>
             
             <hr>
@@ -63,13 +63,16 @@
             <h2>Source Code</h2>
             <p>Aplikasi ini terdiri dari tiga kelas. Berikut adalah kode sumber lengkap untuk versi canggihnya.</p>
 
-            <h3>Kelas: SupportSystem.java (Kelas Utama)</h3>
+            <h3>Kelas: SupportSystem (Kelas Utama)</h3>
             <p>Kelas ini mengatur alur utama aplikasi, membuat loop untuk membaca input dan menampilkan respons hingga pengguna keluar.</p>
             <div class="code-block-container">
                 <button onclick="copyCode(this, 'supportSystemCode')">Copy</button>
                 <pre><code id="supportSystemCode">
 import java.util.HashSet;
 
+/**
+ * Kelas ini mengimplementasikan sistem dukungan teknis.
+ */
 public class SupportSystem {
     private InputReader reader;
     private Responder responder;
@@ -84,20 +87,22 @@ public class SupportSystem {
         printWelcome();
 
         while (!finished) {
-            // reader.getInput() sekarang mengembalikan HashSet<String>
+            // Sekarang, getInput() mengembalikan HashSet<String>
             HashSet<String> input = reader.getInput();
 
+            // Cek apakah input mengandung kata "bye"
             if (input.contains("bye")) {
                 finished = true;
             } else {
+                // Teruskan seluruh set kata ke responder
                 String response = responder.generateResponse(input);
                 System.out.println(response);
             }
         }
         printGoodbye();
     }
-    
-    // Metode printWelcome() dan printGoodbye() tetap sama
+
+    // Metode printWelcome() dan printGoodbye() tidak perlu diubah
     private void printWelcome() {
         System.out.println("Welcome to the DodgySoft Technical Support System.");
         System.out.println("\nPlease tell us about your problem.");
@@ -111,7 +116,7 @@ public class SupportSystem {
                 </code></pre>
             </div>
 
-            <h3>Kelas: InputReader.java</h3>
+            <h3>Kelas: InputReader</h3>
             <p>Kelas ini dimodifikasi untuk membaca satu baris input, mengubahnya menjadi huruf kecil, lalu memecahnya menjadi kumpulan kata unik (`HashSet`).</p>
             <div class="code-block-container">
                 <button onclick="copyCode(this, 'inputReaderCode')">Copy</button>
@@ -119,6 +124,9 @@ public class SupportSystem {
 import java.util.HashSet;
 import java.util.Scanner;
 
+/**
+ * InputReader membaca input teks dari terminal dan memecahnya menjadi kata-kata.
+ */
 public class InputReader {
     private Scanner scanner;
 
@@ -128,10 +136,13 @@ public class InputReader {
 
     public HashSet<String> getInput() {
         System.out.print("> ");
+        // Baca baris, hapus spasi di awal/akhir, ubah ke huruf kecil
         String inputLine = scanner.nextLine().trim().toLowerCase();
 
+        // Pecah kalimat menjadi array kata-kata berdasarkan spasi
         String[] wordArray = inputLine.split(" ");
         
+        // Masukkan semua kata ke dalam HashSet
         HashSet<String> words = new HashSet<>();
         for (String word : wordArray) {
             words.add(word);
@@ -142,7 +153,7 @@ public class InputReader {
                 </code></pre>
             </div>
             
-            <h3>Kelas: Responder.java (Versi Canggih)</h3>
+            <h3>Kelas: Responder (Versi Canggih)</h3>
             <p>Ini adalah "otak" dari sistem. Kelas ini menggunakan `HashMap` untuk menyimpan pasangan kata kunci dan respons, serta `ArrayList` untuk respons acak jika tidak ada kata kunci yang cocok.</p>
             <div class="code-block-container">
                 <button onclick="copyCode(this, 'responderCode')">Copy</button>
@@ -152,6 +163,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
+/**
+ * Responder menghasilkan respons otomatis.
+ * Versi ini bisa memberikan respons acak dan respons berdasarkan kata kunci.
+ */
 public class Responder {
     private Random randomGenerator;
     private ArrayList<String> defaultResponses;
@@ -172,27 +187,40 @@ public class Responder {
                 return response; // Ditemukan kata kunci, kembalikan respons spesifik
             }
         }
-        // Jika loop selesai dan tidak ada kata kunci yang cocok
+        // Jika loop selesai dan tidak ada kata kunci yang cocok,
+        // kembalikan respons acak.
         return pickDefaultResponse();
     }
 
-    private String pickDefaultResponse() {
-        int index = randomGenerator.nextInt(defaultResponses.size());
-        return defaultResponses.get(index);
-    }
-
+    /**
+     * Mengisi peta (map) dengan pasangan kata kunci dan respons.
+     */
     private void fillResponseMap() {
         responseMap.put("lambat", "Sepertinya ini masalah hardware. Coba upgrade prosesor Anda.");
         responseMap.put("macet", "Bisa jadi ada konflik software. Coba restart komputer Anda.");
-        responseMap.put("error", "Tolong berikan pesan error yang lebih spesifik.");
-        responseMap.put("mahal", "Produk kami sangat kompetitif. Fitur kami jauh lebih lengkap.");
+        responseMap.put("error", "Tolong berikan pesan error yang lebih spesifik agar kami bisa bantu.");
+        responseMap.put("mahal", "Produk kami sangat kompetitif. Fitur kami jauh lebih lengkap dari yang lain.");
+        responseMap.put("windows", "Pastikan Anda menggunakan versi Windows terbaru yang sudah di-update.");
     }
     
+    /**
+     * Mengisi daftar respons default (acak).
+     */
     private void fillDefaultResponses() {
         defaultResponses.add("That sounds interesting. Tell me more...");
         defaultResponses.add("Could you elaborate on that?");
         defaultResponses.add("I need a bit more information on that.");
         defaultResponses.add("Have you checked the manual?");
+        defaultResponses.add("Hmm, menarik. Lanjutkan.");
+    }
+    
+    /**
+     * Memilih satu respons acak dari daftar default.
+     */
+    private String pickDefaultResponse() {
+        // Pilih nomor indeks acak.
+        int index = randomGenerator.nextInt(defaultResponses.size());
+        return defaultResponses.get(index);
     }
 }
                 </code></pre>
