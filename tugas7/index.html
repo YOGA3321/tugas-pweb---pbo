@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Tugas Login AJAX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            <h1>Tugas 7: Form Login dengan AJAX</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: A</h3>
+            <p class="meta-info">Tugas ini bertujuan untuk membuat halaman login yang memvalidasi data pengguna secara asynchronous menggunakan AJAX.</p>
+            <hr>
+
+            <h2>Deskripsi & Konsep Implementasi</h2>
+            <p>
+                Aplikasi ini merupakan sebuah halaman login sederhana yang proses autentikasinya ditangani oleh <strong>AJAX (Asynchronous JavaScript and XML)</strong>. Dengan AJAX, data dari form login dapat dikirim ke server dan responsnya dapat diterima kembali tanpa perlu me-refresh seluruh halaman. Ini menciptakan pengalaman pengguna yang lebih cepat dan modern.
+            </p>
+            
+            <h3>Alur Kerja Aplikasi:</h3>
+            <ol>
+                <li>Pengguna mengisi email dan password pada file <code>login.html</code>.</li>
+                <li>Ketika tombol "Masuk" diklik, file <code>login_ajax.js</code> akan mengambil alih proses.</li>
+                <li>JavaScript mengirimkan data email dan password ke server (<code>check_login.php</code>) di latar belakang menggunakan <strong>Fetch API</strong>.</li>
+                <li><code>check_login.php</code> menerima data, melakukan validasi sederhana (tanpa database), dan mengirimkan kembali status (success/error) dalam format <strong>JSON</strong>.</li>
+                <li>JavaScript menerima respons JSON dan menampilkan pesan "Login Berhasil" atau "Email atau Password Salah" secara dinamis di halaman.</li>
+            </ol>
+
+            <img src="../img/23.png" alt="Form Login AJAX">
+            <p class="caption">Tampilan utama form login yang akan divalidasi dengan AJAX.</p>
+
+            <hr>
+            <h2>Hasil Tugas</h2>
+            <p>Halaman demo di bawah ini adalah hasil akhir dari pengerjaan tugas ini. Silakan coba login dengan data yang benar atau salah untuk melihat respons AJAX secara langsung.</p>
+            
+            <a href="login.html" class="tombol-demo" target="_blank">Lihat Demo Live</a>
+        </div>
+    </div>
+</body>
+</html>

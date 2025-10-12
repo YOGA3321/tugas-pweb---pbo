@@ -51,6 +51,11 @@
                 <h2>Tugas Pertemuan 6: Form Login Interaktif</h2>
                 <p>Form Login.</p>
             </a>
+            <a href="tugas7/" class="tugas-card">
+                <div class="card-icon">🔑</div>
+                <h2>Tugas Pertemuan 7: Form Login AJAX</h2>
+                <p>Membuat form login interaktif dengan validasi asynchronous menggunakan AJAX dan PHP.</p>
+            </a>
 
             <!--<a href="tugas-3.html" class="tugas-card">-->
             <!--    <div class="card-icon">✨</div>-->
