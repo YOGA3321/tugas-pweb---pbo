@@ -56,6 +56,11 @@
                 <h2>Tugas Pertemuan 7: Form Login AJAX</h2>
                 <p>Membuat form login interaktif dengan validasi asynchronous menggunakan AJAX dan PHP.</p>
             </a>
+            <a href="ets/" class="tugas-card">
+                <div class="card-icon">✈️</div>
+                <h2>Ujian Tengah Semester: Landing Page Travel</h2>
+                <p>Membuat landing page jasa travel "Traveleka" yang modern, responsif, dan interaktif.</p>
+            </a>
 
             <!--<a href="tugas-3.html" class="tugas-card">-->
             <!--    <div class="card-icon">✨</div>-->

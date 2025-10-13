@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traveleka - Jasa Travel Antar Kota</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">Traveleka</a>
+            <ul>
+                <li><a href="#layanan">Layanan</a></li>
+                <li><a href="#promo">Promo</a></li>
+                <li><a href="#testimoni">Testimoni</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#pesan" class="btn-nav">Pesan Sekarang</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1 class="animasi">Perjalanan Antar Kota Mudah & Cepat</h1>
+            <p class="animasi">Solusi travel terpercaya untuk penumpang dan pengiriman paket. Pesan sekarang dan nikmati perjalanan yang aman dan nyaman.</p>
+            <a href="#pesan" class="btn-utama animasi">Pesan Perjalanan Anda</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="benefits animasi">
+            <div class="container">
+                <h2>Kenapa Memilih Kami?</h2>
+                <div class="benefit-grid">
+                    <div class="benefit-card">
+                        <i class="fas fa-car-side"></i>
+                        <h3>Armada Terbaik</h3>
+                        <p>Mobil travel modern yang bersih, aman, dan terawat secara rutin untuk kenyamanan Anda.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-hand-holding-dollar"></i>
+                        <h3>Harga Terjangkau</h3>
+                        <p>Dapatkan harga terbaik untuk perjalanan penumpang maupun pengiriman paket tanpa biaya tersembunyi.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Jangkauan Luas</h3>
+                        <p>Kami melayani berbagai rute populer di seluruh Pulau Jawa dengan jadwal yang fleksibel.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="layanan" class="services animasi">
+            <div class="container">
+                <h2>Layanan Andalan Kami</h2>
+                <div class="service-item">
+                    <img src="https://images.unsplash.com/photo-1527997427307-32502931c675?w=600" alt="Antar Jemput Penumpang">
+                    <div>
+                        <h3>Antar Jemput Penumpang</h3>
+                        <p>Layanan *door-to-door* yang menjemput Anda dari lokasi dan mengantar langsung ke alamat tujuan. Ideal untuk perjalanan bisnis, liburan, atau mudik.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Kursi Nyaman & Reclining</li>
+                            <li><i class="fas fa-check"></i> Full AC & Musik</li>
+                            <li><i class="fas fa-check"></i> Gratis Air Mineral</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <img src="https://plus.unsplash.com/premium_photo-1661438370766-8b68ab6cd632?w=600" alt="Kirim Paket Cepat">
+                    <div>
+                        <h3>Kirim Paket Cepat (Same Day)</h3>
+                        <p>Butuh kirim barang atau dokumen penting? Titipkan pada kami. Paket Anda akan sampai di hari yang sama dengan aman dan cepat hingga ke tangan penerima.</p>
+                         <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Pengiriman Cepat & Aman</li>
+                            <li><i class="fas fa-check"></i> Lacak Posisi Paket</li>
+                            <li><i class="fas fa-check"></i> Asuransi Pengiriman</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="promo" class="promo-section animasi">
+            <div class="container">
+                <h2>Pilih Paket Terbaik Untuk Anda</h2>
+                <div class="pricing-toggle">
+                    <button class="toggle-btn active" data-target="travel-pricing">Travel Penumpang</button>
+                    <button class="toggle-btn" data-target="paket-pricing">Pengiriman Paket</button>
+                </div>
+                <div class="pricing-content">
+                    <div class="pricing-grid active" id="travel-pricing">
+                        <div class="pricing-card">
+                            <div class="pricing-header"><h3>Paket Reguler</h3><p>Pilihan ekonomis untuk perjalanan nyaman.</p></div>
+                            <ul class="pricing-features">
+                                <li><i class="fas fa-check"></i> 1 Kursi Penumpang</li>
+                                <li><i class="fas fa-check"></i> Bagasi Kabin (7kg)</li>
+                                <li><i class="fas fa-check"></i> Gratis Air Mineral</li>
+                                <li><i class="fas fa-times"></i> Tanpa Pilih Kursi</li>
+                            </ul>
+                            <a href="#pesan" class="btn-promo">Pilih Paket</a>
+                        </div>
+                        <div class="pricing-card popular">
+                            <div class="popular-badge">PALING POPULER</div>
+                            <div class="pricing-header"><h3>Paket Bisnis</h3><p>Kenyamanan ekstra untuk perjalanan lebih baik.</p></div>
+                            <ul class="pricing-features">
+                                <li><i class="fas fa-check"></i> 1 Kursi Penumpang</li>
+                                <li><i class="fas fa-check"></i> Bagasi Kabin (10kg)</li>
+                                <li><i class="fas fa-check"></i> Gratis Air Mineral & Snack</li>
+                                <li><i class="fas fa-check"></i> Bebas Pilih Kursi</li>
+                            </ul>
+                            <a href="#pesan" class="btn-utama">Pilih Paket</a>
+                        </div>
+                        <div class="pricing-card">
+                             <div class="pricing-header"><h3>Paket Prioritas</h3><p>Layanan premium dengan fleksibilitas tinggi.</p></div>
+                             <ul class="pricing-features">
+                                <li><i class="fas fa-check"></i> 1 Kursi Penumpang</li>
+                                <li><i class="fas fa-check"></i> Bagasi Kabin & Ekstra (20kg)</li>
+                                <li><i class="fas fa-check"></i> Gratis Air Mineral & Snack</li>
+                                <li><i class="fas fa-check"></i> Bebas Pilih Kursi Prioritas</li>
+                            </ul>
+                            <a href="#pesan" class="btn-promo">Pilih Paket</a>
+                        </div>
+                    </div>
+                    <div class="pricing-grid" id="paket-pricing">
+                        <div class="pricing-card">
+                            <div class="pricing-header"><h3>Paket Dokumen</h3><p>Untuk surat dan berkas penting.</p></div>
+                             <ul class="pricing-features">
+                                <li><i class="fas fa-check"></i> Maks. 1 kg</li>
+                                <li><i class="fas fa-check"></i> Amplop Sealed</li>
+                                <li><i class="fas fa-check"></i> Asuransi Dasar</li>
+                                <li><i class="fas fa-times"></i> Pelacakan Terbatas</li>
+                            </ul>
+                            <a href="#pesan" class="btn-promo">Pilih Paket</a>
+                        </div>
+                        <div class="pricing-card popular">
+                            <div class="popular-badge">PALING POPULER</div>
+                            <div class="pricing-header"><h3>Paket Reguler</h3><p>Untuk barang ukuran sedang.</p></div>
+                            <ul class="pricing-features">
+                                <li><i class="fas fa-check"></i> Maks. 5 kg</li>
+                                <li><i class="fas fa-check"></i> Packing Kardus</li>
+                                <li><i class="fas fa-check"></i> Asuransi Penuh</li>
+                                <li><i class="fas fa-check"></i> Lacak Real-time</li>
+                            </ul>
+                            <a href="#pesan" class="btn-utama">Pilih Paket</a>
+                        </div>
+                        <div class="pricing-card">
+                            <div class="pricing-header"><h3>Paket Kargo</h3><p>Untuk barang besar dan berat.</p></div>
+                             <ul class="pricing-features">
+                                <li><i class="fas fa-check"></i> Maks. 20 kg</li>
+                                <li><i class="fas fa-check"></i> Packing Kardus & Kayu</li>
+                                <li><i class="fas fa-check"></i> Asuransi Penuh</li>
+                                <li><i class="fas fa-check"></i> Lacak Real-time & Notifikasi</li>
+                            </ul>
+                            <a href="#pesan" class="btn-promo">Pilih Paket</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimoni" class="testimonials animasi">
+            <div class="container">
+                <h2>Apa Kata Pelanggan Kami</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p>"Pelayanannya memuaskan! Mobilnya bersih, wangi, dan drivernya ramah. Pasti akan jadi langganan."</p>
+                        <div class="author"><img src="https://i.pravatar.cc/50?img=1" alt="Budi"><h4>- Budi, Surabaya</h4></div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p>"Kirim paket dari Malang ke Surabaya cuma beberapa jam sudah sampai. Sangat bisa diandalkan. Mantap!"</p>
+                        <div class="author"><img src="https://i.pravatar.cc/50?img=5" alt="Anisa"><h4>- Anisa, Malang</h4></div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                        <p>"Harga paling oke dibanding yang lain. Proses pesannya juga gampang lewat form di website. Recommended!"</p>
+                        <div class="author"><img src="https://i.pravatar.cc/50?img=7" alt="Candra"><h4>- Candra, Jakarta</h4></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pesan" class="order-form animasi">
+            <div class="container">
+                <h2>Cek Ketersediaan & Pesan</h2>
+                <p>Isi formulir di bawah untuk mengecek jadwal dan mengamankan pesanan Anda.</p>
+                <form id="lead-form">
+                    <div class="form-grid">
+                        <div class="form-group"><label for="nama">Nama Lengkap</label><input type="text" id="nama" placeholder="Masukkan nama Anda" required></div>
+                        <div class="form-group"><label for="telepon">Nomor WhatsApp</label><input type="tel" id="telepon" placeholder="Contoh: 081234567890" required></div>
+                        <div class="form-group"><label for="asal">Kota Asal</label><input type="text" id="asal" placeholder="Kota penjemputan" required></div>
+                        <div class="form-group"><label for="tujuan">Kota Tujuan</label><input type="text" id="tujuan" placeholder="Kota tujuan" required></div>
+                        <div class="form-group"><label for="tanggal-berangkat">Tanggal Berangkat</label><input type="date" id="tanggal-berangkat" required></div>
+                        <div class="form-group"><label for="penumpang">Jumlah Penumpang</label><input type="number" id="penumpang" value="1" min="1" max="10" required></div>
+                        <div class="form-group full-width">
+                            <label for="tipe-perjalanan">Tipe Perjalanan</label>
+                            <select id="tipe-perjalanan" required>
+                                <option value="Sekali Jalan">Sekali Jalan</option>
+                                <option value="Pulang Pergi">Pulang Pergi</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width" id="return-date-wrapper">
+                            <label for="tanggal-pulang">Tanggal Pulang</label>
+                            <input type="date" id="tanggal-pulang">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-utama">Cek Ketersediaan & Harga</button>
+                    <p id="form-message"></p>
+                </form>
+            </div>
+        </section>
+
+        <section id="faq" class="faq animasi">
+            <div class="container">
+                <h2>Pertanyaan Umum (FAQ)</h2>
+                <div class="faq-item">
+                    <button class="faq-question"><span>Bagaimana cara memesan layanan travel?</span><i class="fas fa-plus"></i></button>
+                    <div class="faq-answer"><p>Anda bisa langsung mengisi formulir di atas. Tim kami akan segera menghubungi Anda melalui WhatsApp untuk konfirmasi detail pesanan dan jadwal.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>Apakah bisa kirim paket sampai di hari yang sama?</span><i class="fas fa-plus"></i></button>
+                    <div class="faq-answer"><p>Tentu saja! Layanan kirim paket kami menjamin paket sampai di hari yang sama untuk rute-rute dalam jangkauan layanan utama kami.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>Rute kota mana saja yang dilayani?</span><i class="fas fa-plus"></i></button>
+                    <div class="faq-answer"><p>Saat ini kami melayani rute utama di seluruh Pulau Jawa. Untuk rute spesifik, silakan isi kota asal dan tujuan di formulir pemesanan.</p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div><h3>Traveleka</h3><p>Mitra perjalanan dan logistik antar kota yang cepat, aman, dan terpercaya.</p></div>
+                <div><h4>Hubungi Kami</h4><p><i class="fab fa-whatsapp"></i> 0812-0000-1111</p><p><i class="fas fa-envelope"></i> kontak@traveleka.com</p></div>
+                <div><h4>Ikuti Kami</h4><a href="#" class="social-icon"><i class="fab fa-instagram"></i></a><a href="#" class="social-icon"><i class="fab fa-facebook"></i></a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2025 Traveleka. All Rights Reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
