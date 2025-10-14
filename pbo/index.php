@@ -50,6 +50,11 @@
                 <h2>Tugas Pertemuan 7: Tech Support System</h2>
                 <p>Membuat sistem dukungan teknis cerdas dengan `HashMap` dan respons acak.</p>
             </a>
+            <a href="ets/" class="tugas-card">
+                <div class="card-icon">🏆</div>
+                <h2>Evaluasi Tengah Semester (ETS)</h2>
+                <p>Dua Proyek Grouping Object: Aplikasi Vending Machine.</p>
+            </a>
         </main>
     </div>
 

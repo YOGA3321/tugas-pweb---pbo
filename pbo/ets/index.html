@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Evaluasi Tengah Semester</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <style>
+        .code-block-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .code-block-container button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        .code-block-container button:hover {
+            background-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            
+            <h1>Evaluasi Tengah Semester: Grouping Object Vending Machine</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: B</h3>
+            <p class="meta-info">Laporan ini mendokumentasikan pengerjaan dua proyek aplikasi konsol untuk memenuhi tugas ETS, yaitu Vending Machine.</p>
+            <hr>
+
+            <h2>Vending Machine</h2>
+            <p>Aplikasi pertama adalah sebuah mesin penjual otomatis. Program ini memungkinkan pengguna untuk memilih produk, melakukan pembayaran, dan menerima produk melalui menu interaktif di terminal.</p>
+
+            <h3>1. Hasil Aplikasi Vending Machine</h3>
+            <img src="../../img/image_82bf47.png" alt="Hasil Vending Machine" onclick="openModal(this)">
+            <p class="caption">Tampilan menu dan interaksi dengan program Vending Machine di terminal BlueJ.</p>
+
+            <h3>2. Source Code </h3>
+            <p>Berikut adalah kode lengkap untuk `VendingMachine.java`.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'organizerCode')">Copy</button>
+                <pre><code id="organizerCode">import java.util.ArrayList;
+import java.util.Scanner;
+
+public class VendingMachine {
+    private ArrayList<Snack> snacks;
+    private int saldoSaatIni;
+    private Logger logger;
+    private Scanner scanner;
+    private final String ADMIN_PASSWORD = "admin123";
+
+    public VendingMachine() {
+        snacks = new ArrayList<>();
+        saldoSaatIni = 0;
+        logger = new Logger();
+        scanner = new Scanner(System.in);
+        isiStokAwal();
+    }
+
+    public void start() {
+        while (true) {
+            jalankanSiklusPelanggan();
+        }
+    }
+    
+    private void jalankanSiklusPelanggan() {
+        tampilkanMenu();
+        System.out.print("\nMasukkan uang Anda (ketik 'admin' untuk mode admin): ");
+        String input = scanner.nextLine();
+
+        if (input.equalsIgnoreCase("admin")) {
+            masukModeAdmin();
+            return;
+        }
+
+        try {
+            int uangMasuk = Integer.parseInt(input);
+            masukkanUang(uangMasuk);
+        } catch (NumberFormatException e) {
+            System.out.println("Input uang tidak valid. Silakan coba lagi.");
+            return;
+        }
+        
+        boolean transaksiLagi = true;
+        while (transaksiLagi) {
+            System.out.print("Pilih nomor snack (atau ketik 'selesai' untuk mengambil kembalian): ");
+            input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("selesai")) {
+                transaksiLagi = false;
+            } else {
+                try {
+                    int pilihan = Integer.parseInt(input);
+                    pilihSnack(pilihan);
+                } catch (NumberFormatException e) {
+                    System.out.println("Input tidak valid. Harap masukkan nomor snack.");
+                }
+            }
+        }
+        ambilKembalian();
+        System.out.println("\nTerima kasih! Silakan datang kembali.");
+        System.out.println("==============================================");
+    }
+    
+    public void tampilkanMenu() {
+        System.out.println("\n===== Selamat Datang di Vending Machine! =====");
+        for (int i = 0; i < snacks.size(); i++) {
+            Snack snack = snacks.get(i);
+            System.out.println((i + 1) + ". " + snack.getNama() +
+                               " - Rp" + snack.getHarga() +
+                               " (Stok: " + snack.getStok() + ")");
+        }
+    }
+
+    public void masukkanUang(int jumlah) {
+        if (jumlah > 0) {
+            saldoSaatIni += jumlah;
+            logger.log("Uang masuk sebesar Rp" + jumlah);
+            System.out.println("Saldo Anda sekarang: Rp" + saldoSaatIni);
+        }
+    }
+    
+    public void pilihSnack(int pilihan) {
+        int index = pilihan - 1;
+        if (index < 0 || index >= snacks.size()) {
+            System.out.println("Pilihan tidak valid!");
+            return;
+        }
+
+        Snack snackDipilih = snacks.get(index);
+        if (snackDipilih.getStok() <= 0) {
+            System.out.println("Maaf, " + snackDipilih.getNama() + " sudah habis. Admin perlu refill.");
+            logger.log("Gagal: Stok " + snackDipilih.getNama() + " habis.");
+            return;
+        }
+        if (saldoSaatIni >= snackDipilih.getHarga()) {
+            if (snackDipilih.keluarkanSnack()) {
+                saldoSaatIni -= snackDipilih.getHarga();
+                System.out.println("Berhasil! Silakan ambil " + snackDipilih.getNama() + " Anda.");
+                System.out.println("Sisa saldo Anda: Rp" + saldoSaatIni);
+                logger.log("Berhasil: " + snackDipilih.getNama() + " terjual.");
+            }
+        } else {
+            System.out.println("Maaf, saldo Anda tidak mencukupi. Kurang Rp" + (snackDipilih.getHarga() - saldoSaatIni));
+            logger.log("Gagal: Saldo tidak cukup untuk membeli " + snackDipilih.getNama());
+        }
+    }
+    
+    public void ambilKembalian() {
+        if (saldoSaatIni > 0) {
+            System.out.println("Uang kembalian Anda sebesar Rp" + saldoSaatIni + " telah dikeluarkan.");
+            logger.log("Kembalian diambil sebesar Rp" + saldoSaatIni);
+            saldoSaatIni = 0;
+        }
+    }
+
+    private void masukModeAdmin() {
+        System.out.print("Masukkan password admin: ");
+        String pass = scanner.nextLine();
+
+        if (ADMIN_PASSWORD.equals(pass)) {
+            System.out.println("Login admin berhasil!");
+            logger.log("Admin login berhasil.");
+            boolean adminMode = true;
+            while(adminMode) {
+                System.out.println("\n--- Mode Admin ---");
+                System.out.println("1. Refill Stok");
+                System.out.println("2. Tambah Snack Baru");
+                System.out.println("3. Update Harga Snack");
+                System.out.println("4. Lihat Laporan Transaksi");
+                System.out.println("5. Keluar");
+                System.out.print("Pilih menu admin: ");
+                String pilihan = scanner.nextLine();
+                switch(pilihan) {
+                    case "1":
+                        updateStok();
+                        break;
+                    case "2":
+                        tambahSnackBaru();
+                        break;
+                    case "3":
+                        updateHargaSnack();
+                        break;
+                    case "4":
+                        logger.printLog();
+                        break;
+                    case "5":
+                        adminMode = false;
+                        System.out.println("Keluar dari mode admin.");
+                        logger.log("Admin logout.");
+                        break;
+                    default:
+                        System.out.println("Pilihan admin tidak valid.");
+                }
+            }
+        } else {
+            System.out.println("Password salah!");
+            logger.log("Gagal login admin.");
+        }
+    }
+
+    private void updateStok() {
+        tampilkanMenu();
+        System.out.print("Pilih nomor snack yang akan di-refill: ");
+        try {
+            int pilihan = Integer.parseInt(scanner.nextLine());
+            int index = pilihan - 1;
+
+            if (index >= 0 && index < snacks.size()) {
+                System.out.print("Masukkan jumlah stok yang ditambahkan: ");
+                int jumlah = Integer.parseInt(scanner.nextLine());
+                Snack snack = snacks.get(index);
+                snack.tambahStok(jumlah);
+                System.out.println("Stok " + snack.getNama() + " berhasil ditambahkan. Stok sekarang: " + snack.getStok());
+                logger.log("Admin refill " + snack.getNama() + " sebanyak " + jumlah);
+            } else {
+                System.out.println("Nomor snack tidak valid.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Input harus berupa angka.");
+        }
+    }
+
+    private void tambahSnackBaru() {
+        try {
+            System.out.print("Masukkan nama snack baru: ");
+            String nama = scanner.nextLine();
+            System.out.print("Masukkan harga snack baru: ");
+            int harga = Integer.parseInt(scanner.nextLine());
+            System.out.print("Masukkan stok awal snack baru: ");
+            int stok = Integer.parseInt(scanner.nextLine());
+
+            snacks.add(new Snack(nama, harga, stok));
+            System.out.println("Snack baru '" + nama + "' berhasil ditambahkan!");
+            logger.log("Admin menambah snack baru: " + nama);
+        } catch (NumberFormatException e) {
+            System.out.println("Input harga atau stok harus berupa angka. Gagal menambah snack.");
+        }
+    }
+
+    private void updateHargaSnack() {
+        tampilkanMenu();
+        System.out.print("Pilih nomor snack yang akan diubah harganya: ");
+        try {
+            int pilihan = Integer.parseInt(scanner.nextLine());
+            int index = pilihan - 1;
+
+            if (index >= 0 && index < snacks.size()) {
+                Snack snack = snacks.get(index);
+                System.out.print("Masukkan harga baru untuk " + snack.getNama() + ": ");
+                int hargaBaru = Integer.parseInt(scanner.nextLine());
+                snack.setHarga(hargaBaru);
+                System.out.println("Harga " + snack.getNama() + " berhasil diubah menjadi Rp" + hargaBaru);
+                logger.log("Admin mengubah harga " + snack.getNama() + " menjadi Rp" + hargaBaru);
+            } else {
+                System.out.println("Nomor snack tidak valid.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Input harus berupa angka.");
+        }
+    }
+
+    private void isiStokAwal() {
+        snacks.add(new Snack("Chitato", 8000, 5));
+        snacks.add(new Snack("Coca-Cola", 5000, 3));
+        snacks.add(new Snack("Teh Botol", 4000, 1));
+    }
+}
+                </code></pre>
+            </div>
+
+            <hr>
+
+            <h2></h2>
+            <h3>Snack</h3>
+            <p>Berikut adalah kode lengkap untuk `snack.java` yang telah dibuat.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'catatanCode')">Copy</button>
+                <pre><code id="catatanCode">public class Snack {
+    private String nama;
+    private int harga;
+    private int stok;
+
+    public Snack(String nama, int harga, int stokAwal) {
+        this.nama = nama;
+        this.harga = harga;
+        this.stok = stokAwal;
+    }
+
+    public String getNama() { return nama; }
+    public int getHarga() { return harga; }
+    public int getStok() { return stok; }
+
+    public void setHarga(int hargaBaru) {
+        if (hargaBaru > 0) {
+            this.harga = hargaBaru;
+        }
+    }
+
+    public boolean keluarkanSnack() {
+        if (stok > 0) {
+            stok--;
+            return true;
+        }
+        return false;
+    }
+
+    public void tambahStok(int jumlah) {
+        if (jumlah > 0) {
+            this.stok += jumlah;
+        }
+    }
+}
+                </code></pre>
+            </div>
+
+        </div>
+    </div>
+    
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+    function copyCode(button, elementId) {
+        const codeElement = document.getElementById(elementId);
+        navigator.clipboard.writeText(codeElement.innerText).then(function() {
+            button.innerText = 'Copied!';
+            setTimeout(function() { button.innerText = 'Copy'; }, 2000);
+        }, function(err) {
+            button.innerText = 'Gagal';
+        });
+    }
+
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modal.style.opacity = "1";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
+    }
+    </script>
+</body>
+</html>
