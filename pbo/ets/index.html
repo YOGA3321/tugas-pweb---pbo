@@ -333,6 +333,59 @@ public class VendingMachine {
                 </code></pre>
             </div>
 
+            <h2></h2>
+            <h3>Logger</h3>
+            <p>Berikut adalah kode lengkap untuk `Logger.java` yang telah dibuat.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'catatanCode')">Copy</button>
+                <pre><code id="catatanCode">import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Logger {
+    private ArrayList<String> transactions;
+    private DateTimeFormatter formatter;
+
+    public Logger() {
+        transactions = new ArrayList<>();
+        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    }
+
+    public void log(String message) {
+        String timestamp = LocalDateTime.now().format(formatter);
+        transactions.add("[" + timestamp + "] " + message);
+    }
+
+    public void printLog() {
+        System.out.println("\n--- Laporan Transaksi ---");
+        if (transactions.isEmpty()) {
+            System.out.println("Tidak ada transaksi yang tercatat.");
+        } else {
+            for (String log : transactions) {
+                System.out.println(log);
+            }
+        }
+        System.out.println("-------------------------");
+    }
+}
+                </code></pre>
+            </div>
+
+
+            <h2></h2>
+            <h3>Simulator</h3>
+            <p>Berikut adalah kode lengkap untuk `Simulator.java` yang telah dibuat.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'catatanCode')">Copy</button>
+                <pre><code id="catatanCode">public class Simulator {
+    public static void main(String[] args) {
+        VendingMachine mesin = new VendingMachine();
+        mesin.start();
+    }
+}
+                </code></pre>
+            </div>
+
         </div>
     </div>
     
