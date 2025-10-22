@@ -45,7 +45,7 @@
                 <li>Secara terpisah, fungsi <code>setInterval</code> di JavaScript akan otomatis memanggil <code>api/get_mahasiswa.php</code> setiap 5 detik, yang akan mengambil data terbaru (termasuk data yang baru saja ditambahkan) dan memperbarui tabel pendaftar.</li>
             </ol>
 
-            <img src="../img/38.png" alt="Tampilan Aplikasi Pendaftaran Mahasiswa">
+            <img src="../img/38.png" alt="Tampilan Aplikasi Pendaftaran Mahasiswa" onclick="openModal(this)">
             <p class="caption">Tampilan aplikasi pendaftaran dengan form di kiri dan tabel data di kanan.</p>
 
             <hr>
@@ -55,5 +55,35 @@
             <a href="demo/" class="tombol-demo" target="_blank">Lihat Demo Live</a>
         </div>
     </div>
+
+    <div id="myModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+        var modal = document.getElementById('myModal');
+        var modalImg = document.getElementById("img01");
+
+        function openModal(element) {
+            modal.style.display = "block";
+            modal.style.opacity = "1";
+            modalImg.src = element.src;
+        }
+
+        function closeModal() {
+            modal.style.opacity = "0";
+            setTimeout(function() {
+                modal.style.display = "none";
+            }, 300);
+        }
+
+        // Menutup modal jika user mengklik di luar gambar
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
