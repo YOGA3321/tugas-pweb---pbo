@@ -34,7 +34,7 @@
                     </div>
                     <div>
                         <label for="nim" class="block mb-2 text-sm font-medium text-gray-300">NISN (Nomor Induk Siswa Nasional)</label>
-                        <input type="text" id="nim" name="nim" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-300" placeholder="Contoh: 20241010100" required>
+                        <input type="text" id="nim" name="nim" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-300" placeholder="Contoh: 2024101010" required>
                     </div>
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Alamat Email</label>
