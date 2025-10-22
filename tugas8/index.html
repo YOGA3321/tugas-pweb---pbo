@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Pendaftaran Mahasiswa (PHP, MySQL, AJAX)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            <h1>Tugas 8: Pendaftaran Mahasiswa (PHP, MySQL, AJAX)</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: A</h3>
+            <p class="meta-info">Tugas ini bertujuan untuk membuat aplikasi CRUD (Create, Read) sederhana untuk pendaftaran mahasiswa baru menggunakan PHP, MySQL, dan AJAX.</p>
+            <hr>
+
+            <h2>Deskripsi & Konsep Implementasi</h2>
+            <p>
+                Aplikasi ini adalah sistem pendaftaran mahasiswa baru dalam satu halaman. Formulir pendaftaran dan tabel data pendaftar ditampilkan berdampingan. Pengguna dapat mendaftarkan mahasiswa baru, dan data akan disimpan ke database <strong>MySQL</strong> menggunakan <strong>PHP</strong>.
+            </p>
+            <p>
+                Halaman ini memanfaatkan <strong>AJAX</strong> untuk dua fungsi utama:
+                <ol>
+                    <li>Mengirim data formulir ke server PHP secara *asynchronous* (tanpa refresh) saat mendaftar.</li>
+                    <li>Mengambil data pendaftar terbaru dari server secara berkala (`setInterval`) untuk ditampilkan di tabel, memberikan ilusi pembaruan *real-time*.</li>
+                </ol>
+            </p>
+            
+            <h3>Alur Kerja Aplikasi:</h3>
+            <ol>
+                <li>Saat halaman dimuat, JavaScript (AJAX) memanggil <code>api/get_jurusan.php</code> untuk mengisi dropdown program studi.</li>
+                <li>JavaScript (AJAX) juga langsung memanggil <code>api/get_mahasiswa.php</code> untuk menampilkan daftar mahasiswa yang sudah ada di tabel.</li>
+                <li>Pengguna mengisi formulir pendaftaran (Nama, NIM, Email, Jurusan).</li>
+                <li>Saat tombol "Daftarkan" diklik, JavaScript (AJAX) mengambil alih, mencegah refresh, dan mengirim data formulir ke <code>api/add_mahasiswa.php</code>.</li>
+                <li><code>api/add_mahasiswa.php</code> memvalidasi data, melakukan <i>prepared statement</i> untuk mengecek duplikat NIM, dan menyimpan data baru ke tabel <code>mahasiswa</code>.</li>
+                <li>Server PHP mengembalikan respons dalam format <strong>JSON</strong> (berisi status sukses atau error).</li>
+                <li>JavaScript menampilkan pesan sukses/gagal di bawah tombol. Jika sukses, form akan di-reset.</li>
+                <li>Secara terpisah, fungsi <code>setInterval</code> di JavaScript akan otomatis memanggil <code>api/get_mahasiswa.php</code> setiap 5 detik, yang akan mengambil data terbaru (termasuk data yang baru saja ditambahkan) dan memperbarui tabel pendaftar.</li>
+            </ol>
+
+            <img src="../img/tugas8_placeholder.png" alt="Tampilan Aplikasi Pendaftaran Mahasiswa">
+            <p class="caption">Tampilan aplikasi pendaftaran dengan form di kiri dan tabel data di kanan.</p>
+
+            <hr>
+            <h2>Hasil Tugas</h2>
+            <p>Halaman demo di bawah ini adalah hasil akhir dari pengerjaan tugas ini. Aplikasi ini terhubung ke database <code>pendaftaran_tugas</code> di server lokal Anda (Laragon).</p>
+            
+            <a href="demo/" class="tombol-demo" target="_blank">Lihat Demo Live</a>
+        </div>
+    </div>
+</body>
+</html>
