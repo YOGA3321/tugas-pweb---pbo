@@ -61,6 +61,11 @@
                 <h2>Ujian Tengah Semester: Landing Page Travel</h2>
                 <p>Membuat landing page jasa travel "Traveleka" yang modern, responsif, dan interaktif.</p>
             </a>
+            <a href="tugas8/" class="tugas-card">
+                <div class="card-icon">📇</div>
+                <h2>Tugas Pertemuan 8: Pendaftaran Mahasiswa</h2>
+                <p>Aplikasi CRUD (Create, Read) dengan PHP, MySQL, dan AJAX untuk mendaftarkan mahasiswa baru.</p>
+            </a>
 
             <!--<a href="tugas-3.html" class="tugas-card">-->
             <!--    <div class="card-icon">✨</div>-->
