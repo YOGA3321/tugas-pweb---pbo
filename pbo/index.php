@@ -55,6 +55,11 @@
                 <h2>Evaluasi Tengah Semester (ETS)</h2>
                 <p>Dua Proyek Grouping Object: Aplikasi Vending Machine.</p>
             </a>
+            <a href="tugas7/" class="tugas-card">
+                <div class="card-icon">🗺️</div>
+                <h2>Pertemuan 9: World of Zuul</h2>
+                <p>Membuat game text-adventure dan memperbaiki desain (refactoring) untuk mengurangi coupling & meningkatkan cohesion.</p>
+            </a>
         </main>
     </div>
 

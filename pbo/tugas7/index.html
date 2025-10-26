@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Tugas 7 (P9) World of Zuul</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <style>
+        .code-block-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .code-block-container button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        .code-block-container button:hover {
+            background-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            
+            <h1>Tugas Pertemuan 9: World of Zuul (Refactoring)</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: B</h3>
+            <p class="meta-info">Tugas ini bertujuan untuk membuat game text-adventure "World of Zuul" dan melakukan refactoring (perbaikan desain) untuk meningkatkan Cohesion dan mengurangi Coupling antar kelas.</p>
+            <hr>
+
+            <h2>Deskripsi Proyek</h2>
+            <p>Proyek ini dimulai dengan membuat versi dasar "World of Zuul" di mana kelas `Game` melakukan terlalu banyak pekerjaan (Low Cohesion). Kemudian, kami melakukan refactoring untuk memisahkan tanggung jawab ke kelas-kelas baru (`CommandWord`, `CommandWords`) sehingga desain menjadi lebih bersih, lebih rapi (`switch-case` menggantikan `if-else`), dan lebih mudah dikembangkan.</p>
+
+            <h2>Hasil Aplikasi</h2>
+            
+            <h3>1. Diagram Kelas (Setelah Refactor)</h3>
+            <img src="../../img/zuul-diagram.png" alt="Diagram Kelas World of Zuul" onclick="openModal(this)">
+            <p class="caption">Diagram kelas setelah di-refactor. Kelas `CommandWord` (enum) dan `CommandWords` yang baru memisahkan logika validasi perintah dari kelas `Game`.</p>
+
+            <h3>2. Output Simulasi di Terminal</h3>
+            <img src="../../img/image_032906.png" alt="Hasil Interaksi Game Zuul" onclick="openModal(this)">
+            <p class="caption">Contoh interaksi dengan game di terminal. Pesan `help` menampilkan tutorial, dan deskripsi ruangan kini menampilkan pintu keluar yang tersedia.</p>
+            
+            <hr>
+
+            <h2>Source Code (Versi Refactored)</h2>
+            <p>Berikut adalah kode sumber lengkap untuk 6 kelas yang digunakan dalam versi akhir (setelah refactor).</p>
+
+            <h3>Kelas: Game.java (Kelas Utama)</h3>
+            <p>Kelas utama yang mengatur alur permainan (game loop) dan memproses perintah menggunakan `switch-case` yang bersih.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'gameCode')">Copy</button>
+                <pre><code id="gameCode">
+public class Game {
+    private Parser parser;
+    private Room currentRoom;
+        
+    public Game() {
+        createRooms();
+        parser = new Parser();
+    }
+
+    private void createRooms() {
+        Room outside, theater, pub, lab, office;
+        outside = new Room("di luar gerbang utama universitas");
+        theater = new Room("di dalam sebuah teater");
+        pub = new Room("di dalam pub kampus");
+        lab = new Room("di dalam lab komputer");
+        office = new Room("di ruang admin komputasi");
+
+        outside.setExit("east", theater);
+        outside.setExit("south", lab);
+        outside.setExit("west", pub);
+        theater.setExit("west", outside);
+        pub.setExit("east", outside);
+        lab.setExit("north", outside);
+        lab.setExit("east", office);
+        office.setExit("west", lab);
+        currentRoom = outside;
+    }
+
+    public void play() {            
+        printWelcome();
+        boolean finished = false;
+        while (! finished) {
+            Command command = parser.getCommand();
+            finished = processCommand(command);
+        }
+        System.out.println("Terima kasih telah bermain. Sampai jumpa.");
+    }
+
+    private void printWelcome() {
+        System.out.println("\nSelamat datang di World of Zuul!");
+        System.out.println("Ketik 'help' jika Anda butuh bantuan.");
+        System.out.println(currentRoom.getLongDescription());
+    }
+
+    private boolean processCommand(Command command) {
+        boolean wantToQuit = false;
+        CommandWord commandWord = command.getCommandWord();
+
+        switch (commandWord) {
+            case UNKNOWN:
+                System.out.println("Saya tidak mengerti apa maksud Anda...");
+                break;
+            case HELP:
+                printHelp();
+                break;
+            case GO:
+                goRoom(command);
+                break;
+            case QUIT:
+                wantToQuit = quit(command);
+                break;
+        }
+        return wantToQuit;
+    }
+
+    private void printHelp() {
+        System.out.println("Anda tersesat. Anda sendirian.");
+        System.out.println("\n--- TUTORIAL CARA BERMAIN ---");
+        System.out.println("1. Ketik 'go' diikuti arah (contoh: 'go north') untuk berpindah.");
+        System.out.println("2. Ketik 'help' untuk melihat bantuan ini lagi.");
+        System.out.println("3. Ketik 'quit' untuk keluar dari permainan.");
+        System.out.println("\nPerintah yang bisa Anda gunakan:");
+        System.out.println("   " + parser.showCommands());
+    }
+
+    private void goRoom(Command command) {
+        if(!command.hasSecondWord()) {
+            System.out.println("Pergi ke mana?");
+            return;
+        }
+        String direction = command.getSecondWord();
+        Room nextRoom = currentRoom.getExit(direction);
+
+        if (nextRoom == null) {
+            System.out.println("Tidak ada pintu ke arah situ!");
+        }
+        else {
+            currentRoom = nextRoom;
+            System.out.println(currentRoom.getLongDescription());
+        }
+    }
+
+    private boolean quit(Command command) {
+        if(command.hasSecondWord()) {
+            System.out.println("Keluar dari apa?");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    
+    public static void main(String[] args) {
+        Game game = new Game();
+        game.play();
+    }
+}
+                </code></pre>
+            </div>
+
+            <h3>Kelas: Room.java</h3>
+            <p>Merepresentasikan satu lokasi. Tugasnya menyimpan deskripsi dan pintu keluar ke ruangan lain menggunakan `HashMap`.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'roomCode')">Copy</button>
+                <pre><code id="roomCode">
+import java.util.HashMap;
+import java.util.Set;
+
+public class Room {
+    private String description;
+    private HashMap<String, Room> exits;
+
+    public Room(String description) {
+        this.description = description;
+        exits = new HashMap<>();
+    }
+
+    public void setExit(String direction, Room neighbor) {
+        exits.put(direction, neighbor);
+    }
+
+    public Room getExit(String direction) {
+        return exits.get(direction);
+    }
+
+    public String getLongDescription() {
+        return "Anda sekarang berada " + description + ".\n" + getExitString();
+    }
+    
+    private String getExitString() {
+        String returnString = "Pintu keluar:";
+        Set<String> keys = exits.keySet();
+        for(String exit : keys) {
+            returnString += " " + exit;
+        }
+        return returnString;
+    }
+}
+                </code></pre>
+            </div>
+
+            <h3>Kelas: Parser.java</h3>
+            <p>Bertugas sebagai "penerjemah". Membaca input mentah dari pengguna (misal: "go south") dan mengubahnya menjadi objek `Command`.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'parserCode')">Copy</button>
+                <pre><code id="parserCode">
+import java.util.Scanner;
+
+public class Parser {
+    private CommandWords commands;
+    private Scanner reader;
+
+    public Parser() {
+        commands = new CommandWords();
+        reader = new Scanner(System.in);
+    }
+
+    public Command getCommand() {
+        String inputLine;
+        String word1 = null;
+        String word2 = null;
+
+        System.out.print("> "); 
+        inputLine = reader.nextLine();
+
+        Scanner tokenizer = new Scanner(inputLine);
+        if(tokenizer.hasNext()) {
+            word1 = tokenizer.next().toLowerCase();
+            if(tokenizer.hasNext()) {
+                word2 = tokenizer.next().toLowerCase(); // Perbaikan bug
+            }
+        }
+
+        CommandWord commandWord = commands.getCommandWord(word1);
+        return new Command(commandWord, word2);
+    }
+    
+    public String showCommands() {
+        return commands.getCommandList();
+    }
+}
+                </code></pre>
+            </div>
+            
+            <h3>Kelas: CommandWord.java (Enum)</h3>
+            <p>Kelas `enum` baru yang secara khusus mendefinisikan semua kata perintah yang valid. Ini membuat kode lebih aman dan rapi.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'commandWordCode')">Copy</button>
+                <pre><code id="commandWordCode">
+public enum CommandWord {
+    GO("go"), 
+    HELP("help"), 
+    QUIT("quit"), 
+    UNKNOWN("?");
+
+    private String commandString;
+    
+    CommandWord(String commandString) {
+        this.commandString = commandString;
+    }
+    
+    public String toString() {
+        return commandString;
+    }
+}
+                </code></pre>
+            </div>
+            
+            <h3>Kelas: CommandWords.java</h3>
+            <p>Kelas ini sekarang menggunakan `HashMap` untuk validasi perintah yang instan, menggantikan *looping* array yang lambat.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'commandWordsCode')">Copy</button>
+                <pre><code id="commandWordsCode">
+import java.util.HashMap;
+
+public class CommandWords {
+    private HashMap<String, CommandWord> validCommands;
+
+    public CommandWords() {
+        validCommands = new HashMap<>();
+        for(CommandWord command : CommandWord.values()) {
+            if(command != CommandWord.UNKNOWN) {
+                validCommands.put(command.toString(), command);
+            }
+        }
+    }
+
+    public CommandWord getCommandWord(String commandWord) {
+        CommandWord command = validCommands.get(commandWord);
+        if(command != null) {
+            return command;
+        }
+        else {
+            return CommandWord.UNKNOWN;
+        }
+    }
+    
+    public String getCommandList() {
+        String commands = "";
+        for(String command : validCommands.keySet()) {
+            commands += command + " ";
+        }
+        return commands.trim();
+    }
+}
+                </code></pre>
+            </div>
+            
+            <h3>Kelas: Command.java</h3>
+            <p>Objek "pembungkus" yang menyimpan perintah (sebagai `CommandWord`) dan kata kedua (sebagai `String`).</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'commandCode')">Copy</button>
+                <pre><code id="commandCode">
+public class Command {
+    private CommandWord commandWord;
+    private String secondWord;
+
+    public Command(CommandWord commandWord, String secondWord) {
+        this.commandWord = commandWord;
+        this.secondWord = secondWord;
+    }
+
+    public CommandWord getCommandWord() {
+        return commandWord;
+    }
+
+    public String getSecondWord() {
+        return secondWord;
+    }
+
+    public boolean hasSecondWord() {
+        return (secondWord != null);
+    }
+}
+                </code></pre>
+            </div>
+
+        </div>
+    </div>
+    
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+    function copyCode(button, elementId) {
+        const codeElement = document.getElementById(elementId);
+        navigator.clipboard.writeText(codeElement.innerText).then(function() {
+            button.innerText = 'Copied!';
+            setTimeout(function() { button.innerText = 'Copy'; }, 2000);
+        }, function(err) {
+            button.innerText = 'Gagal';
+        });
+    }
+
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modal.style.opacity = "1";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
+    }
+    </script>
+</body>
+</html>
