@@ -37,7 +37,7 @@ include 'layout/layout_header.php';
                             echo "<td>" . htmlspecialchars($data['no_hp']) . "</td>";
                             echo "<td>";
                             echo "<a href='forms/form-edit-pelanggan?id=" . $data['id_pelanggan'] . "' class='btn btn-warning btn-sm me-2 mb-2' style='width: 85px;'><i class='bi bi-pencil-square'></i> Edit</a>";
-                            echo "<a href='proses/hapus-pelanggan.php?id=" . $data['id_pelanggan'] . "' class='btn btn-danger btn-sm mb-2' style='width: 85px;'
+                            echo "<a href='proses/hapus-pelanggan?id=" . $data['id_pelanggan'] . "' class='btn btn-danger btn-sm mb-2' style='width: 85px;'
                                     onclick=\"konfirmasiHapus(event, '" . addslashes(htmlspecialchars($data['nama'])) . "', " . $data['id_pelanggan'] . ")\">
                                     <i class='bi bi-trash-fill'></i> Hapus
                                 </a>";

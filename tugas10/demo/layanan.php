@@ -36,7 +36,7 @@ include 'layout/layout_header.php';
                             echo "<td>Rp " . number_format($data['harga_per_kg'], 0, ',', '.') . "</td>";
                             echo "<td>";
                             echo "<a href='forms/form-edit-layanan?id=" . $data['id_layanan'] . "' class='btn btn-warning btn-sm me-2 mb-2' style='width: 85px;'><i class='bi bi-pencil-square'></i> Edit</a>";
-                            echo "<a href='proses/hapus-layanan.php?id=" . $data['id_layanan'] . "' class='btn btn-danger btn-sm mb-2' style='width: 85px;'
+                            echo "<a href='proses/hapus-layanan?id=" . $data['id_layanan'] . "' class='btn btn-danger btn-sm mb-2' style='width: 85px;'
                                     onclick=\"konfirmasiHapus(event, '" . addslashes(htmlspecialchars($data['nama_layanan'])) . "', " . $data['id_layanan'] . ")\">
                                     <i class='bi bi-trash-fill'></i> Hapus
                                 </a>";
