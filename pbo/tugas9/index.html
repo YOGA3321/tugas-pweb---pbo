@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Tugas 9 (P11) Rental Kendaraan</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <style>
+        .code-block-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .code-block-container button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        .code-block-container button:hover {
+            background-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            
+            <h1>Tugas Pertemuan 11: Rental Kendaraan (Inheritance)</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: B</h3>
+            <p class="meta-info">Tugas ini bertujuan untuk memperbaiki desain program rental yang buruk (redundansi kode) menggunakan konsep PBO Inheritance (Pewarisan) dan Polymorphism.</p>
+            <hr>
+
+            <h2>Deskripsi Proyek</h2>
+            <p>Proyek ini awalnya memiliki dua kelas, `Mobil` dan `Motor`, yang isinya 90% sama (duplikasi kode). Untuk memperbaikinya, kita membuat satu kelas `abstract` baru bernama `Kendaraan` (Superclass) untuk menampung semua kode yang sama.</p>
+            <p>Kelas `Mobil` dan `Motor` kemudian diubah menjadi `extends Kendaraan` (Subclass), sehingga mereka mewarisi semua fungsionalitas umum dan hanya perlu menulis ulang metode `printDetails()`. Hasilnya adalah kode yang bersih, efisien, dan fleksibel, di mana program utama (`Main`) dapat mengelola semua jenis kendaraan dalam satu `ArrayList<Kendaraan>`.</p>
+
+            <h2>Hasil Aplikasi</h2>
+            
+            <h3>1. Diagram Kelas (Setelah Refactor)</h3>
+            <img src="../../img/41.png" alt="Diagram Kelas Rental Kendaraan" onclick="openModal(this)">
+            <p class="caption">Diagram kelas setelah refactor. Panah dari `Mobil` dan `Motor` ke `Kendaraan` menunjukkan Inheritance.</p>
+
+            <h3>2. Interaksi Program Dinamis</h3>
+            <img src="../../img/42.png" alt="Hasil Interaksi Rental Kendaraan" onclick="openModal(this)">
+            <p class="caption">Contoh interaksi dengan menu dinamis di terminal, di mana pengguna dapat menyewa dan mengembalikan kendaraan.</p>
+            <img src="../../img/43.png" alt="Hasil Interaksi Rental Kendaraan" onclick="openModal(this)">
+            <p class="caption">Contoh interaksi dengan menu dinamis di terminal, di mana pengguna dapat menyewa dan mengembalikan kendaraan.</p>
+            <img src="../../img/44.png" alt="Hasil Interaksi Rental Kendaraan" onclick="openModal(this)">
+            <p class="caption">Contoh interaksi dengan menu dinamis di terminal, di mana pengguna dapat menyewa dan mengembalikan kendaraan.</p>
+            <img src="../../img/45.png" alt="Hasil Interaksi Rental Kendaraan" onclick="openModal(this)">
+            <p class="caption">Contoh interaksi dengan menu dinamis di terminal, di mana pengguna dapat menyewa dan mengembalikan kendaraan.</p>
+            
+            <hr>
+
+            <h2>Source Code</h2>
+            <p>Aplikasi ini terdiri dari empat kelas. Berikut adalah kode sumber lengkap untuk versi interaktifnya.</p>
+
+            <h3>Kelas: Kendaraan.java (Superclass)</h3>
+            <p>Kelas induk abstrak yang berisi semua logika dan atribut umum (plat nomor, biaya sewa, status sewa).</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'kendaraanCode')">Copy</button>
+                <pre><code id="kendaraanCode">
+/**
+ * Superclass (Kelas Induk) abstrak untuk semua kendaraan.
+ * Berisi semua atribut dan metode yang umum.
+ */
+public abstract class Kendaraan {
+    private String platNomor;
+    private int biayaSewa;
+    private boolean disewa;
+
+    public Kendaraan(String platNomor, int biayaSewa) {
+        this.platNomor = platNomor;
+        this.biayaSewa = biayaSewa;
+        this.disewa = false;
+    }
+
+    public String getPlatNomor() {
+        return platNomor;
+    }
+
+    public int getBiayaSewa() {
+        return biayaSewa;
+    }
+
+    public boolean isDisewa() {
+        return disewa;
+    }
+
+    public void sewa() {
+        if (!disewa) {
+            this.disewa = true;
+        } else {
+            System.out.println("Kendaraan " + platNomor + " sudah disewa.");
+        }
+    }
+
+    public void kembali() {
+        if (disewa) {
+            this.disewa = false;
+        }
+    }
+    
+    // Memaksa setiap kelas anak untuk memiliki metode ini
+    public abstract void printDetails();
+}
+                </code></pre>
+            </div>
+
+            <h3>Kelas: Mobil.java (Subclass)</h3>
+            <p>Kelas anak yang mewarisi dari `Kendaraan`. Kodenya menjadi sangat ringkas.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'mobilCode')">Copy</button>
+                <pre><code id="mobilCode">
+/**
+ * Subclass (Kelas Anak) yang mewarisi dari Kendaraan.
+ */
+public class Mobil extends Kendaraan {
+    
+    public Mobil(String platNomor, int biayaSewa) {
+        // 'super()' memanggil constructor dari Kendaraan
+        super(platNomor, biayaSewa);
+    }
+
+    /**
+     * Implementasi wajib dari metode abstract printDetails()
+     */
+    @Override
+    public void printDetails() {
+        System.out.println("--- MOBIL ---");
+        System.out.println("Plat Nomor: " + getPlatNomor());
+        System.out.println("Biaya Sewa: Rp" + getBiayaSewa() + "/hari");
+        System.out.println("Status: " + (isDisewa() ? "Disewa" : "Tersedia"));
+    }
+}
+                </code></pre>
+            </div>
+            
+            <h3>Kelas: Motor.java (Subclass)</h3>
+            <p>Kelas anak lain yang juga mewarisi dari `Kendaraan`.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'motorCode')">Copy</button>
+                <pre><code id="motorCode">
+/**
+ * Subclass (Kelas Anak) yang mewarisi dari Kendaraan.
+ */
+public class Motor extends Kendaraan {
+
+    public Motor(String platNomor, int biayaSewa) {
+        super(platNomor, biayaSewa);
+    }
+
+    /**
+     * Implementasi wajib dari metode abstract printDetails()
+     */
+    @Override
+    public void printDetails() {
+        System.out.println("--- MOTOR ---");
+        System.out.println("Plat Nomor: " + getPlatNomor());
+        System.out.println("Biaya Sewa: Rp" + getBiayaSewa() + "/hari");
+        System.out.println("Status: " + (isDisewa() ? "Disewa" : "Tersedia"));
+    }
+}
+                </code></pre>
+            </div>
+
+            <h3>Kelas: Main.java (Kelas Interaktif)</h3>
+            <p>Kelas utama yang berisi `main` method. Menggunakan `Scanner` untuk membuat menu interaktif.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'mainCode')">Copy</button>
+                <pre><code id="mainCode">
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        ArrayList<Kendaraan> daftarKendaraan = new ArrayList<>();
+        daftarKendaraan.add(new Mobil("L 1234 AB", 300000));
+        daftarKendaraan.add(new Motor("W 5678 CD", 100000));
+        daftarKendaraan.add(new Mobil("N 9876 RE", 350000));
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        while(true) {
+            System.out.println("\n===== Sistem Rental Kendaraan =====");
+            System.out.println("1. Lihat Daftar Kendaraan");
+            System.out.println("2. Sewa Kendaraan");
+            System.out.println("3. Kembalikan Kendaraan");
+            System.out.println("4. Keluar");
+            System.out.print("Pilih menu (1-4): ");
+            
+            String pilihan = scanner.nextLine();
+            
+            switch(pilihan) {
+                case "1":
+                    System.out.println("\n--- Daftar Kendaraan ---");
+                    if (daftarKendaraan.isEmpty()) {
+                        System.out.println("Belum ada kendaraan terdaftar.");
+                    }
+                    for (int i = 0; i < daftarKendaraan.size(); i++) {
+                        System.out.println("Nomor: " + (i + 1));
+                        daftarKendaraan.get(i).printDetails();
+                        System.out.println();
+                    }
+                    break;
+                    
+                case "2":
+                    System.out.println("\n--- Sewa Kendaraan ---");
+                    for (int i = 0; i < daftarKendaraan.size(); i++) {
+                        Kendaraan k = daftarKendaraan.get(i);
+                        System.out.println((i + 1) + ". " + k.getPlatNomor() + 
+                                           " (" + (k.isDisewa() ? "Disewa" : "Tersedia") + ")");
+                    }
+                    System.out.print("Masukkan nomor kendaraan yang ingin disewa: ");
+                    try {
+                        int nomorSewa = Integer.parseInt(scanner.nextLine());
+                        int indexSewa = nomorSewa - 1;
+                        
+                        if (indexSewa >= 0 && indexSewa < daftarKendaraan.size()) {
+                            daftarKendaraan.get(indexSewa).sewa();
+                        } else {
+                            System.out.println("Nomor kendaraan tidak valid.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Input tidak valid. Harap masukkan angka.");
+                    }
+                    break;
+                        
+                case "3":
+                    System.out.println("\n--- Kembalikan Kendaraan ---");
+                    for (int i = 0; i < daftarKendaraan.size(); i++) {
+                        Kendaraan k = daftarKendaraan.get(i);
+                        System.out.println((i + 1) + ". " + k.getPlatNomor() + 
+                                           " (" + (k.isDisewa() ? "Disewa" : "Tersedia") + ")");
+                    }
+                    System.out.print("Masukkan nomor kendaraan yang dikembalikan: ");
+                    try {
+                        int nomorKembali = Integer.parseInt(scanner.nextLine());
+                        int indexKembali = nomorKembali - 1;
+                        
+                        if (indexKembali >= 0 && indexKembali < daftarKendaraan.size()) {
+                            Kendaraan k = daftarKendaraan.get(indexKembali);
+                            if (k.isDisewa()) {
+                                k.kembali();
+                                System.out.println(k.getPlatNomor() + " telah berhasil dikembalikan.");
+                            } else {
+                                System.out.println(k.getPlatNomor() + " tidak sedang dalam status disewa.");
+                            }
+                        } else {
+                            System.out.println("Nomor kendaraan tidak valid.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Input tidak valid. Harap masukkan angka.");
+                    }
+                    break;
+
+                case "4":
+                    System.out.println("Terima kasih telah menggunakan sistem kami!");
+                    scanner.close();
+                    return;
+                        
+                default:
+                    System.out.println("Pilihan tidak valid. Silakan masukkan angka 1-4.");
+            }
+        }
+    }
+}
+                </code></pre>
+            </div>
+
+        </div>
+    </div>
+    
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+    function copyCode(button, elementId) {
+        const codeElement = document.getElementById(elementId);
+        navigator.clipboard.writeText(codeElement.innerText).then(function() {
+            button.innerText = 'Copied!';
+            setTimeout(function() { button.innerText = 'Copy'; }, 2000);
+        }, function(err) {
+            button.innerText = 'Gagal';
+        });
+    }
+
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modal.style.opacity = "1";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
+    }
+    </script>
+</body>
+</html>

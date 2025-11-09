@@ -65,6 +65,11 @@
                 <h2>Pertemuan 10: Unit Testing</h2>
                 <p>Mempraktikkan Test-Driven Development (TDD) dengan JUnit 4 untuk validasi kelas.</p>
             </a>
+            <a href="tugas9/" class="tugas-card">
+                <div class="card-icon">🚗</div>
+                <h2>Pertemuan 11: Rental Kendaraan</h2>
+                <p>Memperbaiki desain program rental menggunakan Inheritance (Pewarisan) dan Polymorphism.</p>
+            </a>
         </main>
     </div>
 
