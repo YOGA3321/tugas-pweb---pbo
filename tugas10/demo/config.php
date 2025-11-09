@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Asia/Jakarta');
-define('BASE_URL', '/tugas/tugas10/demo/');
+define('BASE_URL', '/tugas10/demo/');
 $db_host = 'localhost';
 $db_user = 'u116133173_laundrycrafty';
 $db_pass = '@Yogabd081761';
