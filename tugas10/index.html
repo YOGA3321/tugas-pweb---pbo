@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Tugas 10: Project CRUD Laundry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            
+            <h1>Tugas 10: Laporan Project (Aplikasi LaundryCrafty)</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: A</h3>
+            <p class="meta-info">Proyek ini bertujuan untuk membuat aplikasi manajemen laundry "LaundryCrafty" berbasis web menggunakan PHP dan MySQL dengan fungsionalitas CRUD yang lengkap.</p>
+            <hr>
+
+            <h2>Deskripsi & Konsep Implementasi</h2>
+            <p>
+                Aplikasi ini adalah sistem manajemen laundry (CRUD) yang dibangun dari dasar. Fokus utamanya adalah membuat fondasi yang kuat untuk mengelola data pelanggan, layanan, dan transaksi, dengan tampilan dashboard yang modern.
+            </p>
+            <p>
+                Sistem ini dibangun dengan memisahkan logika dari tampilan dan menerapkan beberapa konsep penting:
+                <ol>
+                    <li><strong>Pemisahan Logika:</strong> Logika pemrosesan (tambah, edit, hapus) dipisah ke dalam file-file `proses-*.php` agar kode lebih rapi.</li>
+                    <li><strong>Template Layout (Sidebar):</strong> Menggunakan `layout_header.php` dan `layout_footer.php` untuk membuat template dashboard dengan sidebar yang konsisten di semua halaman.</li>
+                    <li><strong>Notifikasi Interaktif:</strong> Menggunakan Pustaka `SweetAlert2` untuk memberikan umpan balik (sukses/error) yang elegan setelah operasi CRUD.</li>
+                    <li><strong>Password Hashing:</strong> Mengadopsi sistem login yang aman menggunakan `password_hash()` dan `password_verify()` (dari file login Anda sebelumnya).</li>
+                    <li><strong>Prepared Statements:</strong> Mencegah SQL Injection dengan menggunakan `prepare()`, `bind_param()`, dan `execute()` pada semua query database (CRUD Pelanggan).</li>
+                    <li><strong>Otentikasi Google:</strong> Mendukung login alternatif yang aman menggunakan akun Google (dari file login Anda sebelumnya).</li>
+                </ol>
+            </p>
+            
+            <h3>Alur Kerja CRUD Pelanggan:</h3>
+            <ol>
+                <li>Admin login dan masuk ke halaman "Pelanggan" (`pelanggan.php`).</li>
+                <li>Halaman ini memanggil `layout_header.php` (untuk sidebar) dan mengambil data dari tabel `pelanggan`.</li>
+                <li>Tombol "Hapus" menggunakan JavaScript `onclick` untuk memicu konfirmasi `SweetAlert2` sebelum mengarahkan ke `hapus-pelanggan.php`.</li>
+                <li>Tombol "Tambah" mengarah ke `form-tambah-pelanggan.php`.</li>
+                <li>Form ini akan mengirim data via `POST` ke `proses-tambah-pelanggan.php`.</li>
+                <li>File proses menjalankan *prepared statement* untuk `INSERT` data, lalu mengarahkan kembali ke `pelanggan.php` dengan parameter `?status=sukses_tambah`.</li>
+                <li>JavaScript di `pelanggan.php` mendeteksi parameter `status` ini dan menampilkan notifikasi `SweetAlert2` "Sukses!".</li>
+            </ol>
+
+            <img src="../img/tugas10-dashboard.png" alt="Tampilan Aplikasi LaundryCrafty" onclick="openModal(this)">
+            <p class="caption">Tampilan dashboard utama aplikasi LaundryCrafty dengan layout sidebar.</p>
+
+            <hr>
+            <h2>Hasil Tugas</h2>
+            <p>Demo di bawah ini adalah aplikasi LaundryCrafty yang telah kita bangun, yang mencakup sistem login dan fungsionalitas CRUD Pelanggan secara penuh.</p>
+            
+            <a href="demo/" class="tombol-demo" target="_blank">Lihat Demo Live</a>
+            <a href="https://github.com/YOGA3321/tugas-pweb---pbo/tree/main/tugas10/demo" class="tombol-demo" target="_blank">Lihat Kode Sumber</a>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+    <script>
+        var modal = document.getElementById('myModal');
+        var modalImg = document.getElementById("img01");
+
+        function openModal(element) {
+            modal.style.display = "block";
+            modal.style.opacity = "1";
+            modalImg.src = element.src;
+        }
+
+        function closeModal() {
+            modal.style.opacity = "0";
+            setTimeout(function() {
+                modal.style.display = "none";
+            }, 300);
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

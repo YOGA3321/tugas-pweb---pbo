@@ -71,6 +71,11 @@
                 <h2>Tugas Pertemuan 10: Laporan Project</h2>
                 <p>Aplikasi Restoran "Sederhana" yang modern, responsif, dan interaktif.</p>
             </a>
+            <a href="tugas10/" class="tugas-card">
+                <div class="card-icon">🧺</div>
+                <h2>Tugas 10: Project CRUD Laundry</h2>
+                <p>Aplikasi CRUD lengkap (Login, Pelanggan) dengan PHP, MySQL, SweetAlert, dan layout Sidebar.</p>
+            </a>
 
             <!--<a href="tugas-3.html" class="tugas-card">-->
             <!--    <div class="card-icon">✨</div>-->
