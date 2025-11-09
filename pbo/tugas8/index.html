@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dokumentasi - Tugas 8 (P9) World of Zuul</title>
+    <title>Dokumentasi - Tugas 8 (P10) Unit Testing</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,318 +40,285 @@
 
         <div class="konten-tugas">
             
-            <h1>Tugas Pertemuan 10: World of Zuul (Refactoring)</h1>
+            <h1>Tugas Pertemuan 10: Unit Testing dengan JUnit</h1>
             <h3>Nama: Ageng Prayogo</h3>
             <h3>NRP: 5025241225</h3>
             <h3>Kelas: B</h3>
-            <p class="meta-info">Tugas ini bertujuan untuk membuat game text-adventure "World of Zuul" dan melakukan refactoring (perbaikan desain) untuk meningkatkan Cohesion dan mengurangi Coupling antar kelas.</p>
+            <p class="meta-info">Tugas ini bertujuan untuk mempraktikkan Test-Driven Development (TDD) dan Unit Testing menggunakan JUnit 4 di BlueJ untuk memvalidasi fungsionalitas kelas Product dan Review.</p>
             <hr>
 
             <h2>Deskripsi Proyek</h2>
-            <p>Proyek ini dimulai dengan membuat versi dasar "World of Zuul" di mana kelas `Game` melakukan terlalu banyak pekerjaan (Low Cohesion). Kemudian, kami melakukan refactoring untuk memisahkan tanggung jawab ke kelas-kelas baru (`CommandWord`, `CommandWords`) sehingga desain menjadi lebih bersih, lebih rapi (`switch-case` menggantikan `if-else`), dan lebih mudah dikembangkan.</p>
+            <p>Proyek ini terdiri dari tiga kelas: `Product`, `Review`, dan `ProductTest`. Kelas `ProductTest` berisi kumpulan skenario tes (metode dengan anotasi `@Test`) untuk memvalidasi setiap fungsionalitas di kelas `Product`. Ini memastikan bahwa metode seperti `addReview()`, `removeReview()`, dan lainnya berfungsi sesuai harapan dalam berbagai kondisi (valid, duplikat, invalid).</p>
 
             <h2>Hasil Aplikasi</h2>
             
-            <h3>1. Diagram Kelas (Setelah Refactor)</h3>
-            <img src="../../img/zuul-diagram.png" alt="Diagram Kelas World of Zuul" onclick="openModal(this)">
-            <p class="caption">Diagram kelas setelah di-refactor. Kelas `CommandWord` (enum) dan `CommandWords` yang baru memisahkan logika validasi perintah dari kelas `Game`.</p>
+            <h3>1. Diagram Kelas</h3>
+            <img src="../../img/39.png" alt="Diagram Kelas Unit Testing" onclick="openModal(this)">
+            <p class="caption">Diagram kelas yang menunjukkan hubungan antara `Product`, `Review`, dan `ProductTest`.</p>
 
-            <h3>2. Output Simulasi di Terminal</h3>
-            <img src="../../img/image_032906.png" alt="Hasil Interaksi Game Zuul" onclick="openModal(this)">
-            <p class="caption">Contoh interaksi dengan game di terminal. Pesan `help` menampilkan tutorial, dan deskripsi ruangan kini menampilkan pintu keluar yang tersedia.</p>
+            <h3>2. Hasil Eksekusi Unit Test</h3>
+            <img src="../../img/40.png" alt="Hasil JUnit Test Results" onclick="openModal(this)">
+            <p class="caption">Jendela "Test Results" dari JUnit yang menunjukkan semua 10 tes berhasil (bilah hijau) tanpa kegagalan.</p>
             
             <hr>
 
-            <h2>Source Code (Versi Refactored)</h2>
-            <p>Berikut adalah kode sumber lengkap untuk 6 kelas yang digunakan dalam versi akhir (setelah refactor).</p>
+            <h2>Source Code</h2>
+            <p>Berikut adalah kode sumber lengkap untuk 3 kelas yang digunakan dalam proyek ini.</p>
 
-            <h3>Kelas: Game.java (Kelas Utama)</h3>
-            <p>Kelas utama yang mengatur alur permainan (game loop) dan memproses perintah menggunakan `switch-case` yang bersih.</p>
+            <h3>Kelas: Product.java</h3>
+            <p>Kelas utama yang menyimpan informasi produk dan mengelola daftar (`ArrayList`) objek `Review`.</p>
             <div class="code-block-container">
-                <button onclick="copyCode(this, 'gameCode')">Copy</button>
-                <pre><code id="gameCode">
-public class Game {
-    private Parser parser;
-    private Room currentRoom;
-        
-    public Game() {
-        createRooms();
-        parser = new Parser();
+                <button onclick="copyCode(this, 'productCode')">Copy</button>
+                <pre><code id="productCode">
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Product {
+    private String productName;
+    private int productPrice; // dalam sen
+    private ArrayList<Review> reviewList;
+
+    public Product(String productName, int productPrice) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        reviewList = new ArrayList<Review>();
     }
 
-    private void createRooms() {
-        Room outside, theater, pub, lab, office;
-        outside = new Room("di luar gerbang utama universitas");
-        theater = new Room("di dalam sebuah teater");
-        pub = new Room("di dalam pub kampus");
-        lab = new Room("di dalam lab komputer");
-        office = new Room("di ruang admin komputasi");
-
-        outside.setExit("east", theater);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
-        theater.setExit("west", outside);
-        pub.setExit("east", outside);
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-        office.setExit("west", lab);
-        currentRoom = outside;
+    public String getProductName() {
+        return productName;
     }
 
-    public void play() {            
-        printWelcome();
-        boolean finished = false;
-        while (! finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
-        System.out.println("Terima kasih telah bermain. Sampai jumpa.");
+    public int getProductPrice() {
+        return productPrice;
     }
 
-    private void printWelcome() {
-        System.out.println("\nSelamat datang di World of Zuul!");
-        System.out.println("Ketik 'help' jika Anda butuh bantuan.");
-        System.out.println(currentRoom.getLongDescription());
+    public int getReviewCount() {
+        return reviewList.size();
     }
 
-    private boolean processCommand(Command command) {
-        boolean wantToQuit = false;
-        CommandWord commandWord = command.getCommandWord();
-
-        switch (commandWord) {
-            case UNKNOWN:
-                System.out.println("Saya tidak mengerti apa maksud Anda...");
-                break;
-            case HELP:
-                printHelp();
-                break;
-            case GO:
-                goRoom(command);
-                break;
-            case QUIT:
-                wantToQuit = quit(command);
-                break;
-        }
-        return wantToQuit;
-    }
-
-    private void printHelp() {
-        System.out.println("Anda tersesat. Anda sendirian.");
-        System.out.println("\n--- TUTORIAL CARA BERMAIN ---");
-        System.out.println("1. Ketik 'go' diikuti arah (contoh: 'go north') untuk berpindah.");
-        System.out.println("2. Ketik 'help' untuk melihat bantuan ini lagi.");
-        System.out.println("3. Ketik 'quit' untuk keluar dari permainan.");
-        System.out.println("\nPerintah yang bisa Anda gunakan:");
-        System.out.println("   " + parser.showCommands());
-    }
-
-    private void goRoom(Command command) {
-        if(!command.hasSecondWord()) {
-            System.out.println("Pergi ke mana?");
-            return;
-        }
-        String direction = command.getSecondWord();
-        Room nextRoom = currentRoom.getExit(direction);
-
-        if (nextRoom == null) {
-            System.out.println("Tidak ada pintu ke arah situ!");
-        }
-        else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
-        }
-    }
-
-    private boolean quit(Command command) {
-        if(command.hasSecondWord()) {
-            System.out.println("Keluar dari apa?");
+    public boolean addReview(String reviewer, String message, int stars) {
+        if (isInvalidRating(stars)) {
             return false;
         }
-        else {
-            return true;
+        if (findReviewByAuthor(reviewer) != null) {
+            return false;
+        }
+        reviewList.add(new Review(reviewer, message, stars));
+        return true;
+    }
+
+    public void removeReview(int index) {
+        if (index >= 0 && index < reviewList.size()) {
+            reviewList.remove(index);
         }
     }
-    
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.play();
-    }
-}
-                </code></pre>
-            </div>
 
-            <h3>Kelas: Room.java</h3>
-            <p>Merepresentasikan satu lokasi. Tugasnya menyimpan deskripsi dan pintu keluar ke ruangan lain menggunakan `HashMap`.</p>
-            <div class="code-block-container">
-                <button onclick="copyCode(this, 'roomCode')">Copy</button>
-                <pre><code id="roomCode">
-import java.util.HashMap;
-import java.util.Set;
-
-public class Room {
-    private String description;
-    private HashMap<String, Room> exits;
-
-    public Room(String description) {
-        this.description = description;
-        exits = new HashMap<>();
-    }
-
-    public void setExit(String direction, Room neighbor) {
-        exits.put(direction, neighbor);
-    }
-
-    public Room getExit(String direction) {
-        return exits.get(direction);
-    }
-
-    public String getLongDescription() {
-        return "Anda sekarang berada " + description + ".\n" + getExitString();
-    }
-    
-    private String getExitString() {
-        String returnString = "Pintu keluar:";
-        Set<String> keys = exits.keySet();
-        for(String exit : keys) {
-            returnString += " " + exit;
+    public void likeReview(int index) {
+        if (index >= 0 && index < reviewList.size()) {
+            reviewList.get(index).upvote();
         }
-        return returnString;
-    }
-}
-                </code></pre>
-            </div>
-
-            <h3>Kelas: Parser.java</h3>
-            <p>Bertugas sebagai "penerjemah". Membaca input mentah dari pengguna (misal: "go south") dan mengubahnya menjadi objek `Command`.</p>
-            <div class="code-block-container">
-                <button onclick="copyCode(this, 'parserCode')">Copy</button>
-                <pre><code id="parserCode">
-import java.util.Scanner;
-
-public class Parser {
-    private CommandWords commands;
-    private Scanner reader;
-
-    public Parser() {
-        commands = new CommandWords();
-        reader = new Scanner(System.in);
     }
 
-    public Command getCommand() {
-        String inputLine;
-        String word1 = null;
-        String word2 = null;
+    public void dislikeReview(int index) {
+        if (index >= 0 && index < reviewList.size()) {
+            reviewList.get(index).downvote();
+        }
+    }
 
-        System.out.print("> "); 
-        inputLine = reader.nextLine();
-
-        Scanner tokenizer = new Scanner(inputLine);
-        if(tokenizer.hasNext()) {
-            word1 = tokenizer.next().toLowerCase();
-            if(tokenizer.hasNext()) {
-                word2 = tokenizer.next().toLowerCase(); // Perbaikan bug
+    public Review findMostLikedReview() {
+        if (reviewList.isEmpty()) {
+            return null;
+        }
+        Iterator<Review> it = reviewList.iterator();
+        Review top = it.next();
+        while (it.hasNext()) {
+            Review current = it.next();
+            if (current.getVoteCount() > top.getVoteCount()) {
+                top = current;
             }
         }
-
-        CommandWord commandWord = commands.getCommandWord(word1);
-        return new Command(commandWord, word2);
+        return top;
     }
-    
-    public String showCommands() {
-        return commands.getCommandList();
-    }
-}
-                </code></pre>
-            </div>
-            
-            <h3>Kelas: CommandWord.java (Enum)</h3>
-            <p>Kelas `enum` baru yang secara khusus mendefinisikan semua kata perintah yang valid. Ini membuat kode lebih aman dan rapi.</p>
-            <div class="code-block-container">
-                <button onclick="copyCode(this, 'commandWordCode')">Copy</button>
-                <pre><code id="commandWordCode">
-public enum CommandWord {
-    GO("go"), 
-    HELP("help"), 
-    QUIT("quit"), 
-    UNKNOWN("?");
 
-    private String commandString;
-    
-    CommandWord(String commandString) {
-        this.commandString = commandString;
+    private boolean isInvalidRating(int stars) {
+        return stars < 0 || stars > 5;
     }
-    
-    public String toString() {
-        return commandString;
-    }
-}
-                </code></pre>
-            </div>
-            
-            <h3>Kelas: CommandWords.java</h3>
-            <p>Kelas ini sekarang menggunakan `HashMap` untuk validasi perintah yang instan, menggantikan *looping* array yang lambat.</p>
-            <div class="code-block-container">
-                <button onclick="copyCode(this, 'commandWordsCode')">Copy</button>
-                <pre><code id="commandWordsCode">
-import java.util.HashMap;
 
-public class CommandWords {
-    private HashMap<String, CommandWord> validCommands;
-
-    public CommandWords() {
-        validCommands = new HashMap<>();
-        for(CommandWord command : CommandWord.values()) {
-            if(command != CommandWord.UNKNOWN) {
-                validCommands.put(command.toString(), command);
+    public Review findReviewByAuthor(String reviewer) {
+        for (Review r : reviewList) {
+            if (r.getReviewer().equals(reviewer)) {
+                return r;
             }
         }
+        return null;
     }
 
-    public CommandWord getCommandWord(String commandWord) {
-        CommandWord command = validCommands.get(commandWord);
-        if(command != null) {
-            return command;
+    private String formatPrice(int cents) {
+        int dollars = cents / 100;
+        int remain = cents % 100;
+        if (remain < 10) {
+            return "$" + dollars + ".0" + remain;
+        } else {
+            return "$" + dollars + "." + remain;
         }
-        else {
-            return CommandWord.UNKNOWN;
-        }
-    }
-    
-    public String getCommandList() {
-        String commands = "";
-        for(String command : validCommands.keySet()) {
-            commands += command + " ";
-        }
-        return commands.trim();
     }
 }
                 </code></pre>
             </div>
-            
-            <h3>Kelas: Command.java</h3>
-            <p>Objek "pembungkus" yang menyimpan perintah (sebagai `CommandWord`) dan kata kedua (sebagai `String`).</p>
+
+            <h3>Kelas: Review.java</h3>
+            <p>Kelas model sederhana yang menyimpan data untuk satu ulasan, termasuk voting (like/dislike).</p>
             <div class="code-block-container">
-                <button onclick="copyCode(this, 'commandCode')">Copy</button>
-                <pre><code id="commandCode">
-public class Command {
-    private CommandWord commandWord;
-    private String secondWord;
+                <button onclick="copyCode(this, 'reviewCode')">Copy</button>
+                <pre><code id="reviewCode">
+public class Review {
+    private String reviewer;
+    private String message;
+    private int rating;
+    private int votes;
 
-    public Command(CommandWord commandWord, String secondWord) {
-        this.commandWord = commandWord;
-        this.secondWord = secondWord;
+    public Review(String reviewer, String message, int rating) {
+        this.reviewer = reviewer;
+        this.message = message;
+        this.rating = rating;
+        this.votes = 0;
     }
 
-    public CommandWord getCommandWord() {
-        return commandWord;
+    public String getReviewer() {
+        return reviewer;
     }
 
-    public String getSecondWord() {
-        return secondWord;
+    public String getMessage() {
+        return message;
     }
 
-    public boolean hasSecondWord() {
-        return (secondWord != null);
+    public int getRating() {
+        return rating;
+    }
+
+    public int getVoteCount() {
+        return votes;
+    }
+
+    public void upvote() {
+        votes++;
+    }
+
+    public void downvote() {
+        votes--;
+    }
+
+    public String getFullDetails() {
+        return "Reviewer: " + reviewer + "\n" +
+               "Rating: " + rating + "/5\n" +
+               "Votes: " + votes + "\n" +
+               "Review: " + message;
+    }
+}
+                </code></pre>
+            </div>
+
+            <h3>Kelas: ProductTest.java</h3>
+            <p>Kelas testing yang berisi semua skenario pengujian untuk memvalidasi fungsionalitas kelas `Product`.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'productTestCode')">Copy</button>
+                <pre><code id="productTestCode">
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+import java.lang.reflect.Method;
+
+public class ProductTest {
+    private Product product;
+
+    @Before
+    public void setUp() {
+        product = new Product("Ice Cream", 699);
+    }
+
+    @Test
+    public void testGetProductNameAndPrice() {
+        assertEquals("Ice Cream", product.getProductName());
+        assertEquals(699, product.getProductPrice());
+    }
+
+    @Test
+    public void testAddReviewValid() {
+        boolean added = product.addReview("Dina", "Delicious!", 5);
+        assertTrue(added);
+        assertEquals(1, product.getReviewCount());
+    }
+
+    @Test
+    public void testAddReviewDuplicateAuthor() {
+        product.addReview("Dina", "Yummy!", 5);
+        boolean addedAgain = product.addReview("Dina", "Still good!", 4);
+        assertFalse(addedAgain);
+        assertEquals(1, product.getReviewCount());
+    }
+
+    @Test
+    public void testAddReviewInvalidRating() {
+        boolean added = product.addReview("Tom", "Bad rating", 8);
+        assertFalse(added);
+        assertEquals(0, product.getReviewCount());
+    }
+
+    @Test
+    public void testRemoveReview() {
+        product.addReview("Dina", "Yummy!", 4);
+        product.removeReview(0);
+        assertEquals(0, product.getReviewCount());
+    }
+
+    @Test
+    public void testRemoveReviewInvalidIndex() {
+        product.addReview("Dina", "Yummy!", 4);
+        product.removeReview(10);
+        assertEquals(1, product.getReviewCount());
+    }
+
+    @Test
+    public void testLikeAndDislikeReview() {
+        product.addReview("Dina", "Yummy!", 5);
+        product.likeReview(0);
+        product.likeReview(0);
+        product.dislikeReview(0);
+        Review r = product.findReviewByAuthor("Dina");
+        assertEquals(1, r.getVoteCount());
+    }
+
+    @Test
+    public void testFindMostLikedReview() {
+        product.addReview("Dina", "Yummy!", 5);
+        product.addReview("Lina", "Fantastic!", 4);
+        product.likeReview(1);
+        Review best = product.findMostLikedReview();
+        assertEquals("Lina", best.getReviewer());
+    }
+
+    @Test
+    public void testFindReviewByAuthor() {
+        product.addReview("Dina", "Yummy!", 4);
+        Review r = product.findReviewByAuthor("Dina");
+        assertNotNull(r);
+        assertEquals("Dina", r.getReviewer());
+        assertNull(product.findReviewByAuthor("Riko"));
+    }
+
+    @Test
+    public void testPriceFormat() {
+        try {
+            java.lang.reflect.Method method = Product.class.getDeclaredMethod("formatPrice", int.class);
+            method.setAccessible(true);
+            String priceStr = (String) method.invoke(product, 699);
+            assertEquals("$6.99", priceStr);
+
+            priceStr = (String) method.invoke(product, 705);
+            assertEquals("$7.05", priceStr);
+        } catch (Exception e) {
+            fail("Reflection error: " + e.getMessage());
+        }
     }
 }
                 </code></pre>
