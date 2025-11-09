@@ -17,17 +17,16 @@ include 'layout/layout_header.php';
                         <th scope="col">Tgl. Selesai</th>
                         <th scope="col">Total Harga</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
+                        <th scope="col" style="min-width: 220px;">Aksi</th> </tr>
                 </thead>
                 <tbody>
                     <?php 
                     // Hanya tampilkan yang statusnya 'Selesai' (siap bayar)
                     $query = "SELECT t.*, p.nama AS nama_pelanggan 
-                            FROM transaksi t
-                            JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan
-                            WHERE t.status = 'Selesai'
-                            ORDER BY t.tanggal_selesai ASC";
+                              FROM transaksi t
+                              JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan
+                              WHERE t.status = 'Selesai'
+                              ORDER BY t.tanggal_selesai ASC";
                     
                     $hasil = mysqli_query($koneksi, $query);
                     
@@ -42,12 +41,21 @@ include 'layout/layout_header.php';
                             echo "<td>Rp " . number_format($data['total_harga'], 0, ',', '.') . "</td>";
                             echo "<td><span class='badge " . $status_badge . "'>" . htmlspecialchars($data['status']) . "</span></td>";
                             
-                            // Aksi: Bayar & Ambil
+                            // --- AKSI: 2 TOMBOL ---
                             echo "<td>";
+                            
+                            // Tombol 1: Bayar Tunai (Manual)
+                            echo "<a href='proses/transaksi-keluar?id=" . $data['id_transaksi'] . "' class='btn btn-success btn-sm me-2 mb-2' 
+                                     onclick=\"konfirmasiBayarTunai(event, '" . $data['id_transaksi'] . "', '" . htmlspecialchars($data['total_harga']) . "')\">
+                                     <i class='bi bi-cash'></i> Bayar Tunai
+                                  </a>";
+                                  
+                            // Tombol 2: Bayar Online (Midtrans)
                             echo "<a href='#' class='btn btn-info btn-sm mb-2' 
                                     onclick=\"bayarViaMidtrans(event, '" . $data['id_transaksi'] . "', '" . htmlspecialchars($data['total_harga']) . "')\">
                                     <i class='bi bi-credit-card'></i> Bayar Online
                                 </a>";
+                                
                             echo "</td>";
                             echo "</tr>";
                         }
@@ -69,6 +77,7 @@ include 'layout/layout_footer.php';
 ?>
 
 <script>
+    // --- 1. SCRIPT UNTUK NOTIFIKASI ---
     const urlParams = new URLSearchParams(window.location.search);
     const status = urlParams.get('status');
     if (status === 'sukses_bayar') {
@@ -80,22 +89,17 @@ include 'layout/layout_footer.php';
         window.history.replaceState({}, document.title, cleanURL);
     }
 
-    // Fungsi konfirmasi Pembayaran
-    function konfirmasiBayar(event, id, total) {
+    // --- 2. FUNGSI UNTUK BAYAR TUNAI ---
+    function konfirmasiBayarTunai(event, id, total) {
         event.preventDefault();
         const url = event.currentTarget.href;
         
-        // Format 'total' menjadi Rupiah
-        const formatter = new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR',
-            minimumFractionDigits: 0
-        });
+        const formatter = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 });
         const totalRp = formatter.format(total);
 
         Swal.fire({
-            title: 'Konfirmasi Pembayaran',
-            html: `Pelanggan akan membayar transaksi <b>${id}</b> sejumlah <b>${totalRp}</b>? <br><br> Aksi ini akan memindahkan data ke laporan dan tidak bisa dibatalkan.`,
+            title: 'Konfirmasi Pembayaran Tunai',
+            html: `Pelanggan akan membayar transaksi <b>${id}</b> sejumlah <b>${totalRp}</b>? <br><br> Aksi ini akan memindahkan data ke laporan.`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#198754',
@@ -109,17 +113,17 @@ include 'layout/layout_footer.php';
         });
     }
 
+    // --- 3. LOGIKA BARU UNTUK MIDTRANS (REUSE TOKEN) ---
+    
+    // Variabel global untuk menyimpan token
     let transactionTokens = {};
 
-    // 2. Hapus fungsi konfirmasiBayar(event, id, total) yang lama,
-    //    karena sudah diganti Bayar Online
-
-    // 3. Buat fungsi terpisah untuk callback
+    // Fungsi callback standar
     function getSnapCallbacks(id_transaksi) {
         return {
             onSuccess: function(result){
-                Swal.fire('Sukses!', 'Pembayaran berhasil. Data sedang diproses.', 'success')
-                    .then(() => location.reload()); // Muat ulang halaman agar transaksi hilang
+                Swal.fire('Sukses!', 'Pembayaran berhasil. Data akan diproses oleh server.', 'success')
+                    .then(() => location.reload()); // Muat ulang halaman
             },
             onPending: function(result){
                 Swal.fire('Pending', 'Menunggu pembayaran Anda.', 'info');
@@ -142,11 +146,11 @@ include 'layout/layout_footer.php';
         };
     }
 
-    // 4. Modifikasi fungsi bayarViaMidtrans
+    // Fungsi utama untuk bayar online
     function bayarViaMidtrans(event, id_transaksi, total) {
         event.preventDefault();
 
-        // 4.1. Cek apakah kita sudah punya token untuk ID ini
+        // 1. Cek apakah kita sudah punya token untuk ID ini?
         if (transactionTokens[id_transaksi]) {
             // Jika ADA, langsung pakai token yang ada dan buka popup
             console.log("Membuka ulang popup dengan token tersimpan.");
@@ -154,7 +158,7 @@ include 'layout/layout_footer.php';
             return; // Selesai
         }
 
-        // 4.2. Jika BELUM ADA, tampilkan loading
+        // 2. Jika BELUM ADA, tampilkan loading
         Swal.fire({
             title: 'Membuat Sesi Pembayaran...',
             text: 'Harap tunggu, sistem sedang menghubungkan ke Midtrans.',
@@ -164,8 +168,8 @@ include 'layout/layout_footer.php';
             }
         });
 
-        // 4.3. Minta token baru ke backend
-        fetch(`api/buat-payment-token.php?id=${id_transaksi}`)
+        // 3. Minta token baru ke backend (menggunakan .htaccess)
+        fetch(`api/buat-payment-token?id=${id_transaksi}`)
             .then(response => response.json())
             .then(data => {
                 Swal.close(); // Tutup loading
@@ -176,11 +180,11 @@ include 'layout/layout_footer.php';
                 }
 
                 if (data.token) {
-                    // 4.4. SIMPAN token yang baru didapat
+                    // 4. SIMPAN token yang baru didapat
                     console.log("Token baru didapat dan disimpan.");
                     transactionTokens[id_transaksi] = data.token;
                     
-                    // 4.5. Buka popup Midtrans Snap
+                    // 5. Buka popup Midtrans Snap
                     window.snap.pay(data.token, getSnapCallbacks(id_transaksi));
                 }
             })
