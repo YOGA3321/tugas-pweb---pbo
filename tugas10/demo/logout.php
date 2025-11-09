@@ -1,10 +1,5 @@
-<?php 
-// 1. Mulai session
+<?php
 session_start();
-
-// 2. Hapus semua data session
 session_destroy();
-
-// 3. Alihkan ke halaman login dengan pesan
-header("location:login.php?pesan=logout");
+header("location:" . BASE_URL . "login.php?pesan=logout");
 ?>

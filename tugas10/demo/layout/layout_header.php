@@ -1,22 +1,14 @@
 <?php
-// File ini akan di-include di setiap halaman
 session_start();
-include_once 'config.php'; // Atau 'Dikoneksi.php' (sesuaikan)
+include_once __DIR__ . '/../config.php';
 
-// Cek status login
 if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
-    // Jika belum login, alihkan ke login.php
-    // Kita cek 'role' agar bisa bedakan file login admin/pelanggan nanti
-    // Untuk sekarang, kita asumsikan semua adalah admin/kasir
-    header("location:login.php?pesan=belum_login");
+    header("location:" . BASE_URL . "login.php?pesan=belum_login");
     exit;
 }
 
-// Ambil username dari session
 $username = isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'User';
 $role = isset($_SESSION['role']) ? htmlspecialchars($_SESSION['role']) : 'Role';
-
-// Menentukan halaman aktif (untuk highlight sidebar)
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
@@ -30,15 +22,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 
     <style>
         body {
             display: flex;
             min-height: 100vh;
-            background-color: #f8f9fa; /* Latar belakang halaman */
+            background-color: #f8f9fa;
         }
-        
-        /* Sidebar */
+
         .sidebar {
             width: 260px;
             min-height: 100vh;
@@ -108,6 +100,53 @@ $current_page = basename($_SERVER['PHP_SELF']);
             padding: 2rem;
         }
 
+        @media (max-width: 767.98px) {
+            .sidebar {
+                /* Sembunyikan sidebar ke kiri layar */
+                transform: translateX(-100%);
+                /* Posisikan di atas segalanya */
+                z-index: 1045; 
+                height: 100vh;
+            }
+
+            /* Kelas 'active' ini akan kita gunakan di JS */
+            .sidebar.active {
+                /* Tampilkan sidebar */
+                transform: translateX(0);
+            }
+
+            .main-content {
+                /* Buat konten utama jadi 100% lebar di HP */
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .page-content {
+                padding: 1rem;
+            }
+        }
+
+        .sidebar-overlay {
+            display: none; /* Sembunyi di desktop */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1040; /* Di bawah sidebar (1045) */
+        }
+        
+        /* Tampilkan overlay saat sidebar aktif */
+        .sidebar.active + .sidebar-overlay {
+            display: block;
+        }
+
+        /* Pastikan topbar (putih) ada di atas konten */
+        .topbar {
+            z-index: 1030;
+        }
+
     </style>
 </head>
 <body>
@@ -121,42 +160,56 @@ $current_page = basename($_SERVER['PHP_SELF']);
         
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link <?php echo ($current_page == 'index.php') ? 'active' : ''; ?>" href="index.php">
+                <a class="nav-link <?php echo ($current_page == 'index.php') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>index">
                     <i class="bi bi-grid-fill"></i>
                     Dashboard
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php echo ($current_page == 'pelanggan.php') ? 'active' : ''; ?>" href="pelanggan.php">
+                <a class="nav-link <?php echo ($current_page == 'pelanggan.php') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>pelanggan">
                     <i class="bi bi-people-fill"></i>
                     Pelanggan
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php echo ($current_page == 'layanan.php') ? 'active' : ''; ?>" href="layanan.php">
+                <a class="nav-link <?php echo ($current_page == 'layanan.php') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>layanan">
                     <i class="bi bi-box-seam-fill"></i>
                     Layanan
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php echo ($current_page == 'transaksi.php') ? 'active' : ''; ?>" href="transaksi.php">
-                    <i class="bi bi-cash-stack"></i>
-                    Transaksi
+                <a class="nav-link <?php echo ($current_page == 'transaksi.php') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>cucian-aktif">
+                    <i class="bi bi-hourglass-split"></i>
+                    Cucian Aktif
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link <?php echo ($current_page == 'transaksi-keluar.php') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>transaksi-keluar">
+                    <i class="bi bi-cash-coin"></i>
+                    Transaksi Keluar
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="logout.php" onclick="return confirm('Apakah Anda yakin ingin logout?');">
+                <a class="nav-link <?php echo ($current_page == 'laporan.php') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>laporan">
+                    <i class="bi bi-file-earmark-bar-graph-fill"></i>
+                    Laporan
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo BASE_URL; ?>logout" onclick="return confirm('Apakah Anda yakin ingin logout?');">
                     <i class="bi bi-box-arrow-left"></i>
                     Logout
                 </a>
             </li>
         </ul>
     </nav>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <div class="main-content">
         <nav class="navbar navbar-expand-lg topbar">
             <div class="container-fluid">
-                <button class="btn btn-primary d-md-none" type="button">
+                <button class="btn btn-primary d-md-none" type="button" id="sidebarToggle">
                     <i class="bi bi-list"></i>
                 </button>
                 

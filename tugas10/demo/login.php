@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
-        /* Desain elegan sederhana */
         body {
             background-color: #f0f2f5; /* Latar belakang abu-abu muda */
         }
@@ -56,7 +55,7 @@
                     }
                     ?>
 
-                    <form action="proses-login.php" method="POST">
+                    <form action="proses/proses-login.php" method="POST">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" id="username" name="username" required>

@@ -3,9 +3,9 @@ include 'layout/layout_header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2><i class="bi bi-people-fill"></i> Manajemen Pelanggan</h2>
-    <a href="forms/form-tambah-pelanggan" class="btn btn-primary">
-        <i class="bi bi-person-plus-fill"></i> Tambah Pelanggan Baru
+    <h2><i class="bi bi-box-seam-fill"></i> Manajemen Layanan</h2>
+    <a href="forms/form-tambah-layanan" class="btn btn-primary">
+        <i class="bi bi-plus-circle-fill"></i> Tambah Layanan Baru
     </a>
 </div>
 
@@ -16,15 +16,14 @@ include 'layout/layout_header.php';
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nama Pelanggan</th>
-                        <th scope="col">Alamat</th>
-                        <th scope="col">No. Handphone</th>
+                        <th scope="col">Nama Layanan</th>
+                        <th scope="col">Harga per Kg</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                    $query = "SELECT * FROM pelanggan ORDER BY nama ASC";
+                    <?php
+                    $query = "SELECT * FROM layanan ORDER BY nama_layanan ASC";
                     $hasil = mysqli_query($koneksi, $query);
                     $no = 1;
                     
@@ -32,20 +31,21 @@ include 'layout/layout_header.php';
                         while($data = mysqli_fetch_assoc($hasil)) {
                             echo "<tr>";
                             echo "<th scope='row'>" . $no++ . "</th>";
-                            echo "<td>" . htmlspecialchars($data['nama']) . "</td>";
-                            echo "<td>" . htmlspecialchars($data['alamat']) . "</td>";
-                            echo "<td>" . htmlspecialchars($data['no_hp']) . "</td>";
+                            echo "<td>" . htmlspecialchars($data['nama_layanan']) . "</td>";
+                            // Format harga menjadi Rupiah
+                            echo "<td>Rp " . number_format($data['harga_per_kg'], 0, ',', '.') . "</td>";
                             echo "<td>";
-                            echo "<a href='forms/form-edit-pelanggan?id=" . $data['id_pelanggan'] . "' class='btn btn-warning btn-sm me-2 mb-2' style='width: 85px;'><i class='bi bi-pencil-square'></i> Edit</a>";
-                            echo "<a href='proses/hapus-pelanggan.php?id=" . $data['id_pelanggan'] . "' class='btn btn-danger btn-sm mb-2' style='width: 85px;'
-                                    onclick=\"konfirmasiHapus(event, '" . addslashes(htmlspecialchars($data['nama'])) . "', " . $data['id_pelanggan'] . ")\">
+                            echo "<a href='forms/form-edit-layanan?id=" . $data['id_layanan'] . "' class='btn btn-warning btn-sm me-2 mb-2' style='width: 85px;'><i class='bi bi-pencil-square'></i> Edit</a>";
+                            echo "<a href='proses/hapus-layanan.php?id=" . $data['id_layanan'] . "' class='btn btn-danger btn-sm mb-2' style='width: 85px;'
+                                    onclick=\"konfirmasiHapus(event, '" . addslashes(htmlspecialchars($data['nama_layanan'])) . "', " . $data['id_layanan'] . ")\">
                                     <i class='bi bi-trash-fill'></i> Hapus
                                 </a>";
                             echo "</td>";
                             echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='5' class='text-center'>Belum ada data pelanggan.</td></tr>";
+                        // Jika tidak ada data
+                        echo "<tr><td colspan='4' class='text-center'>Belum ada data layanan.</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -59,7 +59,6 @@ include 'layout/layout_footer.php';
 ?>
 
 <script>
-    // Script ini tetap di sini karena hanya dipakai di halaman ini
     const urlParams = new URLSearchParams(window.location.search);
     const status = urlParams.get('status');
     let timer = 2000;
@@ -67,7 +66,7 @@ include 'layout/layout_footer.php';
     if (status === 'sukses_tambah') {
         Swal.fire({
             title: 'Sukses!',
-            text: 'Data pelanggan baru berhasil ditambahkan.',
+            text: 'Data layanan baru berhasil ditambahkan.',
             icon: 'success',
             timer: timer,
             showConfirmButton: false
@@ -75,7 +74,7 @@ include 'layout/layout_footer.php';
     } else if (status === 'sukses_edit') {
         Swal.fire({
             title: 'Sukses!',
-            text: 'Data pelanggan berhasil diperbarui.',
+            text: 'Data layanan berhasil diperbarui.',
             icon: 'success',
             timer: timer,
             showConfirmButton: false
@@ -83,7 +82,7 @@ include 'layout/layout_footer.php';
     } else if (status === 'sukses_hapus') {
         Swal.fire({
             title: 'Terhapus!',
-            text: 'Data pelanggan telah dihapus.',
+            text: 'Data layanan telah dihapus.',
             icon: 'warning',
             timer: timer,
             showConfirmButton: false

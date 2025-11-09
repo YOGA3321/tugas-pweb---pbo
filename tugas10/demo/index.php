@@ -1,6 +1,5 @@
-<?php 
-// 1. Panggil Header (sudah ada session check di dalamnya)
-include 'layout_header.php';
+<?php
+include 'layout/layout_header.php';
 ?>
 
 <div class="alert alert-success">
@@ -17,7 +16,6 @@ include 'layout_header.php';
     </div>
 </div>
 
-<?php 
-// 2. Panggil Footer
-include 'layout_footer.php';
+<?php
+include 'layout/layout_footer.php';
 ?>
