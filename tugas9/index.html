@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dokumentasi - Pendaftaran Mahasiswa (PHP, MySQL, AJAX)</title>
+    <title>Dokumentasi - Tugas 9: Project Aplikasi Restoran</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -14,46 +14,51 @@
         <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
 
         <div class="konten-tugas">
-            <h1>Tugas 9: Pendaftaran Mahasiswa (PHP, MySQL, AJAX)</h1>
+            
+            <h1>Tugas 9: Laporan Project (Aplikasi Restoran)</h1>
             <h3>Nama: Ageng Prayogo</h3>
             <h3>NRP: 5025241225</h3>
             <h3>Kelas: A</h3>
-            <p class="meta-info">Tugas ini bertujuan untuk membuat aplikasi CRUD (Create, Read) sederhana untuk pendaftaran mahasiswa baru menggunakan PHP, MySQL, dan AJAX.</p>
+            <p class="meta-info">Proyek ini bertujuan untuk membuat sistem autentikasi (Login & Register) yang aman dan modern untuk aplikasi restoran "Sederhana" menggunakan PHP, MySQL, dan AJAX.</p>
             <hr>
 
             <h2>Deskripsi & Konsep Implementasi</h2>
             <p>
-                Aplikasi ini adalah sistem pendaftaran mahasiswa baru dalam satu halaman. Formulir pendaftaran dan tabel data pendaftar ditampilkan berdampingan. Pengguna dapat mendaftarkan mahasiswa baru, dan data akan disimpan ke database <strong>MySQL</strong> menggunakan <strong>PHP</strong>.
+                Aplikasi ini adalah fondasi dari sistem pemesanan makanan, dimulai dengan sistem autentikasi pengguna yang aman. Tampilan (UI) dibuat modern dengan *sliding panel* untuk beralih antara form login dan registrasi.
             </p>
             <p>
-                Halaman ini memanfaatkan <strong>AJAX</strong> untuk dua fungsi utama:
+                Sistem ini dibangun dengan memisahkan logika dari tampilan dan menerapkan beberapa konsep keamanan modern:
                 <ol>
-                    <li>Mengirim data formulir ke server PHP secara *asynchronous* (tanpa refresh) saat mendaftar.</li>
-                    <li>Mengambil data pendaftar terbaru dari server secara berkala (`setInterval`) untuk ditampilkan di tabel, memberikan ilusi pembaruan *real-time*.</li>
+                    <li><strong>Pemisahan Logika:</strong> Tampilan (`login.php`) dipisah dari logika pemrosesan (file PHP khusus di folder `auth/`).</li>
+                    <li><strong>AJAX (Fetch API):</strong> Semua pengiriman form (login & register) ditangani oleh JavaScript (`auth.js`) secara *asynchronous* untuk pengalaman pengguna yang mulus tanpa *refresh* halaman.</li>
+                    <li><strong>Notifikasi Interaktif:</strong> Menggunakan Pustaka `SweetAlert2` untuk memberikan umpan balik (sukses/error) yang elegan kepada pengguna.</li>
+                    <li><strong>Password Hashing:</strong> Menggunakan `password_hash()` dan `password_verify()` untuk memastikan kata sandi disimpan dengan aman di database.</li>
+                    <li><strong>Prepared Statements:</strong> Mencegah SQL Injection dengan menggunakan `prepare()` dan `bind_param()` pada semua query database.</li>
+                    <li><strong>Google OAuth:</strong> Menyediakan opsi login alternatif yang aman menggunakan akun Google.</li>
                 </ol>
             </p>
             
-            <h3>Alur Kerja Aplikasi:</h3>
+            <h3>Alur Kerja Aplikasi (Login AJAX):</h3>
             <ol>
-                <li>Saat halaman dimuat, JavaScript (AJAX) memanggil <code>api/get_jurusan.php</code> untuk mengisi dropdown program studi.</li>
-                <li>JavaScript (AJAX) juga langsung memanggil <code>api/get_mahasiswa.php</code> untuk menampilkan daftar mahasiswa yang sudah ada di tabel.</li>
-                <li>Pengguna mengisi formulir pendaftaran (Nama, NIM, Email, Jurusan).</li>
-                <li>Saat tombol "Daftarkan" diklik, JavaScript (AJAX) mengambil alih, mencegah refresh, dan mengirim data formulir ke <code>api/add_mahasiswa.php</code>.</li>
-                <li><code>api/add_mahasiswa.php</code> memvalidasi data, melakukan <i>prepared statement</i> untuk mengecek duplikat NIM, dan menyimpan data baru ke tabel <code>mahasiswa</code>.</li>
-                <li>Server PHP mengembalikan respons dalam format <strong>JSON</strong> (berisi status sukses atau error).</li>
-                <li>JavaScript menampilkan pesan sukses/gagal di bawah tombol. Jika sukses, form akan di-reset.</li>
-                <li>Secara terpisah, fungsi <code>setInterval</code> di JavaScript akan otomatis memanggil <code>api/get_mahasiswa.php</code> setiap 5 detik, yang akan mengambil data terbaru (termasuk data yang baru saja ditambahkan) dan memperbarui tabel pendaftar.</li>
+                <li>Pengguna mengisi *username* dan *password* pada `login.php`.</li>
+                <li>JavaScript (`auth.js`) mengambil alih proses *submit* form, mencegah *refresh* halaman.</li>
+                <li>Tombol login menampilkan ikon "spinner" dan dinonaktifkan untuk mencegah *double-click*.</li>
+                <li>Data formulir dikirim menggunakan Fetch API (AJAX) ke `auth/proses_login.php`.</li>
+                <li>Server PHP memvalidasi data, melakukan *prepared statement* ke database untuk mencari *username*.</li>
+                <li>Jika *username* ada, `password_verify()` digunakan untuk mencocokkan *hash* password.</li>
+                <li>Server mengembalikan respons dalam format <strong>JSON</strong> (berisi status sukses/gagal, pesan, dan URL redirect jika sukses).</li>
+                <li>JavaScript menerima JSON dan menampilkan notifikasi `SweetAlert2`. Jika sukses, halaman akan otomatis diarahkan ke dashboard.</li>
             </ol>
 
-            <img src="../img/38.png" alt="Tampilan Aplikasi Pendaftaran Mahasiswa" onclick="openModal(this)">
-            <p class="caption">Tampilan aplikasi pendaftaran dengan form di kiri dan tabel data di kanan.</p>
+            <img src="../img/tugas9-login.png" alt="Tampilan Aplikasi Login Restoran" onclick="openModal(this)">
+            <p class="caption">Tampilan halaman login utama dengan form registrasi terpisah.</p>
 
             <hr>
             <h2>Hasil Tugas</h2>
-            <p>Halaman demo di bawah ini adalah hasil akhir dari pengerjaan tugas ini. Aplikasi ini terhubung ke database <code>u116133173_daftar_tugas</code> di server Hostinger.</p>
+            <p>Halaman demo di bawah ini adalah hasil akhir dari implementasi sistem autentikasi ini. Anda dapat mencoba mendaftar akun baru atau login menggunakan akun yang sudah ada (termasuk login via Google).</p>
             
-            <a href="demo/" class="tombol-demo" target="_blank">Lihat Demo Live</a>
-            <a href="https://github.com/YOGA3321/tugas-pweb---pbo/tree/main/tugas8/demo/" class="tombol-demo" target="_blank">Lihat Kode Sumber</a>
+            <a href="demo/login.php" class="tombol-demo" target="_blank">Lihat Demo Live</a>
+            <a href="https://github.com/YOGA3321/tugas-pweb---pbo/tree/main/tugas9/demo" class="tombol-demo" target="_blank">Lihat Kode Sumber</a>
         </div>
     </div>
 
