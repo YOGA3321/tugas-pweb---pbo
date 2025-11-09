@@ -28,7 +28,6 @@
 // \Midtrans\Config::$clientKey = 'SB-Mid-client-m2n6kBqd8rsKrRST'; // Ganti!
 ?>
 
-// jika di hosting, sesuaikan konfigurasi database dan path sesuai kebutuhan
 <?php
 date_default_timezone_set('Asia/Jakarta');
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
