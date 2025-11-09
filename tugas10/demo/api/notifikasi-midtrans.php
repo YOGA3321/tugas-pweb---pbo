@@ -11,8 +11,12 @@ try {
 
 $transaction_status = $notif->transaction_status;
 $payment_type = $notif->payment_type;
-$order_id = $notif->order_id;
+$order_id_full = $notif->order_id; // Ini akan berisi "ID-timestamp"
 $fraud_status = $notif->fraud_status;
+
+// Pecah order_id untuk mendapatkan ID transaksi asli (seperti di referensi Anda)
+$order_id_parts = explode('-', $order_id_full);
+$order_id = $order_id_parts[0]; // Ini ID transaksi kita, cth: 20251109514
 
 // Verifikasi keamanan (opsional tapi disarankan)
 // $signature_key = hash('sha512', $order_id . $notif->status_code . $notif->gross_amount . \Midtrans\Config::$serverKey);

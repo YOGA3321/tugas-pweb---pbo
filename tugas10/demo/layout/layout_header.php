@@ -178,7 +178,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php echo ($current_page == 'transaksi.php') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>cucian-aktif">
+                <a class="nav-link <?php echo ($current_page == 'transaksi.php') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>transaksi">
                     <i class="bi bi-hourglass-split"></i>
                     Cucian Aktif
                 </a>

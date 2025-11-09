@@ -56,14 +56,13 @@ include 'layout/layout_header.php';
                             $id_trans = $data['id_transaksi'];
                             $nama_trans = htmlspecialchars($id_trans);
 
-                            echo "<a href='forms/proses-update-status?id=" . $id_trans . "&status=Selesai' class='btn btn-success btn-sm me-2 mb-2' style='width: 110px;'
+                            echo "<a href='proses/proses-update-status?id=" . $id_trans . "&status=Selesai' class='btn btn-success btn-sm me-2 mb-2' style='width: 110px;'
                                     onclick=\"konfirmasiUpdateStatus(event, '" . $nama_trans . "', 'Selesai', 'menyelesaikan');\">
                                     <i class='bi bi-check-circle'></i> Selesaikan
                                 </a>";
-                                
                             echo "<a href='forms/form-edit-transaksi?id=" . $id_trans . "' class='btn btn-warning btn-sm me-2 mb-2' style='width: 85px;'><i class='bi bi-pencil-square'></i> Edit</a>";
                             
-                            echo "<a href='proses/hapus-transaksi.php?id=<?php echo $id_trans; ?>'" . $id_trans . "' class='btn btn-danger btn-sm mb-2' style='width: 85px;' 
+                            echo "<a href='proses/hapus-transaksi.php?id=" . $id_trans . "' class='btn btn-danger btn-sm mb-2' style='width: 85px;' 
                                     onclick=\"konfirmasiHapus(event, '" . $nama_trans . "', '" . $id_trans . "')\">
                                     <i class='bi bi-trash-fill'></i> Hapus
                                 </a>";

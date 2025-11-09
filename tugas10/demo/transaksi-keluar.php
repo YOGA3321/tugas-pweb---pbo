@@ -109,10 +109,52 @@ include 'layout/layout_footer.php';
         });
     }
 
+    let transactionTokens = {};
+
+    // 2. Hapus fungsi konfirmasiBayar(event, id, total) yang lama,
+    //    karena sudah diganti Bayar Online
+
+    // 3. Buat fungsi terpisah untuk callback
+    function getSnapCallbacks(id_transaksi) {
+        return {
+            onSuccess: function(result){
+                Swal.fire('Sukses!', 'Pembayaran berhasil. Data sedang diproses.', 'success')
+                    .then(() => location.reload()); // Muat ulang halaman agar transaksi hilang
+            },
+            onPending: function(result){
+                Swal.fire('Pending', 'Menunggu pembayaran Anda.', 'info');
+            },
+            onError: function(result){
+                Swal.fire('Gagal', 'Pembayaran dibatalkan atau gagal.', 'error');
+                // Hapus token yang error agar bisa coba buat baru
+                transactionTokens[id_transaksi] = null;
+            },
+            onClose: function(){
+                Swal.fire({
+                    title: 'Info',
+                    text: 'Anda menutup popup pembayaran. Klik "Bayar Online" lagi untuk membukanya kembali.',
+                    icon: 'warning',
+                    timer: 3000,
+                    showConfirmButton: false
+                });
+                // Jangan hapus token di sini, agar bisa dibuka lagi
+            }
+        };
+    }
+
+    // 4. Modifikasi fungsi bayarViaMidtrans
     function bayarViaMidtrans(event, id_transaksi, total) {
         event.preventDefault();
 
-        // Tampilkan loading
+        // 4.1. Cek apakah kita sudah punya token untuk ID ini
+        if (transactionTokens[id_transaksi]) {
+            // Jika ADA, langsung pakai token yang ada dan buka popup
+            console.log("Membuka ulang popup dengan token tersimpan.");
+            window.snap.pay(transactionTokens[id_transaksi], getSnapCallbacks(id_transaksi));
+            return; // Selesai
+        }
+
+        // 4.2. Jika BELUM ADA, tampilkan loading
         Swal.fire({
             title: 'Membuat Sesi Pembayaran...',
             text: 'Harap tunggu, sistem sedang menghubungkan ke Midtrans.',
@@ -122,7 +164,7 @@ include 'layout/layout_footer.php';
             }
         });
 
-        // 1. Minta token ke backend (api/buat-payment-token.php)
+        // 4.3. Minta token baru ke backend
         fetch(`api/buat-payment-token.php?id=${id_transaksi}`)
             .then(response => response.json())
             .then(data => {
@@ -134,22 +176,12 @@ include 'layout/layout_footer.php';
                 }
 
                 if (data.token) {
-                    // 2. Buka popup Midtrans Snap
-                    window.snap.pay(data.token, {
-                        onSuccess: function(result){
-                            Swal.fire('Sukses!', 'Pembayaran berhasil. Data sedang diproses.', 'success')
-                                .then(() => location.reload());
-                        },
-                        onPending: function(result){
-                            Swal.fire('Pending', 'Menunggu pembayaran Anda.', 'info');
-                        },
-                        onError: function(result){
-                            Swal.fire('Gagal', 'Pembayaran dibatalkan atau gagal.', 'error');
-                        },
-                        onClose: function(){
-                            Swal.fire('Info', 'Anda menutup popup pembayaran.', 'warning');
-                        }
-                    });
+                    // 4.4. SIMPAN token yang baru didapat
+                    console.log("Token baru didapat dan disimpan.");
+                    transactionTokens[id_transaksi] = data.token;
+                    
+                    // 4.5. Buka popup Midtrans Snap
+                    window.snap.pay(data.token, getSnapCallbacks(id_transaksi));
                 }
             })
             .catch(err => {

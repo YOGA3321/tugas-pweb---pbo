@@ -1,5 +1,5 @@
 <?php
-include '../config.php'; // Ini akan otomatis load vendor dan config Midtrans
+include '../config.php';
 header('Content-Type: application/json');
 
 if (!isset($_GET['id'])) {
@@ -8,13 +8,11 @@ if (!isset($_GET['id'])) {
 }
 
 $id_transaksi = $_GET['id'];
-
-// Ambil data transaksi DAN pelanggan
 $query = "SELECT t.*, p.nama, p.no_hp 
-          FROM transaksi t 
-          JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan 
-          WHERE t.id_transaksi = ? LIMIT 1";
-          
+        FROM transaksi t 
+        JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan 
+        WHERE t.id_transaksi = ? LIMIT 1";
+        
 $stmt = mysqli_prepare($koneksi, $query);
 mysqli_stmt_bind_param($stmt, 's', $id_transaksi);
 mysqli_stmt_execute($stmt);
@@ -26,17 +24,16 @@ if (!$transaksi) {
     exit;
 }
 
-// Persiapkan parameter untuk Midtrans
+$unique_midtrans_order_id = $transaksi['id_transaksi'] . '-' . time();
+
 $params = [
     'transaction_details' => [
-        'order_id' => $transaksi['id_transaksi'],
+        'order_id' => $unique_midtrans_order_id, // Kirim ID unik ini
         'gross_amount' => (int)$transaksi['total_harga'],
     ],
     'customer_details' => [
         'first_name' => $transaksi['nama'],
         'phone' => $transaksi['no_hp'],
-        // Email wajib untuk beberapa metode bayar, 
-        // karena kita tidak punya, kita buat dummy
         'email' => $transaksi['no_hp'] . '@laundrycrafty.com', 
     ],
     'item_details' => [[
