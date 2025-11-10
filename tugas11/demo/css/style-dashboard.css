@@ -1,0 +1,250 @@
+:root {
+    --primary: #007bff;
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --muted: #6c757d;
+    --text: #222;
+    --shadow: 0 6px 18px rgba(20,30,40,0.06);
+    --radius: 12px;
+}
+
+body {
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; 
+}
+
+.app-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr; 
+    min-height: 100vh;
+}
+
+/* --- SIDEBAR (KIRI) --- */
+.sidebar {
+    background: var(--card);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+.sidebar .brand {
+    font-size: 24px;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.sidebar .user-info {
+    background: var(--bg);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+.sidebar .user-info strong { display: block; color: var(--text); }
+.sidebar .user-info span { color: var(--muted); }
+.sidebar .user-info a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 8px;
+    display: inline-block;
+}
+
+/* --- GAYA MENU SIDEBAR --- */
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+.sidebar-menu a {
+    display: block;
+    padding: 12px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 15px;
+    transition: background-color 0.2s, color 0.2s;
+}
+.sidebar-menu a:hover {
+    background-color: var(--bg);
+    color: var(--primary);
+}
+.sidebar-menu a.active { 
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,123,255,0.2);
+}
+
+/* --- TOMBOL HAMBURGER (BARU) --- */
+.menu-toggle {
+    display: none; 
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001; 
+    box-shadow: 0 4px 10px rgba(0,123,255,0.3);
+    /* Transisi untuk pergeseran */
+    transition: transform 0.3s ease-in-out; 
+    overflow: hidden;
+    width: 44px; /* Lebar tetap */
+    height: 41px; /* Tinggi tetap */
+}
+.menu-toggle .icon-open,
+.menu-toggle .icon-close {
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+.menu-toggle .icon-close {
+    transform: translateY(-100%);
+    position: absolute;
+    top: 9px;
+    left: 14px;
+}
+.menu-toggle .icon-open {
+    transform: translateY(0);
+}
+
+
+/* --- KONTEN (KANAN) --- */
+.main-content {
+    padding: 40px;
+    overflow-y: auto;
+}
+
+/* --- LOGIKA RESPONSIVE BARU --- */
+@media (max-width: 980px) {
+    .app-layout {
+        grid-template-columns: 1fr; 
+    }
+
+    .sidebar {
+        position: fixed;
+        /* Mulai dari luar layar */
+        transform: translateX(-100%);
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    /* Saat sidebar terbuka */
+    body.sidebar-open .sidebar {
+        transform: translateX(0); /* Muncul */
+    }
+    
+    body.sidebar-open .menu-toggle {
+        /* Geser tombol hamburger sejauh lebar sidebar */
+        transform: translateX(280px); 
+    }
+    
+    /* Ganti ikon saat sidebar terbuka */
+    body.sidebar-open .menu-toggle .icon-open {
+        transform: translateY(100%); /* Sembunyikan hamburger */
+    }
+    body.sidebar-open .menu-toggle .icon-close {
+        transform: translateY(0); /* Tampilkan 'X' */
+    }
+
+    .main-content {
+        grid-column: 1 / -1; 
+        padding: 20px;
+        padding-top: 70px; /* Beri ruang untuk tombol */
+    }
+
+    .menu-toggle {
+        display: block; /* Tampilkan tombol hamburger */
+    }
+}
+
+
+/* --- Utility Styles (Tombol, Form, dll) --- */
+.page-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+.btn {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn.primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 6px 14px rgba(0,123,255,0.14);
+}
+.action-link {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+form label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #263238;
+}
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="password"], select, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #e6edf3;
+    background: #fbfdff;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: box-shadow .12s, border-color .12s;
+}
+input:focus, textarea:focus, select:focus {
+    box-shadow: 0 4px 18px rgba(3,123,255,0.08);
+    border-color: rgba(3,123,255,0.35);
+}
+.row {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+.col { flex: 1; min-width: 0; }
+.col-full { flex: 1 1 100%; }
+.req { color: #d9534f; margin-left: 4px; font-weight: 600; }
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+    align-items: center;
+}
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-collapse: collapse;
+}
