@@ -1,0 +1,10 @@
+RewriteEngine On
+
+ErrorDocument 403 https://lopyta.com/403
+ErrorDocument 404 https://lopyta.com/404-tolol
+ErrorDocument 500 https://lopyta.com/500
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
