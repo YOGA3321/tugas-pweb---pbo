@@ -73,7 +73,12 @@
             </a>
             <a href="tugas10/" class="tugas-card">
                 <div class="card-icon">🧺</div>
-                <h2>Tugas 10: Project CRUD Laundry</h2>
+                <h2>Tugas Pertemuan 11: Project CRUD Laundry</h2>
+                <p>Aplikasi CRUD lengkap (Login, Pelanggan) dengan PHP, MySQL, SweetAlert, dan layout Sidebar.</p>
+            </a>
+            <a href="tugas10/" class="tugas-card">
+                <div class="card-icon">🧺</div>
+                <h2>Tugas Pertemuan 11: Project Modul Pendaftaran Siswa</h2>
                 <p>Aplikasi CRUD lengkap (Login, Pelanggan) dengan PHP, MySQL, SweetAlert, dan layout Sidebar.</p>
             </a>
 
