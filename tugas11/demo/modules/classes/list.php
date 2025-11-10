@@ -1,5 +1,6 @@
 <?php
-include('../../config.php');
+// PERBAIKAN: Panggil config.php PERTAMA dan dengan path yang BENAR
+include('../../config.php'); 
 include('../../includes/auth.php');
 
 // Hanya Admin Pusat atau Admin Cabang yang boleh akses
@@ -11,7 +12,7 @@ include('../../includes/header.php');
 ?>
 
 <h2 class="page-title">Manajemen Kelas</h2>
-<a href="add.php" class="action-link">Tambah Kelas Baru</a>
+<a href="<?php echo BASE_URL; ?>modules/classes/add.php" class="action-link">Tambah Kelas Baru</a>
 
 <table width="100%" border="1" style="border-collapse: collapse; margin-top: 10px;">
     <thead style="background: #f0f0f0;">
@@ -27,7 +28,7 @@ include('../../includes/header.php');
     <tbody>
         <?php
         $query = "SELECT * FROM classes ORDER BY class_name ASC";
-        $result = mysqli_query($conn, $query);
+        $result = mysqli_query($koneksi, $query); // PERBAIKAN: Gunakan $koneksi
         
         if (mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_assoc($result)) {
@@ -48,6 +49,6 @@ include('../../includes/header.php');
 </table>
 
 <?php
-mysqli_close($conn);
+mysqli_close($koneksi); // PERBAIKAN: Gunakan $koneksi
 include('../../includes/footer.php');
 ?>

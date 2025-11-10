@@ -1,5 +1,6 @@
 <?php
-include('../../config.php');
+// PERBAIKAN: Panggil config.php PERTAMA dan dengan path yang BENAR
+include('../../config.php'); 
 include('../../includes/auth.php');
 
 // Hanya Admin Pusat atau Admin Cabang yang boleh akses
@@ -7,17 +8,17 @@ if ($user_role != 'Admin Pusat' && $user_role != 'Admin Cabang') {
     die("Akses dilarang.");
 }
 
-// Ambil data pengajar (user dengan role_id 3) dan cabang untuk dropdown
-$teachers = mysqli_query($conn, "SELECT u.user_id, u.name FROM users u JOIN roles r ON u.role_id = r.role_id WHERE r.role_name = 'Pengajar'");
-$branches = mysqli_query($conn, "SELECT branch_id, branch_name FROM branches");
+// PERBAIKAN: Gunakan $koneksi
+$teachers = mysqli_query($koneksi, "SELECT u.user_id, u.name FROM users u JOIN roles r ON u.role_id = r.role_id WHERE r.role_name = 'Pengajar'");
+$branches = mysqli_query($koneksi, "SELECT branch_id, branch_name FROM branches");
 
 include('../../includes/header.php');
 ?>
 
 <h2 class="page-title">Tambah Kelas Baru</h2>
-<a href="list.php" style="color: var(--muted);">&larr; Kembali ke Daftar Kelas</a>
+<a href="<?php echo BASE_URL; ?>modules/classes/list.php" style="color: var(--muted);">&larr; Kembali ke Daftar Kelas</a>
 
-<form id="addClassForm" action="../../prosses/class_add_process.php" method="POST" style="margin-top: 20px;">
+<form id="addClassForm" action="<?php echo BASE_URL; ?>prosses/class_add_process.php" method="POST" style="margin-top: 20px;">
     
     <div class="row">
         <div class="col-full">
@@ -63,6 +64,6 @@ include('../../includes/header.php');
 </form>
 
 <?php
-mysqli_close($conn);
+mysqli_close($koneksi); // PERBAIKAN: Gunakan $koneksi
 include('../../includes/footer.php');
 ?>

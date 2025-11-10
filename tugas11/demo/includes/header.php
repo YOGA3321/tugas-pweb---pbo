@@ -6,7 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style-register.css">
+    
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/style-register.css">
+    
     <style>
         body { padding: 0; }
         .navbar {
@@ -45,7 +47,8 @@
         <h1 class="brand">BIMBINGKU</h1>
         <div class="user-info">
             Selamat datang, <strong><?php echo htmlspecialchars($user_name); ?></strong> (<?php echo htmlspecialchars($user_role); ?>)
-            <a href="../logout.php">Logout</a>
+            
+            <a href="<?php echo BASE_URL; ?>logout.php">Logout</a>
         </div>
     </nav>
     

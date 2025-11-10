@@ -12,14 +12,14 @@ foreach ($required as $f) {
 }
 
 // Sanitize (Gunakan prepared statements untuk implementasi final)
-$full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
-$birth_date = mysqli_real_escape_string($conn, $_POST['birth_date']);
-$address = mysqli_real_escape_string($conn, $_POST['address']);
-$email = mysqli_real_escape_string($conn, $_POST['email']);
-$phone = mysqli_real_escape_string($conn, $_POST['phone']);
+$full_name = mysqli_real_escape_string($koneksi, $_POST['full_name']);
+$birth_date = mysqli_real_escape_string($koneksi, $_POST['birth_date']);
+$address = mysqli_real_escape_string($koneksi, $_POST['address']);
+$email = mysqli_real_escape_string($koneksi, $_POST['email']);
+$phone = mysqli_real_escape_string($koneksi, $_POST['phone']);
 $class_id = intval($_POST['class_id']);
 $branch_id = intval($_POST['branch_id']);
-$notes = isset($_POST['notes']) ? mysqli_real_escape_string($conn, $_POST['notes']) : '';
+$notes = isset($_POST['notes']) ? mysqli_real_escape_string($koneksi, $_POST['notes']) : '';
 
 // --- Logika Upload Foto ---
 // Path 'uploads' relatif dari file PHP ini
@@ -65,14 +65,15 @@ $sql = "INSERT INTO students (name, birth_date, address, email, phone, class_id,
         VALUES
         ('$full_name', '$birth_date', '$address', '$email', '$phone', '$class_id', '$branch_id', '$photoName', NOW(), 'Menunggu')";
 
-if (mysqli_query($conn, $sql)) {
-    $newId = mysqli_insert_id($conn);
-    // Arahkan ke halaman sukses (satu level di atas)
-    header("Location: ../success.php?id=" . $newId);
+if (mysqli_query($koneksi, $sql)) {
+    $newId = mysqli_insert_id($koneksi); 
+    
+    // PERBAIKAN: Redirect menggunakan BASE_URL
+    header("Location: " . BASE_URL . "success.php?id=" . $newId);
     exit;
 } else {
-    echo "Error: " . mysqli_error($conn);
+    echo "Error: " . mysqli_error($koneksi); 
 }
 
-mysqli_close($conn);
+mysqli_close($koneksi);
 ?>

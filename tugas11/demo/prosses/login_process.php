@@ -1,5 +1,4 @@
 <?php
-// PERBAIKAN: Path ke config.php
 include '../config.php'; 
 session_start();
 
@@ -10,7 +9,7 @@ if (empty($email) || empty($password)) {
     die("Email dan password wajib diisi.");
 }
 
-$stmt = $conn->prepare("SELECT user_id, name, password, role_id FROM users WHERE email = ? LIMIT 1");
+$stmt = $koneksi->prepare("SELECT user_id, name, password, role_id FROM users WHERE email = ? LIMIT 1");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -18,10 +17,10 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
 
-    // Pastikan Anda sudah membuat user dengan password_hash()
+    // Menggunakan OPSI 1 (Aman) dari diskusi kita sebelumnya
     if (password_verify($password, $user['password'])) {
         
-        $role_stmt = $conn->prepare("SELECT role_name FROM roles WHERE role_id = ?");
+        $role_stmt = $koneksi->prepare("SELECT role_name FROM roles WHERE role_id = ?");
         $role_stmt->bind_param("i", $user['role_id']);
         $role_stmt->execute();
         $role_result = $role_stmt->get_result();
@@ -37,12 +36,14 @@ if ($result->num_rows === 1) {
         header("Location: " . BASE_URL . "dashboard.php");
         exit;
     } else {
+        // PERBAIKAN: Redirect error menggunakan BASE_URL
         echo "<script>alert('Email atau password salah!'); window.location='" . BASE_URL . "login.php';</script>";
     }
 } else {
+    // PERBAIKAN: Redirect error menggunakan BASE_URL
     echo "<script>alert('Email atau password salah!'); window.location='" . BASE_URL . "login.php';</script>";
 }
 
 $stmt->close();
-$conn->close();
+$koneksi->close(); 
 ?>
