@@ -11,16 +11,16 @@ $base_url_path = rtrim($web_path, '/') . '/';
 define('BASE_URL', $protocol . $host . $base_url_path);
 
 // untuk lochalhost
-$db_host = 'localhost';
-$db_user = 'root';
-$db_pass = '';
-$db_name = 'course_management';
+// $db_host = 'localhost';
+// $db_user = 'root';
+// $db_pass = '';
+// $db_name = 'course_management';
 
 // untuk hostinger
-// $db_host = 'localhost';
-// $db_user = 'u116133173_course_management';
-// $db_pass = '@Yogabd081761';
-// $db_name = 'u116133173_course_management';
+$db_host = 'localhost';
+$db_user = 'u116133173_course_managem';
+$db_pass = '@Yogabd081761';
+$db_name = 'u116133173_course_managem';
 
 $koneksi = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
