@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Tugas 11: Backend Upload Foto (BIMBINGKU)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            
+            <h1>Tugas 11: Backend Upload Foto (Studi Kasus: BIMBINGKU)</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: A</h3>
+            <p class="meta-info">Proyek ini bertujuan untuk mengimplementasikan backend upload file (foto) menggunakan PHP, berdasarkan studi kasus "Sistem Manajemen Kursus BIMBINGKU".</p>
+            <hr>
+
+            <h2>Deskripsi & Konsep Implementasi</h2>
+            <p>
+                Aplikasi ini adalah implementasi dari **Modul Pendaftaran Siswa** yang dispesifikasikan dalam dokumen studi kasus. Fokus utamanya adalah pada proses backend untuk menangani file upload dengan aman.
+            </p>
+            <p>
+                Implementasi ini mencakup frontend (HTML/CSS/JS) untuk formulir pendaftaran dan backend (PHP) untuk memproses data, dengan fungsionalitas sebagai berikut:
+                <ol>
+                    <li><strong>Formulir Pendaftaran:</strong> Sebuah halaman HTML (`register.html`) dengan formulir lengkap untuk data siswa dan input file untuk foto.</li>
+                    <li><strong>Validasi Sisi Klien:</strong> JavaScript digunakan untuk memberikan *preview* foto yang di-upload dan memvalidasi ukuran file (maks 2MB) serta tipe file (JPG/PNG) sebelum dikirim ke server.</li>
+                    <li><strong>Backend (register_process.php):</strong> Script PHP yang menerima data `POST` dan `$_FILES`.</li>
+                    <li><strong>Keamanan File:</strong> Backend melakukan validasi ulang di sisi server untuk tipe file dan ukuran untuk memastikan keamanan.</li>
+                    <li><strong>Penyimpanan File:</strong> Membuat nama file unik dan memindahkannya ke folder `uploads/students/` menggunakan `move_uploaded_file`.</li>
+                    <li><strong>Penyimpanan Data:</strong> Menyimpan data teks dan nama file foto ke database MySQL.</li>
+                </ol>
+            </p>
+            
+            <img src="../img/tugas11-demo.png" alt="Tampilan Aplikasi Pendaftaran Siswa" onclick="openModal(this)">
+            <p class="caption">Tampilan formulir pendaftaran siswa dengan fitur upload dan preview foto, sesuai studi kasus.</p>
+
+            <hr>
+            <h2>Hasil Tugas</h2>
+            <p>Demo di bawah ini adalah implementasi formulir pendaftaran siswa "BIMBINGKU" dengan backend upload foto yang fungsional, berdasarkan kode yang ada di dalam PDF studi kasus.</p>
+            
+            <a href="demo/register.html" class="tombol-demo" target="_blank">Lihat Demo Live</a>
+            <a href="https://github.com/YOGA3321/tugas-pweb---pbo/tree/main/tugas11/demo" class="tombol-demo" target="_blank">Lihat Kode Sumber</a>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+    <script>
+        var modal = document.getElementById('myModal');
+        var modalImg = document.getElementById("img01");
+
+        function openModal(element) {
+            modal.style.display = "block";
+            modal.style.opacity = "1";
+            modalImg.src = element.src;
+        }
+
+        function closeModal() {
+            modal.style.opacity = "0";
+            setTimeout(function() {
+                modal.style.display = "none";
+            }, 300);
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
