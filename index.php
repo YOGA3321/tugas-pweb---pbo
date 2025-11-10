@@ -77,9 +77,9 @@
                 <p>Aplikasi CRUD lengkap (Login, Pelanggan) dengan PHP, MySQL, SweetAlert, dan layout Sidebar.</p>
             </a>
             <a href="tugas11/" class="tugas-card">
-                <div class="card-icon">🧺</div>
-                <h2>Tugas Pertemuan 11: Project Modul Pendaftaran Siswa</h2>
-                <p>Aplikasi CRUD lengkap (Login, Pelanggan) dengan PHP, MySQL, SweetAlert, dan layout Sidebar.</p>
+                <div class="card-icon">📸</div>
+                <h2>Tugas 11: Backend Upload Foto</h2>
+                <p>Implementasi backend upload file (foto) menggunakan PHP, berdasarkan studi kasus "Sistem Manajemen Kursus BIMBINGKU".</p>
             </a>
 
             <!--<a href="tugas-3.html" class="tugas-card">-->
