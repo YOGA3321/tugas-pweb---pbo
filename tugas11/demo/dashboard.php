@@ -1,5 +1,4 @@
 <?php
-// PERBAIKAN: Path salah, seharusnya 'config.php' bukan '../config.php'
 include('config.php'); 
 include('includes/auth.php'); 
 include('includes/header.php'); 
@@ -14,7 +13,6 @@ include('includes/header.php');
     <h3>Menu Navigasi Anda:</h3>
     
     <?php 
-    // Tampilkan menu berdasarkan peran
     switch ($user_role) {
         case 'Admin Pusat':
     ?>

@@ -1,9 +1,7 @@
 <?php
-// PERBAIKAN: Panggil config.php PERTAMA dan dengan path yang BENAR
 include('../../config.php'); 
 include('../../includes/auth.php');
 
-// Hanya Admin Pusat atau Admin Cabang yang boleh akses
 if ($user_role != 'Admin Pusat' && $user_role != 'Admin Cabang') {
     die("Akses dilarang. Anda bukan Admin.");
 }
@@ -28,7 +26,7 @@ include('../../includes/header.php');
     <tbody>
         <?php
         $query = "SELECT * FROM classes ORDER BY class_name ASC";
-        $result = mysqli_query($koneksi, $query); // PERBAIKAN: Gunakan $koneksi
+        $result = mysqli_query($koneksi, $query);
         
         if (mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_assoc($result)) {
@@ -49,6 +47,6 @@ include('../../includes/header.php');
 </table>
 
 <?php
-mysqli_close($koneksi); // PERBAIKAN: Gunakan $koneksi
+mysqli_close($koneksi);
 include('../../includes/footer.php');
 ?>

@@ -1,9 +1,7 @@
 <?php
-// Panggil config.php PERTAMA
 include('../../config.php'); 
 include('../../includes/auth.php');
 
-// Hanya Admin Pusat yang boleh
 if ($user_role != 'Admin Pusat') {
     die("Akses dilarang. Hanya Admin Pusat.");
 }
@@ -28,7 +26,6 @@ include('../../includes/header.php');
     </thead>
     <tbody>
         <?php
-        // Query untuk join users dengan roles dan branches
         $query = "SELECT u.user_id, u.name, u.email, u.status, r.role_name, b.branch_name 
                   FROM users u 
                   LEFT JOIN roles r ON u.role_id = r.role_id 
@@ -44,7 +41,6 @@ include('../../includes/header.php');
                 echo "<td style='padding: 8px;'>" . htmlspecialchars($row['name']) . "</td>";
                 echo "<td style='padding: 8px;'>" . htmlspecialchars($row['email']) . "</td>";
                 echo "<td style='padding: 8px;'>" . htmlspecialchars($row['role_name']) . "</td>";
-                // Tampilkan nama cabang, jika null tampilkan '-'
                 echo "<td style='padding: 8px;'>" . ($row['branch_name'] ? htmlspecialchars($row['branch_name']) : '-') . "</td>";
                 echo "<td style='padding: 8px;'>" . htmlspecialchars($row['status']) . "</td>";
                 echo "<td style='padding: 8px;'>Edit | Hapus</td>"; // TBD

@@ -17,7 +17,6 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
 
-    // Menggunakan OPSI 1 (Aman) dari diskusi kita sebelumnya
     if (password_verify($password, $user['password'])) {
         
         $role_stmt = $koneksi->prepare("SELECT role_name FROM roles WHERE role_id = ?");
@@ -32,15 +31,12 @@ if ($result->num_rows === 1) {
         $_SESSION['name'] = $user['name'];
         $_SESSION['role'] = $role_name; 
 
-        // PERBAIKAN: Redirect menggunakan BASE_URL
         header("Location: " . BASE_URL . "dashboard.php");
         exit;
     } else {
-        // PERBAIKAN: Redirect error menggunakan BASE_URL
         echo "<script>alert('Email atau password salah!'); window.location='" . BASE_URL . "login.php';</script>";
     }
 } else {
-    // PERBAIKAN: Redirect error menggunakan BASE_URL
     echo "<script>alert('Email atau password salah!'); window.location='" . BASE_URL . "login.php';</script>";
 }
 

@@ -1,14 +1,11 @@
 <?php
-// Panggil config.php PERTAMA
 include('../../config.php'); 
 include('../../includes/auth.php');
 
-// Hanya Admin Pusat yang boleh
 if ($user_role != 'Admin Pusat') {
     die("Akses dilarang. Hanya Admin Pusat.");
 }
 
-// Ambil data untuk dropdown
 $roles = mysqli_query($koneksi, "SELECT role_id, role_name FROM roles");
 $branches = mysqli_query($koneksi, "SELECT branch_id, branch_name FROM branches");
 
@@ -44,7 +41,6 @@ include('../../includes/header.php');
             <select id="role_id" name="role_id" required>
                 <option value="">-- Pilih Role --</option>
                 <?php while($r = mysqli_fetch_assoc($roles)) {
-                    // Sembunyikan 'Admin Pusat' dan 'Siswa' agar tidak bisa dibuat manual
                     if ($r['role_name'] != 'Admin Pusat' && $r['role_name'] != 'Siswa') {
                         echo "<option value='{$r['role_id']}'>".htmlspecialchars($r['role_name'])."</option>";
                     }

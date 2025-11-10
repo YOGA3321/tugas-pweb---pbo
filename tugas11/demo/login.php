@@ -5,7 +5,6 @@ if (isset($_SESSION['user_id'])) {
     header("Location: dashboard.php");
     exit();
 }
-// PERBAIKAN: Path ke config.php
 include('config.php'); 
 ?>
 <!DOCTYPE html>

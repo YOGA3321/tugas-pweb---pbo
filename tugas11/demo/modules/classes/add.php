@@ -1,14 +1,13 @@
 <?php
-// PERBAIKAN: Panggil config.php PERTAMA dan dengan path yang BENAR
 include('../../config.php'); 
 include('../../includes/auth.php');
 
-// Hanya Admin Pusat atau Admin Cabang yang boleh akses
 if ($user_role != 'Admin Pusat' && $user_role != 'Admin Cabang') {
     die("Akses dilarang.");
 }
 
-// PERBAIKAN: Gunakan $koneksi
+$teachers = mysqli_query($koneksi, "SELECT u.user_id, u.name FROM users u JOIN roles r ON u.role_id = r.role_id WHERE r.role_name = 'Pengajar'");
+$branches = mysqli_query($koneksi, "SELECT branch_id, branch_name FROM branches");
 $teachers = mysqli_query($koneksi, "SELECT u.user_id, u.name FROM users u JOIN roles r ON u.role_id = r.role_id WHERE r.role_name = 'Pengajar'");
 $branches = mysqli_query($koneksi, "SELECT branch_id, branch_name FROM branches");
 
@@ -64,6 +63,6 @@ include('../../includes/header.php');
 </form>
 
 <?php
-mysqli_close($koneksi); // PERBAIKAN: Gunakan $koneksi
+mysqli_close($koneksi);
 include('../../includes/footer.php');
 ?>

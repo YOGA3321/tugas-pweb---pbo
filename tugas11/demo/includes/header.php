@@ -1,6 +1,3 @@
-<?php
-// auth.php sudah di-include oleh halaman yang memanggil header ini
-?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
