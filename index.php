@@ -78,7 +78,7 @@
             </a>
             <a href="tugas11/" class="tugas-card">
                 <div class="card-icon">📸</div>
-                <h2>Tugas 11: Backend Upload Foto</h2>
+                <h2>Tugas Pertemuan 12: Backend Upload Foto</h2>
                 <p>Implementasi backend upload file (foto) menggunakan PHP, berdasarkan studi kasus "Sistem Manajemen Kursus BIMBINGKU".</p>
             </a>
 
