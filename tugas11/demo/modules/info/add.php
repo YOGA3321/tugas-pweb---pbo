@@ -11,7 +11,7 @@ include('../../includes/header.php');
 ?>
 
 <h2 class="page-title">Buat Pengumuman Baru</h2>
-<a href="<?php echo BASE_URL; ?>modules/info/list.php" style="color: var(--muted);">&larr; Kembali ke Daftar Pengumuman</a>
+<a href="<?php echo BASE_URL; ?>modules/info/list" style="color: var(--muted);">&larr; Kembali ke Daftar Pengumuman</a>
 
 <form id="addInfoForm" action="<?php echo BASE_URL; ?>prosses/info_add_process.php" method="POST" style="margin-top: 20px;">
     

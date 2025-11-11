@@ -15,7 +15,7 @@ include('../../includes/header.php');
 ?>
 
 <h2 class="page-title">Tambah Kelas Baru</h2>
-<a href="<?php echo BASE_URL; ?>modules/classes/list.php" style="color: var(--muted);">&larr; Kembali ke Daftar Kelas</a>
+<a href="<?php echo BASE_URL; ?>modules/classes/list" style="color: var(--muted);">&larr; Kembali ke Daftar Kelas</a>
 
 <form id="addClassForm" action="<?php echo BASE_URL; ?>prosses/class_add_process.php" method="POST" style="margin-top: 20px;">
     

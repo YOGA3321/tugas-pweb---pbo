@@ -105,11 +105,10 @@ body {
     left: 15px;
     z-index: 1001; 
     box-shadow: 0 4px 10px rgba(0,123,255,0.3);
-    /* Transisi untuk pergeseran */
     transition: transform 0.3s ease-in-out; 
     overflow: hidden;
-    width: 44px; /* Lebar tetap */
-    height: 41px; /* Tinggi tetap */
+    width: 44px; 
+    height: 41px; 
 }
 .menu-toggle .icon-open,
 .menu-toggle .icon-close {
@@ -138,40 +137,30 @@ body {
     .app-layout {
         grid-template-columns: 1fr; 
     }
-
     .sidebar {
         position: fixed;
-        /* Mulai dari luar layar */
         transform: translateX(-100%);
         box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
-
-    /* Saat sidebar terbuka */
     body.sidebar-open .sidebar {
-        transform: translateX(0); /* Muncul */
+        transform: translateX(0); 
     }
-    
     body.sidebar-open .menu-toggle {
-        /* Geser tombol hamburger sejauh lebar sidebar */
         transform: translateX(280px); 
     }
-    
-    /* Ganti ikon saat sidebar terbuka */
     body.sidebar-open .menu-toggle .icon-open {
-        transform: translateY(100%); /* Sembunyikan hamburger */
+        transform: translateY(100%); 
     }
     body.sidebar-open .menu-toggle .icon-close {
-        transform: translateY(0); /* Tampilkan 'X' */
+        transform: translateY(0); 
     }
-
     .main-content {
         grid-column: 1 / -1; 
         padding: 20px;
-        padding-top: 70px; /* Beri ruang untuk tombol */
+        padding-top: 70px; 
     }
-
     .menu-toggle {
-        display: block; /* Tampilkan tombol hamburger */
+        display: block; 
     }
 }
 
@@ -242,9 +231,92 @@ input:focus, textarea:focus, select:focus {
     margin-top: 6px;
     align-items: center;
 }
-table {
-    display: block;
+
+/* --- GAYA TABEL MODERN (BARU) --- */
+
+/* 1. Wrapper untuk scroll di HP */
+.table-wrapper {
+    width: 100%;
     overflow-x: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: var(--radius);
+    background: var(--card);
+}
+
+/* 2. Style tabel utama */
+.table-modern {
+    width: 100%;
+    border-collapse: collapse; 
     white-space: nowrap;
-    border-collapse: collapse;
+}
+
+/* 3. Style Header (thead) */
+.table-modern th {
+    background-color: #f9fafb; 
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 13px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+/* 4. Style Sel (td) */
+.table-modern td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
+    color: var(--text);
+}
+
+/* 5. Hapus border di baris terakhir */
+.table-modern tr:last-child td {
+    border-bottom: none;
+}
+
+/* 6. Style untuk baris "data kosong" */
+.table-modern .no-data td {
+    text-align: center;
+    color: var(--muted);
+    font-style: italic;
+    padding: 20px;
+}
+/* --- GAYA STAT CARD (BARU) --- */
+.stat-cards {
+    display: grid;
+    /* Buat 3 kolom, masing-masing sama lebar */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; /* Jarak antar kartu */
+    margin-top: 25px;
+}
+
+.stat-card {
+    background: var(--card);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--primary); /* Aksen garis biru */
+}
+
+.stat-card .value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+}
+
+.stat-card .label {
+    font-size: 15px;
+    color: var(--muted);
+    margin: 0;
+    margin-top: 5px;
+}
+
+/* Penyesuaian responsive untuk Stat Card */
+@media (max-width: 768px) {
+    .stat-cards {
+        /* Ubah jadi 1 kolom di layar HP */
+        grid-template-columns: 1fr; 
+    }
 }

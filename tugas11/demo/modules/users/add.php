@@ -13,7 +13,7 @@ include('../../includes/header.php');
 ?>
 
 <h2 class="page-title">Tambah Pengguna Baru</h2>
-<a href="<?php echo BASE_URL; ?>modules/users/list.php" style="color: var(--muted);">&larr; Kembali ke Daftar Pengguna</a>
+<a href="<?php echo BASE_URL; ?>modules/users/list" style="color: var(--muted);">&larr; Kembali ke Daftar Pengguna</a>
 
 <form id="addUserForm" action="<?php echo BASE_URL; ?>prosses/user_add_process.php" method="POST" style="margin-top: 20px;">
     

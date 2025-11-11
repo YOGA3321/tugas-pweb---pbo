@@ -10,43 +10,43 @@ include('../../includes/header.php');
 ?>
 
 <h2 class="page-title">Manajemen Kelas</h2>
-<a href="<?php echo BASE_URL; ?>modules/classes/add.php" class="action-link">Tambah Kelas Baru</a>
+<a href="<?php echo BASE_URL; ?>modules/classes/add" class="action-link">Tambah Kelas Baru</a>
 
-<table width="100%" border="1" style="border-collapse: collapse; margin-top: 10px;">
-    <thead style="background: #f0f0f0;">
-        <tr>
-            <th style="padding: 8px;">ID</th>
-            <th style="padding: 8px;">Nama Kelas</th>
-            <th style="padding: 8px;">Pengajar (ID)</th>
-            <th style="padding: 8px;">Cabang (ID)</th>
-            <th style="padding: 8px;">Status</th>
-            <th style="padding: 8px;">Aksi</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        $query = "SELECT * FROM classes ORDER BY class_name ASC";
-        $result = mysqli_query($koneksi, $query);
-        
-        if (mysqli_num_rows($result) > 0) {
-            while($row = mysqli_fetch_assoc($result)) {
-                echo "<tr>";
-                echo "<td style='padding: 8px;'>" . $row['class_id'] . "</td>";
-                echo "<td style='padding: 8px;'>" . htmlspecialchars($row['class_name']) . "</td>";
-                echo "<td style='padding: 8px;'>" . htmlspecialchars($row['teacher_id']) . "</td>";
-                echo "<td style='padding: 8px;'>" . htmlspecialchars($row['branch_id']) . "</td>";
-                echo "<td style='padding: 8px;'>" . htmlspecialchars($row['status']) . "</td>";
-                echo "<td style='padding: 8px;'>Edit | Hapus</td>"; // TBD
-                echo "</tr>";
+<div class="table-wrapper">
+    <table class="table-modern">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama Kelas</th>
+                <th>Pengajar (ID)</th>
+                <th>Cabang (ID)</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $query = "SELECT * FROM classes ORDER BY class_name ASC";
+            $result = mysqli_query($koneksi, $query);
+            
+            if (mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['class_id'] . "</td>";
+                    echo "<td>" . htmlspecialchars($row['class_name']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['teacher_id']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['branch_id']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['status']) . "</td>";
+                    echo "<td>Edit | Hapus</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='6' style='padding: 8px; text-align: center;'>Belum ada data kelas.</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='6' style='padding: 8px; text-align: center;'>Belum ada data kelas.</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
-
-<?php
+            ?>
+        </tbody>
+    </table>
+</div> <?php
 mysqli_close($koneksi);
 include('../../includes/footer.php');
 ?>

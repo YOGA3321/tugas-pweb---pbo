@@ -51,8 +51,11 @@
             <p>Latihan pertama adalah membuat superclass `abstract MakhlukHidup`. Kelas ini berfungsi sebagai "template" yang mendefinisikan perilaku umum (seperti `tumbuh()`) dan perilaku "wajib" yang harus dimiliki semua turunannya (`bernafas()` dan `makan()`) sebagai `abstract method`.</p>
             <p>Kelas anak seperti `Manusia`, `Hewan`, dan `Tumbuhan` kemudian `extends` `MakhlukHidup` dan wajib menyediakan implementasi (isi) dari metode `bernafas()` dan `makan()` versi mereka masing-masing.</p>
 
+            <h3>Diagram Latihan 1</h3>
+            <img src="../../img/46.png" alt="Hasil Simulasi MakhlukHidup" onclick="openModal(this)">
+            <p class="caption">Hasil Diagram dari Latihan 1.</p>
             <h3>Hasil Simulasi Latihan 1</h3>
-            <img src="../../img/image_e9b51a.png" alt="Hasil Simulasi MakhlukHidup" onclick="openModal(this)">
+            <img src="../../img/47.png" alt="Hasil Simulasi MakhlukHidup" onclick="openModal(this)">
             <p class="caption">Hasil eksekusi `SimulatorKehidupan`. Ini menunjukkan kekuatan Polymorphism: satu `ArrayList<MakhlukHidup>` dapat memanggil metode yang sama (`makan()`, `bernafas()`) namun menghasilkan output yang berbeda-beda sesuai jenis objeknya.</p>
             
             <hr>
@@ -164,7 +167,7 @@ public class SimulatorKehidupan {
             <p>Solusinya adalah membuat `abstract class Animal` baru untuk menampung semua atribut dan metode yang sama. Kelas `Fox` dan `Rabbit` kemudian `extends Animal` dan menjadi sangat ringkas, hanya berisi logika unik mereka saja di dalam metode `act()` yang di-override.</p>
 
             <h3>Diagram Kelas Latihan 2 (Setelah Refactor)</h3>
-            <img src="../../img/image_e9c382.png" alt="Diagram Kelas Foxes and Rabbits" onclick="openModal(this)">
+            <img src="../../img/48.png" alt="Diagram Kelas Foxes and Rabbits" onclick="openModal(this)">
             <p class="caption">Diagram kelas setelah refactor. `Animal` adalah abstract superclass, sedangkan `Fox` dan `Rabbit` adalah subclass-nya.</p>
             
             <hr>

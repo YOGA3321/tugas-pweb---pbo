@@ -6,7 +6,7 @@ if ($user_role != 'Admin Pusat') {
     die("Akses dilarang. Hanya Admin Pusat.");
 }
 
-include('../../includes/header.php');
+include('../../includes/header');
 ?>
 
 <h2 class="page-title">Tambah Cabang Baru</h2>
