@@ -30,13 +30,13 @@ include('config.php');
             <div class="row">
                 <div class="col-full">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required placeholder="user@example.com">
+                    <input type="email" id="email" name="email" required placeholder="user@example.com" value="admin@bimbingku.com">
                 </div>
             </div>
             <div class="row">
                 <div class="col-full">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required placeholder="Password">
+                    <input type="password" id="password" name="password" required placeholder="Password" value="admin">
                 </div>
             </div>
             
