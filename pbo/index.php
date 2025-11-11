@@ -70,6 +70,11 @@
                 <h2>Pertemuan 11: Rental Kendaraan</h2>
                 <p>Memperbaiki desain program rental menggunakan Inheritance (Pewarisan) dan Polymorphism.</p>
             </a>
+            <a href="tugas10/" class="tugas-card">
+                <div class="card-icon">🌿</div>
+                <h2>Pertemuan 12: Abstraksi Kelas</h2>
+                <p>Implementasi `abstract class` pada studi kasus Makhluk Hidup dan refactoring Foxes & Rabbits.</p>
+            </a>
         </main>
     </div>
 
