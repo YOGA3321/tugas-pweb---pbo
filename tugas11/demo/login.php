@@ -44,7 +44,7 @@ include('config.php');
                 <button type="submit" class="btn primary" style="width: 100%;">Masuk</button>
             </div>
              <div style="text-align: center; margin-top: 15px;">
-                <a href="register.html">Belum punya akun? Daftar</a>
+                <a href="register">Belum punya akun? Daftar</a>
             </div>
         </form>
     </div>
