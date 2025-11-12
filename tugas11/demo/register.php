@@ -107,7 +107,7 @@
                 </div>
                 
                 <div class="form-actions">
-                    <button href="login" class="btn primary">Login</button>
+                    <button onclick="window.location.href='login';" type="button" class="btn danger">Login</button>
                     <button type="submit" class="btn primary">Kirim Pendaftaran</button>
                     <button type="reset" class="btn ghost">Reset</button>
                 </div>
