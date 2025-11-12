@@ -31,13 +31,13 @@ if ($result->num_rows === 1) {
         $_SESSION['name'] = $user['name'];
         $_SESSION['role'] = $role_name; 
 
-        header("Location: " . BASE_URL . "dashboard.php");
+        header("Location: " . BASE_URL . "dashboard");
         exit;
     } else {
-        echo "<script>alert('Email atau password salah!'); window.location='" . BASE_URL . "login.php';</script>";
+        echo "<script>alert('Email atau password salah!'); window.location='" . BASE_URL . "login';</script>";
     }
 } else {
-    echo "<script>alert('Email atau password salah!'); window.location='" . BASE_URL . "login.php';</script>";
+    echo "<script>alert('Email atau password salah!'); window.location='" . BASE_URL . "login';</script>";
 }
 
 $stmt->close();
