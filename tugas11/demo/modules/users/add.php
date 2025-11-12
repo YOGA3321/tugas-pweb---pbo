@@ -24,7 +24,7 @@ include('../../includes/header.php');
         </div>
         <div class="col">
             <label for="email">Email <span class="req">*</span></label>
-            <input id="email" name="email" type="email" required placeholder="email@example.com">
+            <input id="email" name="email" type="email" required placeholder="example@example.com">
         </div>
     </div>
 
