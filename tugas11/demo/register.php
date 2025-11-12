@@ -107,6 +107,7 @@
                 </div>
                 
                 <div class="form-actions">
+                    <a href="login" class="btn primary">Login</a>
                     <button type="submit" class="btn primary">Kirim Pendaftaran</button>
                     <button type="reset" class="btn ghost">Reset</button>
                 </div>
