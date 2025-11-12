@@ -109,8 +109,8 @@
                 
                 <div class="form-actions">
                     <button onclick="window.location.href='login';" type="button" class="btn btn-danger" title="Kembali ke login">Login</button>
-                    <button type="submit" class="btn primary">Kirim Pendaftaran</button>
-                    <button type="reset" class="btn ghost">Reset</button>
+                    <button type="submit" class="btn primary" title="apakah anda yakin ingin mengirimkan?">Kirim Pendaftaran</button>
+                    <button type="reset" class="btn ghost" title="apakah anda ingin mereset?">Reset</button>
                 </div>
                 <div id="formMessage" class="form-message" aria-live="polite"></div>
             </form>
