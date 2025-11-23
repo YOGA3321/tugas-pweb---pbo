@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Tugas 10 (P12) Abstraksi Kelas</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <style>
+        .code-block-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .code-block-container button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        .code-block-container button:hover {
+            background-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../" class="tombol-kembali">← Kembali ke Daftar Tugas</a>
+
+        <div class="konten-tugas">
+            
+            <h1>Tugas Pertemuan 12: Abstraksi Kelas</h1>
+            <h3>Nama: Ageng Prayogo</h3>
+            <h3>NRP: 5025241225</h3>
+            <h3>Kelas: B</h3>
+            <p class="meta-info">Tugas ini bertujuan untuk mengimplementasikan `abstract class` dan `abstract method` untuk mendefinisikan "template" kelas dan melakukan refactoring kode.</p>
+            <hr>
+
+            <h2>Latihan 1: Abstract Class MakhlukHidup</h2>
+            <p>Latihan pertama adalah membuat superclass `abstract MakhlukHidup`. Kelas ini berfungsi sebagai "template" yang mendefinisikan perilaku umum (seperti `tumbuh()`) dan perilaku "wajib" yang harus dimiliki semua turunannya (`bernafas()` dan `makan()`) sebagai `abstract method`.</p>
+            <p>Kelas anak seperti `Manusia`, `Hewan`, dan `Tumbuhan` kemudian `extends` `MakhlukHidup` dan wajib menyediakan implementasi (isi) dari metode `bernafas()` dan `makan()` versi mereka masing-masing.</p>
+
+            <h3>Diagram Latihan 1</h3>
+            <img src="../../img/46.png" alt="Hasil Simulasi MakhlukHidup" onclick="openModal(this)">
+            <p class="caption">Hasil Diagram dari Latihan 1.</p>
+            <h3>Hasil Simulasi Latihan 1</h3>
+            <img src="../../img/47.png" alt="Hasil Simulasi MakhlukHidup" onclick="openModal(this)">
+            <p class="caption">Hasil eksekusi `SimulatorKehidupan`. Ini menunjukkan kekuatan Polymorphism: satu `ArrayList<MakhlukHidup>` dapat memanggil metode yang sama (`makan()`, `bernafas()`) namun menghasilkan output yang berbeda-beda sesuai jenis objeknya.</p>
+            
+            <hr>
+            <h2>Source Code (Latihan 1)</h2>
+
+            <h3>Kelas: MakhlukHidup.java (Abstract Superclass)</h3>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'makhlukCode')">Copy</button>
+                <pre><code id="makhlukCode">
+public abstract class MakhlukHidup {
+    
+    private String nama;
+    private int usia;
+
+    public MakhlukHidup(String nama) {
+        this.nama = nama;
+        this.usia = 0;
+    }
+    
+    /**
+     * Metode ini 'concrete' (konkret/nyata)
+     */
+    public void tumbuh() {
+        this.usia++;
+        System.out.println(getNama() + " sedang tumbuh. Usia sekarang: " + usia);
+    }
+    
+    public String getNama() {
+        return nama;
+    }
+
+    // --- METODE ABSTRACT ---
+    // Metode ini tidak punya isi dan "memaksa" kelas anak
+    // untuk membuat implementasinya sendiri.
+    
+    public abstract void bernafas();
+    public abstract void makan();
+}
+                </code></pre>
+            </div>
+            
+            <h3>Kelas: Manusia.java (Subclass)</h3>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'manusiaCode')">Copy</button>
+                <pre><code id="manusiaCode">
+public class Manusia extends MakhlukHidup {
+
+    public Manusia(String nama) {
+        // 'super(nama)' memanggil constructor dari MakhlukHidup
+        super(nama);
+    }
+
+    /**
+     * Implementasi wajib dari metode abstract 'bernafas'
+     */
+    @Override
+    public void bernafas() {
+        System.out.println(getNama() + " (Manusia) sedang bernafas menggunakan paru-paru.");
+    }
+    
+    /**
+     * Implementasi wajib dari metode abstract 'makan'.
+     */
+    @Override
+    public void makan() {
+        System.out.println(getNama() + " (Manusia) sedang makan nasi dan lauk pauk.");
+    }
+}
+                </code></pre>
+            </div>
+            
+            <h3>Kelas: Hewan.java & Tumbuhan.java (Subclass)</h3>
+            <p>Kelas `Hewan` dan `Tumbuhan` memiliki struktur yang sama dengan `Manusia`, hanya berbeda isi implementasi metodenya.</p>
+            
+            <h3>Kelas: SimulatorKehidupan.java (Kelas Main)</h3>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'simulatorCode')">Copy</button>
+                <pre><code id="simulatorCode">
+import java.util.ArrayList;
+
+public class SimulatorKehidupan {
+    public static void main(String[] args) {
+        
+        ArrayList<MakhlukHidup> daftarMakhluk = new ArrayList<>();
+        
+        // Kita BISA menambahkan kelas anaknya:
+        daftarMakhluk.add(new Manusia("Ageng"));
+        daftarMakhluk.add(new Hewan("Singa"));
+        daftarMakhluk.add(new Tumbuhan("Mawar"));
+
+        System.out.println("--- MEMULAI SIMULASI KEHIDUPAN ---");
+
+        for (MakhlukHidup makhluk : daftarMakhluk) {
+            System.out.println("\nMemproses: " + makhluk.getNama());
+            
+            makhluk.makan();
+            makhluk.bernafas();
+            makhluk.tumbuh();
+        }
+    }
+}
+                </code></pre>
+            </div>
+
+            <hr>
+
+            <h2>Latihan 2: Refactor Foxes and Rabbits</h2>
+            <p>Latihan kedua adalah memperbaiki desain (refactoring) proyek "Foxes and Rabbits". Desain awalnya memiliki duplikasi kode yang parah antara kelas `Fox` dan `Rabbit` (keduanya memiliki `age`, `isAlive`, `location`, `field`, `setDead()`, dll).</p>
+            <p>Solusinya adalah membuat `abstract class Animal` baru untuk menampung semua atribut dan metode yang sama. Kelas `Fox` dan `Rabbit` kemudian `extends Animal` dan menjadi sangat ringkas, hanya berisi logika unik mereka saja di dalam metode `act()` yang di-override.</p>
+
+            <h3>Diagram Kelas Latihan 2 (Setelah Refactor)</h3>
+            <img src="../../img/48.png" alt="Diagram Kelas Foxes and Rabbits" onclick="openModal(this)">
+            <p class="caption">Diagram kelas setelah refactor. `Animal` adalah abstract superclass, sedangkan `Fox` dan `Rabbit` adalah subclass-nya.</p>
+            
+            <hr>
+            <h2>Source Code (Latihan 2)</h2>
+            <p>Berikut adalah kode-kode yang digunakan untuk latihan refactoring. Sesuai instruksi, kita hanya fokus pada struktur abstraksinya, bukan pada simulatornya.</p>
+            
+            <h3>Kelas: Animal.java (Abstract Superclass)</h3>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'animalCode')">Copy</button>
+                <pre><code id="animalCode">
+import java.util.List;
+import java.util.Random;
+
+public abstract class Animal {
+    private boolean isAlive;
+    private int age;
+    private Field field;
+    private Location location;
+    
+    public Animal(Field field, Location location) {
+        this.isAlive = true;
+        this.age = 0;
+        this.field = field;
+        setLocation(location);
+    }
+    
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setDead() {
+        isAlive = false;
+        if (location != null) {
+            field.clear(location);
+            location = null;
+            field = null;
+        }
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+    
+    protected void setLocation(Location newLocation) {
+        if (location != null) {
+            field.clear(location);
+        }
+        location = newLocation;
+        field.place(this, newLocation);
+    }
+    
+    protected Field getField() {
+        return field;
+    }
+    
+    protected int getAge() {
+        return age;
+    }
+    
+    protected void setAge(int age) {
+        this.age = age;
+    }
+    
+    /**
+     * Metode abstract 'act' yang akan diisi oleh Fox dan Rabbit.
+     */
+    abstract public void act(List<Animal> newAnimals);
+}
+                </code></pre>
+            </div>
+            
+            <h3>Kelas: Fox.java (Subclass)</h3>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'foxCode')">Copy</button>
+                <pre><code id="foxCode">
+import java.util.List;
+
+public class Fox extends Animal {
+
+    public Fox(Field field, Location location) {
+        super(field, location);
+    }
+
+    /**
+     * Implementasi 'act' untuk Fox.
+     * (Logika spesifik rubah ada di sini, 
+     * misalnya: berburu kelinci, berkembang biak, dll)
+     */
+    @Override
+    public void act(List<Animal> newAnimals) {
+        // Logika rubah...
+        incrementAge();
+        if (isAlive()) {
+            // Logika berburu kelinci
+            // Logika berkembang biak
+            // Logika pindah ke lokasi baru
+            // ...
+        }
+    }
+    
+    // Metode private untuk rubah (jika ada)
+    private void incrementAge() {
+        setAge(getAge() + 1);
+        // Logika mati karena tua atau kelaparan, dll.
+    }
+}
+                </code></pre>
+            </div>
+            
+            <h3>Kelas: Rabbit.java (Subclass)</h3>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'rabbitCode')">Copy</button>
+                <pre><code id="rabbitCode">
+import java.util.List;
+
+public class Rabbit extends Animal {
+
+    public Rabbit(Field field, Location location) {
+        super(field, location);
+    }
+    
+    /**
+     * Implementasi 'act' untuk Rabbit.
+     * (Logika spesifik untuk kelinci ada di sini, 
+     * misalnya: makan rumput, berkembang biak, dll)
+     */
+    @Override
+    public void act(List<Animal> newAnimals) {
+        // Logika kelinci...
+        incrementAge();
+        if (isAlive()) {
+            // Logika berkembang biak
+            // Logika lari dari rubah
+            // Logika pindah ke lokasi baru
+            // ...
+        }
+    }
+    
+    private void incrementAge() {
+        setAge(getAge() + 1);
+        // Logika mati karena tua, dll.
+    }
+}
+                </code></pre>
+            </div>
+            
+            <h3>Kelas: Field.java & Location.java (Kelas Pendukung)</h3>
+            <p>Dua kelas ini dibutuhkan agar kelas `Animal` dapat di-compile. Mereka merepresentasikan peta/grid dan koordinat.</p>
+            <div class="code-block-container">
+                <button onclick="copyCode(this, 'fieldCode')">Copy</button>
+                <pre><code id="fieldCode">
+// --- Field.java ---
+public class Field {
+    private int width;
+    private int height;
+    private Object[][] field;
+
+    public Field(int width, int height) {
+        this.width = width;
+        this.height = height;
+        field = new Object[height][width];
+    }
+    public void clear(Location location) {
+        field[location.getRow()][location.getCol()] = null;
+    }
+    public void place(Object animal, Location location) {
+        field[location.getRow()][location.getCol()] = animal;
+    }
+}
+
+// --- Location.java ---
+public class Location {
+    private int row;
+    private int col;
+
+    public Location(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
+    public int getRow() { return row; }
+    public int getCol() { return col; }
+}
+                </code></pre>
+            </div>
+
+        </div>
+    </div>
+    
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+    function copyCode(button, elementId) {
+        const codeElement = document.getElementById(elementId);
+        navigator.clipboard.writeText(codeElement.innerText).then(function() {
+            button.innerText = 'Copied!';
+            setTimeout(function() { button.innerText = 'Copy'; }, 2000);
+        }, function(err) {
+            button.innerText = 'Gagal';
+        });
+    }
+
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modal.style.opacity = "1";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
+    }
+    </script>
+</body>
+</html>
