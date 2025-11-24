@@ -75,6 +75,11 @@
                 <h2>Pertemuan 12: Abstraksi Kelas</h2>
                 <p>Implementasi `abstract class` pada studi kasus Makhluk Hidup dan refactoring Foxes & Rabbits.</p>
             </a>
+            <a href="tugas11/" class="tugas-card">
+                <div class="card-icon">🖥️</div>
+                <h2>Pertemuan 13: GUI (Swing)</h2>
+                <p>Membuat Login System yang terhubung dengan Aplikasi Image Viewer menggunakan Java Swing.</p>
+            </a>
         </main>
     </div>
 
