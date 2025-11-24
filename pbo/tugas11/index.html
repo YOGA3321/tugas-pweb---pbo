@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../css/style.css">
 
     <style>
+        /* CSS untuk Tombol Copy */
         .code-block-container {
             position: relative;
             margin-bottom: 20px;
@@ -27,9 +28,79 @@
             border-radius: 5px;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
+            z-index: 10;
         }
         .code-block-container button:hover {
             background-color: var(--accent-color);
+        }
+
+        /* --- CSS TAMBAHAN UNTUK MODAL / POP-UP FOTO --- */
+        
+        /* Gambar agar kursor berubah jadi pointer saat di-hover */
+        .konten-tugas img {
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .konten-tugas img:hover {
+            opacity: 0.7;
+        }
+
+        /* Latar Belakang Modal (Hitam Transparan) */
+        .modal {
+            display: none; /* Sembunyikan secara default */
+            position: fixed; 
+            z-index: 1000; /* Pastikan di paling atas */
+            padding-top: 50px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.9); 
+        }
+
+        /* Konten Gambar di Dalam Modal */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 900px;
+            max-height: 80vh;
+            object-fit: contain;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        /* Tombol Close (X) */
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Animasi Zoom saat dibuka */
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+
+        /* Responsif untuk layar kecil */
+        @media only screen and (max-width: 700px){
+            .modal-content {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -56,6 +127,7 @@
             </ol>
 
             <h2>Hasil Aplikasi</h2>
+            <p><em>Klik gambar untuk memperbesar.</em></p>
             
             <h3>1. Login Frame</h3>
             <p>Tampilan awal saat program dijalankan.</p>
@@ -64,11 +136,6 @@
             <h3>2. Image Viewer (Setelah Login)</h3>
             <p>Tampilan setelah berhasil login dan memilih gambar.</p>
             <img src="../../img/53.png" alt="Screenshot Image Viewer" onclick="openModal(this)">
-            <img src="../../img/54.png" alt="Screenshot Image Viewer" onclick="openModal(this)">
-
-            <h3>3. Tampilan Diagram</h3>
-            <p>Tampilan Diagram.</p>
-            <img src="../../img/52.png" alt="Screenshot Image Viewer" onclick="openModal(this)">
             
             <hr>
 
@@ -90,13 +157,14 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     public LoginFrame() {
         setTitle("Login System");
-        setSize(350, 180);
+        // Ukuran diperbesar agar nyaman
+        setSize(400, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridLayout(4, 1));
 
-        JPanel panelInput = new JPanel(new GridLayout(2, 2, 5, 5));
-        panelInput.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        JPanel panelInput = new JPanel(new GridLayout(2, 2, 10, 10));
+        panelInput.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
         
         panelInput.add(new JLabel("Username:"));
         textUser = new JTextField();
@@ -110,6 +178,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         
         JPanel panelButton = new JPanel();
         buttonLogin = new JButton("Login");
+        buttonLogin.setPreferredSize(new Dimension(100, 30));
         buttonLogin.addActionListener(this);
         panelButton.add(buttonLogin);
         add(panelButton);
@@ -122,11 +191,11 @@ public class LoginFrame extends JFrame implements ActionListener {
         String pass = new String(textPass.getPassword());
 
         if (user.equals("admin") && pass.equals("admin")) {
-            JOptionPane.showMessageDialog(this, "Login Berhasil!");
+            JOptionPane.showMessageDialog(this, "Login Berhasil! Selamat Datang.");
             this.dispose();
             new ImageViewer();
         } else {
-            JOptionPane.showMessageDialog(this, "Gagal!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Username atau Password salah!", "Akses Ditolak", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -168,11 +237,13 @@ public class ImageViewer extends JFrame {
         });
 
         menuFile.add(itemOpen);
+        menuFile.addSeparator();
         menuFile.add(itemExit);
         menuBar.add(menuFile);
         setJMenuBar(menuBar);
 
-        imageLabel = new JLabel("Silakan buka file gambar...", SwingConstants.CENTER);
+        imageLabel = new JLabel("Belum ada gambar. Klik File > Open Image", SwingConstants.CENTER);
+        imageLabel.setFont(new Font("Arial", Font.BOLD, 14));
         add(new JScrollPane(imageLabel));
         fileChooser = new JFileChooser();
         
@@ -183,12 +254,23 @@ public class ImageViewer extends JFrame {
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             ImageIcon icon = new ImageIcon(file.getPath());
-            // Simple resize logic for display (optional)
+            
+            // Logic scaling gambar agar pas window
+            int w = this.getContentPane().getWidth();
+            int h = this.getContentPane().getHeight();
+            if (w == 0) w = 800;
+            if (h == 0) h = 600;
+
             Image img = icon.getImage(); 
-            Image newImg = img.getScaledInstance(600, 400,  java.awt.Image.SCALE_SMOOTH); 
+            Image newImg = img.getScaledInstance(w - 20, h - 20,  java.awt.Image.SCALE_SMOOTH); 
             imageLabel.setIcon(new ImageIcon(newImg));
             imageLabel.setText("");
+            setTitle("Image Viewer - " + file.getName());
         }
+    }
+    
+    public static void main(String[] args) {
+        new ImageViewer();
     }
 }
                 </code></pre>
@@ -203,6 +285,7 @@ public class ImageViewer extends JFrame {
     </div>
 
     <script>
+    // Fungsi Copy Code
     function copyCode(button, elementId) {
         const codeElement = document.getElementById(elementId);
         navigator.clipboard.writeText(codeElement.innerText).then(function() {
@@ -213,6 +296,7 @@ public class ImageViewer extends JFrame {
         });
     }
 
+    // Fungsi Modal Gambar
     var modal = document.getElementById('myModal');
     var modalImg = document.getElementById("img01");
 
@@ -223,6 +307,13 @@ public class ImageViewer extends JFrame {
 
     function closeModal() {
         modal.style.display = "none";
+    }
+    
+    // Menutup modal jika user klik di area hitam (bukan gambar)
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
     </script>
 </body>
