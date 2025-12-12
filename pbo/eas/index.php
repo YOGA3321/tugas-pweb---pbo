@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dokumentasi - EAS (Evaluasi Akhir Semester)</title>
+    <title>Laporan EAS - Game Ular Tangga</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../css/style.css">
 
     <style>
-        /* Style tambahan bawaan dari template tugas11 */
+        /* Style tambahan untuk code block (Bawaan Template) */
         .code-block-container {
             position: relative;
             margin-bottom: 20px;
@@ -32,6 +32,24 @@
         .code-block-container button:hover {
             background-color: var(--accent-color);
         }
+        
+        /* Style tambahan untuk list detail */
+        .detail-list { margin-bottom: 15px; text-align: justify; }
+        .detail-list li { margin-bottom: 8px; }
+        .section-title { margin-top: 30px; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
+        .btn-link {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .btn-link:hover { background-color: #0056b3; }
+        .youtube-btn { background-color: #ff0000; }
+        .youtube-btn:hover { background-color: #cc0000; }
     </style>
 </head>
 <body>
@@ -41,43 +59,84 @@
 
         <div class="konten-tugas">
             
-            <h1>EAS: Game Ular Tangga (Snake & Ladder)</h1>
-            <h3>Nama: Ageng Prayogo</h3>
-            <h3>NRP: 5025241225</h3>
-            <h3>Kelas: B</h3>
-            <p class="meta-info">Tugas Evaluasi Akhir Semester ini bertujuan untuk membuat game desktop sederhana "Ular Tangga" menggunakan bahasa pemrograman Java dengan konsep Pemrograman Berorientasi Objek (PBO) dan GUI Swing.</p>
+            <h1 style="text-align: center;">EAS: Game Ular Tangga (Snake & Ladder)</h1>
+            <div style="text-align: left; margin-bottom: 30px;">
+                <h3 style="margin: 0;">1. Rafly Al Fahrezi (5025241131)</h3>
+                <h3 style="margin: 0;">2. Ageng Prayogo (5025241225)</h3>
+                <h3 style="margin: 0;">3. Safa Maulana Efendi (5025251227)</h3>
+                <div style="margin-top: 10px;">
+                    <h3 style="margin: 0;">Kelas: B</h3>
+                </div>
+            </div>
             <hr>
 
-            <h2>Deskripsi & Skenario Permainan</h2>
-            <p>Aplikasi ini mensimulasikan permainan papan klasik dengan fitur sebagai berikut:</p>
-            <ol>
-                <li><strong>Inisialisasi:</strong> Game dimainkan oleh 2 pemain (Bidak Merah dan Bidak Biru) pada papan 10x10.</li>
-                <li><strong>Mekanisme Giliran:</strong> Pemain menekan tombol "LEMPAR DADU" secara bergantian.</li>
-                <li><strong>Aturan Papan:</strong>
-                    <ul>
-                        <li>Jika berhenti di kaki <strong>Tangga</strong>, pemain otomatis naik ke petak tujuan.</li>
-                        <li>Jika berhenti di mulut <strong>Ular</strong>, pemain otomatis turun ke petak tujuan.</li>
-                    </ul>
+            <h2 class="section-title">1. Deskripsi Project</h2>
+            <p class="detail-list">
+                Project ini adalah implementasi permainan papan klasik "Ular Tangga" berbasis Desktop menggunakan bahasa pemrograman Java. Aplikasi ini dikembangkan dengan menerapkan konsep <strong>Pemrograman Berorientasi Objek (PBO)</strong> yang kuat, memisahkan antara logika permainan, data pemain, dan antarmuka pengguna (GUI).
+            </p>
+            <p class="detail-list">
+                Game ini dirancang untuk dimainkan oleh dua pemain secara lokal (<em>Local Multiplayer</em>). Menggunakan pustaka <strong>Java Swing</strong> dan <strong>AWT</strong>, aplikasi menyajikan papan permainan visual interaktif di mana pemain dapat melihat pergerakan bidak secara real-time. Tujuan utama permainan adalah mencapai petak ke-100, dengan tantangan berupa "Ular" yang menurunkan posisi pemain dan bantuan "Tangga" yang menaikkan posisi pemain.
+            </p>
+
+            <h2 class="section-title">2. Rancangan Kelas (Class Design)</h2>
+            <p>Sistem dibangun di atas empat kelas utama yang saling berinteraksi:</p>
+            
+            <ul class="detail-list">
+                <li><strong>GameUtama (Controller & Container):</strong>
+                    <br>Merupakan kelas utama yang mewarisi <code>JFrame</code>. Kelas ini bertindak sebagai pengendali (<em>Controller</em>) yang menghubungkan logika permainan dengan tampilan. 
+                    <br><em>Tanggung jawab:</em> Menginisialisasi komponen UI, menangani event tombol dadu, mengatur giliran pemain, dan memeriksa kondisi kemenangan.
                 </li>
-                <li><strong>Kemenangan:</strong> Pemain pertama yang mencapai petak 100 dinyatakan menang.</li>
-            </ol>
+                
+                <li><strong>LogikaPapan (Model Logic):</strong>
+                    <br>Kelas ini murni menangani aturan bisnis permainan tanpa menyentuh UI. Menggunakan struktur data <code>HashMap&lt;Integer, Integer&gt;</code> untuk memetakan posisi ular dan tangga secara efisien (O(1)).
+                    <br><em>Tanggung jawab:</em> Memvalidasi apakah posisi pemain saat ini terkena ular atau tangga melalui method <code>cekTujuan()</code>.
+                </li>
 
-            <h2>Hasil Aplikasi</h2>
-            
-            <h3>1. Tampilan Utama Game</h3>
-            <p>Papan permainan beserta panel kontrol di sebelah kanan.</p>
-            <img src="../../img/game_utama.png" alt="Screenshot Game Utama" onclick="openModal(this)">
-            
-            <h3>2. Log Aktivitas & Kemenangan</h3>
-            <p>Contoh log saat pemain naik tangga, terkena ular, atau memenangkan permainan.</p>
-            <img src="../../img/game_win.png" alt="Screenshot Log Game" onclick="openModal(this)">
-            
-            <hr>
+                <li><strong>TampilanPapan (View):</strong>
+                    <br>Mewarisi <code>JPanel</code> dan bertanggung jawab penuh atas visualisasi. Kelas ini meng-override method <code>paintComponent()</code> untuk menggambar ulang papan dan posisi bidak setiap kali terjadi pergerakan.
+                    <br><em>Tanggung jawab:</em> Me-render gambar latar belakang papan dan menggambar bidak pemain (lingkaran warna) pada koordinat x,y yang tepat.
+                </li>
 
-            <h2>Source Code</h2>
+                <li><strong>Pemain (Model Data):</strong>
+                    <br>Merepresentasikan entitas pemain (objek). Menyimpan atribut enkapsulasi seperti <code>nama</code>, <code>warna</code>, dan <code>posisi</code>.
+                    <br><em>Tanggung jawab:</em> Menyimpan state pemain dan menyediakan method mutator/accessor untuk mengubah posisi bidak.
+                </li>
+            </ul>
 
-            <h3>1. GameUtama.java</h3>
-            <p>Kelas utama (JFrame) yang mengatur layout GUI dan alur permainan.</p>
+            <h2 class="section-title">3. Tampilan Aplikasi & Penjelasan Alur</h2>
+            
+            <h3>A. Tampilan Awal & Gameplay</h3>
+            <p>Saat aplikasi dijalankan, papan permainan 10x10 ditampilkan beserta panel kontrol di sisi kanan.</p>
+            <img src="../../img/game_utama.png" alt="Tampilan Utama Game" onclick="openModal(this)">
+            <p class="detail-list">
+                <strong>Penjelasan:</strong>
+                <br>1. Panel kanan menampilkan status giliran pemain (Merah/Biru).
+                <br>2. Tombol "LEMPAR DADU" digunakan untuk mengacak angka 1-6.
+                <br>3. <code>JTextArea</code> (Log) mencatat riwayat permainan, seperti hasil dadu dan perpindahan posisi.
+            </p>
+
+            <h3>B. Logika Ular & Tangga</h3>
+            <p>Sistem secara otomatis mendeteksi jika pemain berhenti di petak khusus.</p>
+            <img src="../../img/game_log.png" alt="Logika Ular Tangga" onclick="openModal(this)">
+            <p class="detail-list">
+                <strong>Mekanisme:</strong> Jika pemain mendarat di kaki tangga (misal: 3), sistem logika akan memindahkan posisi pemain ke puncak tangga (20) dan mencatat pesan "Hore! Naik Tangga" pada log. Sebaliknya, jika mendarat di kepala ular, pemain akan turun.
+            </p>
+
+            <h3>C. Kondisi Menang</h3>
+            <p>Permainan berakhir ketika salah satu pemain mencapai tepat angka 100.</p>
+            <img src="../../img/game_win.png" alt="Kondisi Menang" onclick="openModal(this)">
+            <p>Muncul <em>Pop-up Dialog</em> memberitahu pemenang, dan tombol dadu dinonaktifkan untuk mencegah input lebih lanjut.</p>
+
+
+            <h2 class="section-title">4. Link Source Code</h2>
+            <p>Source code lengkap project ini dapat diakses melalui repositori GitHub berikut:</p>
+            <a href="https://github.com/YOGA3321/tugas-pweb---pbo/tree/main/pbo/eas" target="_blank" class="btn-link">
+                <i class="fab fa-github"></i> Buka Repository GitHub
+            </a>
+            
+            <p style="margin-top: 20px;">Berikut adalah cuplikan kode utama program:</p>
+
+            <h3>Kelas: GameUtama.java</h3>
             <div class="code-block-container">
                 <button onclick="copyCode(this, 'code1')">Copy</button>
                 <pre><code id="code1">
@@ -195,8 +254,7 @@ public class GameUtama extends JFrame {
                 </code></pre>
             </div>
 
-            <h3>2. LogikaPapan.java</h3>
-            <p>Menangani aturan perpindahan posisi (Ular dan Tangga) menggunakan HashMap.</p>
+            <h3>Kelas: LogikaPapan.java</h3>
             <div class="code-block-container">
                 <button onclick="copyCode(this, 'code2')">Copy</button>
                 <pre><code id="code2">
@@ -258,8 +316,7 @@ public class LogikaPapan {
                 </code></pre>
             </div>
 
-            <h3>3. TampilanPapan.java</h3>
-            <p>Menangani visualisasi papan (JPanel) dan menggambar bidak pemain.</p>
+            <h3>Kelas: TampilanPapan.java</h3>
             <div class="code-block-container">
                 <button onclick="copyCode(this, 'code3')">Copy</button>
                 <pre><code id="code3">
@@ -335,8 +392,7 @@ public class TampilanPapan extends JPanel {
                 </code></pre>
             </div>
 
-            <h3>4. Pemain.java</h3>
-            <p>Model data untuk menyimpan informasi pemain (Posisi, Warna, Nama).</p>
+            <h3>Kelas: Pemain.java</h3>
             <div class="code-block-container">
                 <button onclick="copyCode(this, 'code4')">Copy</button>
                 <pre><code id="code4">
@@ -375,6 +431,13 @@ public class Pemain {
 }
                 </code></pre>
             </div>
+
+
+            <h2 class="section-title">5. Link Video Demo</h2>
+            <p>Demonstrasi jalannya aplikasi dapat dilihat pada video berikut:</p>
+            <a href="https://youtu.be/link_video_kamu" target="_blank" class="btn-link youtube-btn">
+                ▶ Tonton Video Demo (YouTube)
+            </a>
 
         </div>
     </div>
