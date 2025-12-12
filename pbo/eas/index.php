@@ -435,7 +435,7 @@ public class Pemain {
 
             <h2 class="section-title">5. Link Video Demo</h2>
             <p>Demonstrasi jalannya aplikasi dapat dilihat pada video berikut:</p>
-            <a href="https://youtu.be/link_video_kamu" target="_blank" class="btn-link youtube-btn">
+            <a href="https://youtu.be/" target="_blank" class="btn-link youtube-btn">
                 ▶ Tonton Video Demo (YouTube)
             </a>
 
