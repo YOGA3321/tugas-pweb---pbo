@@ -107,7 +107,7 @@
             
             <h3>A. Tampilan Awal & Gameplay</h3>
             <p>Saat aplikasi dijalankan, papan permainan 10x10 ditampilkan beserta panel kontrol di sisi kanan.</p>
-            <img src="../../img/game_utama.png" alt="Tampilan Utama Game" onclick="openModal(this)">
+            <img src="../../img/56.png" alt="Tampilan Utama Game" onclick="openModal(this)">
             <p class="detail-list">
                 <strong>Penjelasan:</strong>
                 <br>1. Panel kanan menampilkan status giliran pemain (Merah/Biru).
@@ -117,14 +117,14 @@
 
             <h3>B. Logika Ular & Tangga</h3>
             <p>Sistem secara otomatis mendeteksi jika pemain berhenti di petak khusus.</p>
-            <img src="../../img/game_log.png" alt="Logika Ular Tangga" onclick="openModal(this)">
+            <img src="../../img/57.png" alt="Logika Ular Tangga" onclick="openModal(this)">
             <p class="detail-list">
                 <strong>Mekanisme:</strong> Jika pemain mendarat di kaki tangga (misal: 3), sistem logika akan memindahkan posisi pemain ke puncak tangga (20) dan mencatat pesan "Hore! Naik Tangga" pada log. Sebaliknya, jika mendarat di kepala ular, pemain akan turun.
             </p>
 
             <h3>C. Kondisi Menang</h3>
             <p>Permainan berakhir ketika salah satu pemain mencapai tepat angka 100.</p>
-            <img src="../../img/game_win.png" alt="Kondisi Menang" onclick="openModal(this)">
+            <img src="../../img/58.png" alt="Kondisi Menang" onclick="openModal(this)">
             <p>Muncul <em>Pop-up Dialog</em> memberitahu pemenang, dan tombol dadu dinonaktifkan untuk mencegah input lebih lanjut.</p>
 
 
@@ -435,7 +435,7 @@ public class Pemain {
 
             <h2 class="section-title">5. Link Video Demo</h2>
             <p>Demonstrasi jalannya aplikasi dapat dilihat pada video berikut:</p>
-            <a href="https://youtu.be/" target="_blank" class="btn-link youtube-btn">
+            <a href="https://youtu.be/eSO06uV3kIM" target="_blank" class="btn-link youtube-btn">
                 ▶ Tonton Video Demo (YouTube)
             </a>
 
