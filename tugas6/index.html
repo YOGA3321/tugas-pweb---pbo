@@ -32,14 +32,14 @@
             <p>
                 Disini adalah Form Login yang menggunakan Bootstrap.
             </p>
-            <img src="../img/23.png" alt="Form Registrasi dengan Autocomplete">
+            <img src="../img/23.png" alt="Form Registrasi dengan Autocomplete" onclick="openModal(this)">
             <p class="caption">Gambar Form Login.</p>
 
             <h3>2. Form register</h3>
             <p>
                 Form ini digunakan untuk mendaftarkan diri.
             </p>
-            <img src="../img/24.png" alt="Pencarian Kode Pos">
+            <img src="../img/24.png" alt="Pencarian Kode Pos" onclick="openModal(this)">
             <p class="caption">Gambar Form register.</p>
 
             <hr>
@@ -51,6 +51,29 @@
 
         </div>
     </div>
+
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modal.style.opacity = "1";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
+    }
+    </script>
 
 </body>
 </html>

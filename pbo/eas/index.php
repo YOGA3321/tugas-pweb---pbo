@@ -458,16 +458,21 @@ public class Pemain {
         });
     }
 
+    // Modal Image Logic
     var modal = document.getElementById('myModal');
     var modalImg = document.getElementById("img01");
 
     function openModal(element) {
         modal.style.display = "block";
+        modal.style.opacity = "1";
         modalImg.src = element.src;
     }
 
     function closeModal() {
-        modal.style.display = "none";
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
     }
     </script>
 </body>

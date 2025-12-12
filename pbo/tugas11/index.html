@@ -218,11 +218,15 @@ public class ImageViewer extends JFrame {
 
     function openModal(element) {
         modal.style.display = "block";
+        modal.style.opacity = "1";
         modalImg.src = element.src;
     }
 
     function closeModal() {
-        modal.style.display = "none";
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
     }
     </script>
 </body>

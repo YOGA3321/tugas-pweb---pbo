@@ -35,7 +35,7 @@
                 <li>JavaScript menerima respons JSON dan menampilkan pesan "Login Berhasil" atau "Email atau Password Salah" secara dinamis di halaman.</li>
             </ol>
 
-            <img src="../img/23.png" alt="Form Login AJAX">
+            <img src="../img/23.png" alt="Form Login AJAX" onclick="openModal(this)">
             <p class="caption">Tampilan utama form login yang akan divalidasi dengan AJAX.</p>
 
             <hr>
@@ -46,5 +46,28 @@
             <a href="https://github.com/YOGA3321/tugas-pweb---pbo/tree/main/tugas7" class="tombol-demo" target="_blank">Lihat Kode Sumber</a>
         </div>
     </div>
+
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modal.style.opacity = "1";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
+    }
+    </script>
 </body>
 </html>

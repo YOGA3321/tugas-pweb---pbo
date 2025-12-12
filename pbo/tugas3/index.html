@@ -34,11 +34,11 @@
             
             <h1>Berikut Jam  Yang Telah Saya Buat</h1>
             <h3>Hasil Rangkaian Class</h3>
-            <img src="../../img/16.png" alt="Class Jam Digital">
+            <img src="../../img/16.png" alt="Class Jam Digital" onclick="openModal(this)">
             <p class="caption">Gambar Tersebut Adalah Rangkaian Class Yang Digunakan.</p>
 
             <h3>Hasil Tampilan Jam Digital Sederhana</h3>
-            <img src="../../img/17.png" alt="Hasil Jam Digital Sederhana">
+            <img src="../../img/17.png" alt="Hasil Jam Digital Sederhana" onclick="openModal(this)">
             <p class="caption">Screenshot create objek di BlueJ.</p>
             
             <hr>
@@ -274,22 +274,36 @@
         </div>
     </div>
     
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
     <script>
     function copyCode(button, elementId) {
         const codeElement = document.getElementById(elementId);
-        const codeToCopy = codeElement.innerText;
-
-        navigator.clipboard.writeText(codeToCopy).then(function() {
-            // Berhasil! Beri feedback ke user.
+        navigator.clipboard.writeText(codeElement.innerText).then(function() {
             button.innerText = 'Copied!';
-            setTimeout(function() {
-                button.innerText = 'Copy';
-            }, 2000); // Kembalikan teks tombol setelah 2 detik
+            setTimeout(function() { button.innerText = 'Copy'; }, 2000);
         }, function(err) {
-            // Gagal. Mungkin karena browser tidak mendukung.
-            console.error('Gagal menyalin teks: ', err);
             button.innerText = 'Gagal';
         });
+    }
+
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modal.style.opacity = "1";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
     }
     </script>
 </body>

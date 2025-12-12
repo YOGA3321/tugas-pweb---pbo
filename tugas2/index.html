@@ -38,8 +38,8 @@
                 <li>Link yang mengarah ke media sosial</li>
             </ul>
             
-            <img src="../img/profil1.jpg" alt="Foto 1">
-            <img src="../img/profil2.jpg" alt="Foto 2">
+            <img src="../img/profil1.jpg" alt="Foto 1" onclick="openModal(this)">
+            <img src="../img/profil2.jpg" alt="Foto 2" onclick="openModal(this)">
 
             <h2>Hasil Tugas</h2>
             <p>Halaman demo di bawah ini adalah hasil akhir dari pengerjaan tugas ini, yang telah mencakup semua elemen yang disyaratkan.</p>
@@ -49,6 +49,29 @@
 
         </div>
     </div>
+
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modal.style.opacity = "1";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
+    }
+    </script>
 
 </body>
 </html>

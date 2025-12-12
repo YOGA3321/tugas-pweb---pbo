@@ -80,6 +80,11 @@
                 <h2>Pertemuan 13: GUI (Swing)</h2>
                 <p>Membuat Login System yang terhubung dengan Aplikasi Image Viewer menggunakan Java Swing.</p>
             </a>
+            <a href="eas/" class="tugas-card">
+                <div class="card-icon">🐍</div>
+                <h2>Evaluasi Akhir Semester (EAS)</h2>
+                <p>Game Ular Tangga (Snake & Ladder) dengan Java Swing.</p>
+            </a>
         </main>
     </div>
 

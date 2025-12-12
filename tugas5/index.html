@@ -32,21 +32,21 @@
             <p>
                 Fitur pertama adalah sebuah form registrasi sederhana. Untuk meningkatkan pengalaman pengguna, pada kolom input "Nama Mahasiswa" ditambahkan fungsionalitas <strong>autocomplete</strong>. Saat pengguna mulai mengetik, sebuah daftar saran nama akan muncul di bawah kolom input. Daftar nama ini disimpan dalam sebuah array JavaScript, sehingga tidak memerlukan database. Selain itu, ada validasi sederhana untuk memastikan semua kolom terisi sebelum form disubmit.
             </p>
-            <img src="../img/20.png" alt="Form Registrasi dengan Autocomplete">
+            <img src="../img/20.png" alt="Form Registrasi dengan Autocomplete" onclick="openModal(this)">
             <p class="caption">Contoh fitur autocomplete saat mengetik nama.</p>
 
             <h3>2. Pencarian Kode Pos via API</h3>
             <p>
                 Fitur kedua adalah alat pencarian kode pos untuk wilayah di Indonesia. Fitur ini terhubung ke API publik (`kodepos.vercel.app`) untuk mengambil data secara <strong>real-time.</strong> Pengguna dapat mencari berdasarkan nama daerah (kota, kecamatan) atau langsung memasukkan kode pos. Hasil pencarian akan ditampilkan secara dinamis di bawah form tanpa perlu me-refresh halaman.
             </p>
-            <img src="../img/21.png" alt="Pencarian Kode Pos">
+            <img src="../img/21.png" alt="Pencarian Kode Pos" onclick="openModal(this)">
             <p class="caption">Hasil pencarian kode pos untuk "60111".</p>
 
             <h3>3. Dynamic Dropdown List untuk Produk</h3>
             <p>
                 Fitur terakhir adalah <strong>dynamic dropdown list</strong>. Terdapat dua dropdown: "Pilih Jenis Produk" dan "Pilih Merk". Pilihan merek yang tersedia akan berubah secara otomatis tergantung pada jenis produk yang dipilih. Misalnya, jika pengguna memilih "Handphone", maka dropdown merek akan menampilkan pilihan seperti Samsung, Apple, dan Xiaomi. Data untuk fitur ini juga disimpan dalam objek JavaScript.
             </p>
-            <img src="../img/22.png" alt="Dynamic Dropdown">
+            <img src="../img/22.png" alt="Dynamic Dropdown" onclick="openModal(this)">
             <p class="caption">Pilihan merek berubah saat jenis produk "Televisi" dipilih.</p>
 
             <hr>
@@ -58,6 +58,29 @@
 
         </div>
     </div>
+
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modal.style.opacity = "1";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
+    }
+    </script>
 
 </body>
 </html>

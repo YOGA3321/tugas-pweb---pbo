@@ -35,11 +35,11 @@
             </ul>
             
             <h5>Form Input</h5>
-            <img src="../img/3.png" alt="Foto 1">
+            <img src="../img/3.png" alt="Foto 1" onclick="openModal(this)">
             <h5>Tabel & Layout</h5>
-            <img src="../img/4.png" alt="Foto 2">
+            <img src="../img/4.png" alt="Foto 2" onclick="openModal(this)">
             <h5>Jadi 1</h5>
-            <img src="../img/5.png" alt="Foto 3">
+            <img src="../img/5.png" alt="Foto 3" onclick="openModal(this)">
 
             <h2>Hasil Tugas</h2>
             <p>Halaman demo di bawah ini adalah hasil akhir dari pengerjaan tugas ini, yang telah mencakup semua elemen yang disyaratkan.</p>
@@ -50,6 +50,29 @@
 
         </div>
     </div>
+
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modal.style.opacity = "1";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
+    }
+    </script>
 
 </body>
 </html>

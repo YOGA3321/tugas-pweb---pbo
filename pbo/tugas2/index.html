@@ -29,27 +29,27 @@
             <p>Berikut adalah langkah-langkah yang saya lakukan, disertai dengan screenshot.</p>
             
             <h3>1. Membuat Proyek dan Kelas</h3>
-            <img src="../../img/6.png" alt="Membuat Proyek BlueJ">
+            <img src="../../img/6.png" alt="Membuat Proyek BlueJ" onclick="openModal(this)">
             <p class="caption">Screenshot saat membuat Project TicketMachine.</p>
-            <img src="../../img/7.png" alt="Membuat Proyek BlueJ">
+            <img src="../../img/7.png" alt="Membuat Proyek BlueJ" onclick="openModal(this)">
             <p class="caption">Screenshot saat membuat kelas TicketMachine.</p>
             
             <h3>2. Mengisi Kode dan Compile</h3>
-            <img src="../../img/8.png" alt="Compile Kode">
+            <img src="../../img/8.png" alt="Compile Kode" onclick="openModal(this)">
             <p class="caption">Screenshot setelah kode berhasil di-compile tanpa error.</p>
 
             <h3>3. Hasil Interaksi dengan Objek</h3>
-            <img src="../../img/9.png" alt="Hasil Interaksi">
+            <img src="../../img/9.png" alt="Hasil Interaksi" onclick="openModal(this)">
             <p class="caption">Screenshot create objek di BlueJ.</p>
-            <img src="../../img/10.png" alt="Hasil Interaksi">
+            <img src="../../img/10.png" alt="Hasil Interaksi" onclick="openModal(this)">
             <p class="caption">Screenshot getPrice() di BlueJ.</p>
-            <img src="../../img/11.png" alt="Hasil Interaksi">
+            <img src="../../img/11.png" alt="Hasil Interaksi" onclick="openModal(this)">
             <p class="caption">Screenshot insertMoney(int amount) di BlueJ.</p>
-            <img src="../../img/12.png" alt="Hasil Interaksi">
+            <img src="../../img/12.png" alt="Hasil Interaksi" onclick="openModal(this)">
             <p class="caption">Screenshot getBalance() di BlueJ.</p>
-            <img src="../../img/13.png" alt="Hasil Interaksi">
+            <img src="../../img/13.png" alt="Hasil Interaksi" onclick="openModal(this)">
             <p class="caption">Screenshot print() di BlueJ.</p>
-            <img src="../../img/14.png" alt="Hasil Interaksi">
+            <img src="../../img/14.png" alt="Hasil Interaksi" onclick="openModal(this)">
             <p class="caption">Screenshot getBalance() di BlueJ.</p>
             
             <hr>
@@ -141,22 +141,36 @@ public class TicketMachine
         </div>
     </div>
     
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
     <script>
     function copyCode(button, elementId) {
         const codeElement = document.getElementById(elementId);
-        const codeToCopy = codeElement.innerText;
-
-        navigator.clipboard.writeText(codeToCopy).then(function() {
-            // Berhasil! Beri feedback ke user.
+        navigator.clipboard.writeText(codeElement.innerText).then(function() {
             button.innerText = 'Copied!';
-            setTimeout(function() {
-                button.innerText = 'Copy';
-            }, 2000); // Kembalikan teks tombol setelah 2 detik
+            setTimeout(function() { button.innerText = 'Copy'; }, 2000);
         }, function(err) {
-            // Gagal. Mungkin karena browser tidak mendukung.
-            console.error('Gagal menyalin teks: ', err);
             button.innerText = 'Gagal';
         });
+    }
+
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+
+    function openModal(element) {
+        modal.style.display = "block";
+        modal.style.opacity = "1";
+        modalImg.src = element.src;
+    }
+
+    function closeModal() {
+        modal.style.opacity = "0";
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 300);
     }
     </script>
 </body>
