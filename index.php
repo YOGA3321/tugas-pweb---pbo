@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=<?= time() ?>">
 </head>
 <body>
 
@@ -22,7 +22,7 @@
                 <p>Selamat datang di repositori terpusat dokumentasi tugas, laporan proyek praktikum, dan implementasi demo interaktif mata kuliah Teknik Informatika.</p>
                 
                 <div class="student-card-mini">
-                    <img src="img/fotoku.jpg" alt="Foto Ageng Prayogo" class="student-avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="img/avatar.jpg" alt="Foto Ageng Prayogo" class="student-avatar" width="54" height="54" style="width: 54px; height: 54px; max-width: 54px; max-height: 54px; object-fit: cover; border-radius: 50%; flex-shrink: 0;" onerror="this.src='img/fotoku.jpg'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};">
                     <div class="student-avatar-placeholder" style="display:none;">AP</div>
                     <div class="student-text">
                         <h3>Ageng Prayogo</h3>
