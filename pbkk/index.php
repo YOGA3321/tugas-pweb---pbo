@@ -76,12 +76,12 @@
         </div>
 
         <main class="tugas-grid">
-            <div class="tugas-card" style="cursor: default;">
+            <!-- <div class="tugas-card" style="cursor: default;">
                 <span class="badge-status">Siap Diisi</span>
                 <div class="card-icon">🚀</div>
                 <h2>Tugas Pertemuan 1: Setup Framework & Environment</h2>
                 <p>Konfigurasi lingkungan pengembangan framework, virtual host, manajemen dependensi (Composer/NPM), dan struktur direktori MVC.</p>
-            </div>
+            </div> -->
 
             <a href="pertemuan2/" class="tugas-card">
                 <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia</span>
@@ -97,26 +97,26 @@
                 <p>Pengembangan aplikasi GUI desktop kalkulator dengan Windows Forms, event handler terpadu, dan exception handling.</p>
             </a>
 
-            <div class="tugas-card" style="cursor: default;">
+            <!-- <div class="tugas-card" style="cursor: default;">
                 <span class="badge-status">Mendatang</span>
                 <div class="card-icon">⚡</div>
                 <h2>Tugas Pertemuan 4: RESTful API & Autentikasi</h2>
                 <p>Pengembangan endpoint RESTful API dengan format JSON standar, validasi request, dan proteksi token (Sanctum/JWT).</p>
-            </div>
+            </div> -->
 
-            <div class="tugas-card" style="cursor: default;">
+            <!-- <div class="tugas-card" style="cursor: default;">
                 <span class="badge-status">Mendatang</span>
                 <div class="card-icon">🏆</div>
                 <h2>Evaluasi Tengah Semester (ETS)</h2>
                 <p>Pengembangan proyek aplikasi web interaktif berbasis kerangka kerja modern secara mandiri / tim.</p>
-            </div>
+            </div> -->
 
-            <div class="tugas-card" style="cursor: default;">
+            <!-- <div class="tugas-card" style="cursor: default;">
                 <span class="badge-status">Mendatang</span>
                 <div class="card-icon">🎯</div>
                 <h2>Evaluasi Akhir Semester (EAS)</h2>
                 <p>Aplikasi fullstack terintegrasi dengan sistem keamanan, dashboard manajemen, dan integrasi API eksternal.</p>
-            </div>
+            </div> -->
         </main>
 
         <footer class="portal-footer">
