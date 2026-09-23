@@ -1,0 +1,15 @@
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\bin\Debug\net10.0\demo.exe
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\bin\Debug\net10.0\demo.deps.json
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\bin\Debug\net10.0\demo.runtimeconfig.json
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\bin\Debug\net10.0\demo.dll
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\bin\Debug\net10.0\demo.pdb
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\obj\Debug\net10.0\demo.GeneratedMSBuildEditorConfig.editorconfig
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\obj\Debug\net10.0\demo.AssemblyInfoInputs.cache
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\obj\Debug\net10.0\demo.AssemblyInfo.cs
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\obj\Debug\net10.0\demo.csproj.CoreCompileInputs.cache
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\obj\Debug\net10.0\demo.sourcelink.json
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\obj\Debug\net10.0\demo.dll
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\obj\Debug\net10.0\refint\demo.dll
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\obj\Debug\net10.0\demo.pdb
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\obj\Debug\net10.0\demo.genruntimeconfig.cache
+C:\laragon\www\tugas\pbkk\pertemuan2\demo\obj\Debug\net10.0\ref\demo.dll

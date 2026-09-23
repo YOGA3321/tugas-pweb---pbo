@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
@@ -23,9 +23,9 @@
             <h2>NRP: 5025241225</h2>
             
             <p>Sesuai dengan pembelajaran pertemuan 1, saya mencoba mengukur kemampuan typewriting saya dengan melakukan sebuah tes.</p>
-            <img src="../img/1.jpg" alt="Kecepatan Mengetik" width="500" height="600" onclick="openModal(this)"><br>
+            <img src="../../img/1.jpg" alt="Kecepatan Mengetik" width="500" height="600" onclick="openModal(this)"><br>
             <h3>Disini Saya Juga Mencoba Kembali melakukan Pengetesan.</h3><br>
-            <img src="../img/2.jpg" alt="Kecepatan Mengetik" width="500" height="600" onclick="openModal(this)"><br>
+            <img src="../../img/2.jpg" alt="Kecepatan Mengetik" width="500" height="600" onclick="openModal(this)"><br>
             <br>
             <a href="#" class="tombol-demo">Lihat Demo Live</a>
 

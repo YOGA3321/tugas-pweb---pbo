@@ -1,148 +1,597 @@
+/* ==========================================================================
+   PORTAL TUGAS KULIAH - MASTER STYLESHEET
+   Mendukung: Root Portal, Modul PWeb, PBO, PBKK, dan Halaman Detail Tugas
+   ========================================================================== */
+
 /* --- Pengaturan Dasar & Variabel --- */
 :root {
     --bg-color: #e0e5ec;
     --text-color: #3f4a5a;
-    --accent-color: #4a90e2;
-    --shadow-light: rgba(255, 255, 255, 0.7);
+    --text-muted: #6c7a89;
+    --text-heading: #1e293b;
+    --accent-color: #3b82f6;
+    
+    /* Aksen Tematik Tiap Mata Kuliah */
+    --pweb-color: #0284c7;
+    --pweb-gradient: linear-gradient(135deg, #0284c7, #2563eb);
+    --pbo-color: #d97706;
+    --pbo-gradient: linear-gradient(135deg, #d97706, #ea580c);
+    --pbkk-color: #7c3aed;
+    --pbkk-gradient: linear-gradient(135deg, #7c3aed, #4f46e5);
+    
+    /* Neumorphic Shadows */
+    --shadow-light: rgba(255, 255, 255, 0.85);
     --shadow-dark: rgba(163, 177, 198, 0.6);
+    --shadow-raised: 9px 9px 18px var(--shadow-dark), -9px -9px 18px var(--shadow-light);
+    --shadow-raised-sm: 5px 5px 12px var(--shadow-dark), -5px -5px 12px var(--shadow-light);
+    --shadow-inset: inset 6px 6px 12px var(--shadow-dark), inset -6px -6px 12px var(--shadow-light);
+    --shadow-hover: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light);
+    
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 10px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    margin: 0;
-    padding: 20px;
+* {
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 24px 16px 40px;
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
 .container {
-    max-width: 1100px;
+    max-width: 1180px;
     margin: 0 auto;
 }
 
+/* ==========================================================================
+   HEADER & HERO SECTION
+   ========================================================================== */
 header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     font-weight: 700;
+    color: var(--text-heading);
+    margin: 0 0 10px 0;
+    letter-spacing: -0.5px;
 }
 
 header p {
     font-size: 1.1rem;
-    color: #777;
+    color: var(--text-muted);
+    margin: 0 auto;
+    max-width: 650px;
 }
 
-/* --- Grid untuk Daftar Tugas --- */
+/* Top Bar Navigasi untuk sub-portal (PWeb, PBO, PBKK) */
+.subportal-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.badge-course-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow-raised-sm);
+    color: var(--text-heading);
+}
+
+.badge-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.badge-dot.pweb { background: var(--pweb-color); }
+.badge-dot.pbo { background: var(--pbo-color); }
+.badge-dot.pbkk { background: var(--pbkk-color); }
+
+/* --- Hero Banner Profil Mahasiswa di Root --- */
+.hero-portal {
+    background-color: var(--bg-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-raised);
+    padding: 36px 32px;
+    margin-bottom: 45px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.hero-portal::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow-inset);
+    margin-bottom: 14px;
+}
+
+.hero-info h1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin: 0 0 10px 0;
+    line-height: 1.25;
+}
+
+.hero-info p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin: 0 0 20px 0;
+    max-width: 600px;
+}
+
+.student-card-mini {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: var(--bg-color);
+    padding: 14px 20px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-inset);
+    width: fit-content;
+}
+
+.student-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--shadow-raised-sm);
+    border: 2px solid var(--bg-color);
+}
+
+.student-avatar-placeholder {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--pweb-gradient);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-raised-sm);
+}
+
+.student-text h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-heading);
+}
+
+.student-text span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   STATISTIK BAR
+   ========================================================================== */
+.portal-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 45px;
+}
+
+.stat-box {
+    background-color: var(--bg-color);
+    padding: 20px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-raised-sm);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.stat-box:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-raised);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 4px;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   PORTAL KARTU MATA KULIAH (COURSE CARDS)
+   ========================================================================== */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin: 0 0 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, rgba(163, 177, 198, 0.4), transparent);
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    margin-bottom: 50px;
+}
+
+.course-card {
+    background-color: var(--bg-color);
+    padding: 32px 28px;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--text-color);
+    box-shadow: var(--shadow-raised);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.course-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    opacity: 0.9;
+}
+
+.course-card.pweb::before { background: var(--pweb-gradient); }
+.course-card.pbo::before { background: var(--pbo-gradient); }
+.course-card.pbkk::before { background: var(--pbkk-gradient); }
+
+.course-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+.course-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.course-icon-badge {
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow-inset);
+    transition: var(--transition);
+}
+
+.course-card:hover .course-icon-badge {
+    transform: scale(1.08) rotate(3deg);
+}
+
+.course-pill {
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.course-pill.pweb {
+    background: rgba(2, 132, 199, 0.12);
+    color: var(--pweb-color);
+}
+
+.course-pill.pbo {
+    background: rgba(217, 119, 6, 0.12);
+    color: var(--pbo-color);
+}
+
+.course-pill.pbkk {
+    background: rgba(124, 58, 237, 0.12);
+    color: var(--pbkk-color);
+}
+
+.course-card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin: 0 0 6px 0;
+    line-height: 1.3;
+}
+
+.course-code {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    display: block;
+}
+
+.course-card p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-color);
+    margin: 0 0 20px 0;
+    flex-grow: 1;
+}
+
+/* Tag / Chip Teknologi */
+.course-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 26px;
+}
+
+.tech-chip {
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow-raised-sm);
+    color: var(--text-heading);
+    transition: var(--transition);
+}
+
+.course-card:hover .tech-chip {
+    box-shadow: var(--shadow-inset);
+}
+
+/* Footer Kartu & Tombol Aksi */
+.course-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 1px solid rgba(163, 177, 198, 0.3);
+}
+
+.task-count {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-open-course {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: var(--shadow-raised-sm);
+}
+
+.btn-open-course.pweb {
+    background: var(--pweb-color);
+    color: white;
+}
+.btn-open-course.pbo {
+    background: var(--pbo-color);
+    color: white;
+}
+.btn-open-course.pbkk {
+    background: var(--pbkk-color);
+    color: white;
+}
+
+.btn-open-course:hover {
+    transform: translateX(3px);
+    box-shadow: var(--shadow-raised);
+}
+
+/* ==========================================================================
+   GRID DAFTAR TUGAS (EXISTING & ENHANCED)
+   ========================================================================== */
 .tugas-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    gap: 32px;
 }
 
-/* --- Desain Kartu Tugas (Neumorphism) --- */
 .tugas-card {
     background-color: var(--bg-color);
-    padding: 30px;
-    border-radius: 20px;
+    padding: 28px;
+    border-radius: var(--radius-md);
     text-decoration: none;
     color: var(--text-color);
-    transition: all 0.3s ease-in-out;
-    box-shadow: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+    transition: var(--transition);
+    box-shadow: var(--shadow-raised);
+    display: flex;
+    flex-direction: column;
 }
 
 .tugas-card:hover {
-    box-shadow: inset 7px 7px 15px var(--shadow-dark), inset -7px -7px 15px var(--shadow-light);
+    box-shadow: var(--shadow-inset);
     transform: translateY(2px);
 }
 
 .card-icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+    font-size: 2.4rem;
+    margin-bottom: 16px;
 }
 
 .tugas-card h2 {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     font-weight: 600;
+    color: var(--text-heading);
     margin: 0 0 10px 0;
+    line-height: 1.35;
 }
 
 .tugas-card p {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     line-height: 1.6;
     margin: 0;
+    color: var(--text-muted);
 }
 
-/* --- Halaman Detail Tugas --- */
+/* ==========================================================================
+   HALAMAN DETAIL TUGAS
+   ========================================================================== */
 .tombol-kembali {
-    display: inline-block;
-    padding: 12px 24px;
-    margin-bottom: 40px;
-    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    margin-bottom: 30px;
+    border-radius: 14px;
     background-color: var(--bg-color);
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.92rem;
     color: var(--accent-color);
-    box-shadow: 7px 7px 15px var(--shadow-dark), -7px -7px 15px var(--shadow-light);
-    transition: all 0.3s ease-in-out;
+    box-shadow: var(--shadow-raised-sm);
+    transition: var(--transition);
 }
 
 .tombol-kembali:hover {
-    box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
+    box-shadow: var(--shadow-inset);
+    color: var(--text-heading);
 }
 
 .konten-tugas {
     background-color: var(--bg-color);
     padding: 40px;
-    border-radius: 20px;
-    box-shadow: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-raised);
 }
 
 .konten-tugas h1, .konten-tugas h2, .konten-tugas h3 {
-    color: #1a1a1a;
+    color: var(--text-heading);
 }
 
 .konten-tugas p {
     line-height: 1.8;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 
 .konten-tugas img {
     max-width: 100%;
     height: auto;
-    border-radius: 15px;
+    border-radius: 14px;
     margin: 20px 0 10px 0;
     cursor: pointer;
-    transition: 0.3s;
+    transition: var(--transition);
+    box-shadow: var(--shadow-raised-sm);
 }
 
 .konten-tugas img:hover {
-    opacity: 0.7;
+    opacity: 0.85;
+    transform: scale(1.01);
 }
 
 .caption {
     text-align: center;
     font-style: italic;
-    color: #888;
+    color: var(--text-muted);
 }
 
 .tombol-demo {
     display: inline-block;
-    padding: 12px 24px;
+    padding: 12px 26px;
     margin-top: 20px;
-    border-radius: 15px;
+    border-radius: 14px;
     background: var(--accent-color);
     color: white;
     text-decoration: none;
     font-weight: 600;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+    transition: var(--transition);
+}
+
+.tombol-demo:hover {
+    box-shadow: 0 6px 18px rgba(59, 130, 246, 0.45);
+    transform: translateY(-2px);
 }
 
 .konten-tugas .meta-info {
     font-size: 0.9em;
-    color: #888;
+    color: var(--text-muted);
     margin-top: -15px;
 }
 
@@ -159,7 +608,7 @@ header p {
 }
 
 .konten-tugas ul li {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     margin-bottom: 10px;
 }
 
@@ -181,12 +630,14 @@ header p {
 .modal-content {
     margin: auto;
     display: block;
-    max-width: 80%;
-    max-height: 80%;
+    max-width: 85%;
+    max-height: 85%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .modal-close {
@@ -218,7 +669,7 @@ header p {
     background-color: #555;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.3s;
@@ -229,10 +680,62 @@ header p {
 }
 
 .konten-tugas pre {
-    background: #2d2d2d;
+    background: #23272e;
     color: #f8f8f2;
     padding: 20px;
     padding-top: 45px;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow-x: auto;
+}
+
+/* ==========================================================================
+   FOOTER PORTAL
+   ========================================================================== */
+.portal-footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(163, 177, 198, 0.4);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.portal-footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.portal-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 768px) {
+    body {
+        padding: 16px 12px 30px;
+    }
+    
+    .hero-portal {
+        padding: 24px 20px;
+    }
+    
+    .hero-info h1 {
+        font-size: 1.8rem;
+    }
+    
+    .course-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .tugas-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .konten-tugas {
+        padding: 24px 18px;
+    }
 }

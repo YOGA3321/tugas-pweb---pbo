@@ -14,8 +14,16 @@
 <body>
 
     <div class="container">
+        <!-- Navigasi Kembali ke Portal -->
+        <div class="subportal-nav">
+            <a href="../" class="tombol-kembali" style="margin-bottom:0;">&larr; Kembali ke Portal Kelas</a>
+            <span class="badge-course-type">
+                <span class="badge-dot pbo"></span> Pemrograman Berorientasi Objek (PBO)
+            </span>
+        </div>
+
         <header>
-            <h1>Portal Tugas Kuliah</h1>
+            <h1>Portal Tugas Pemrograman Berorientasi Objek</h1>
             <p>Kumpulan tugas mata kuliah Pemrograman Berorientasi Objek Ageng Prayogo.</p>
         </header>
 
@@ -86,6 +94,10 @@
                 <p>Game Ular Tangga (Snake & Ladder) dengan Java Swing.</p>
             </a>
         </main>
+
+        <footer class="portal-footer">
+            <p>&copy; 2026 <strong>Ageng Prayogo</strong> (NRP: 5025241225) &bull; Pemrograman Berorientasi Objek &bull; <a href="../">Kembali ke Portal Kelas</a></p>
+        </footer>
     </div>
 
 </body>
