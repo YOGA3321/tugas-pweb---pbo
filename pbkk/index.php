@@ -90,12 +90,12 @@
                 <p>Implementasi aplikasi sistem data mahasiswa berbasis C# .NET dengan List collection, enkapsulasi OOP, pencarian, dan validasi input.</p>
             </a>
 
-            <div class="tugas-card" style="cursor: default;">
-                <span class="badge-status">Mendatang</span>
-                <div class="card-icon">🗄️</div>
-                <h2>Tugas Pertemuan 3: Database & Eloquent ORM</h2>
-                <p>Database Migration, Seeder, Factories, dan manipulasi data relasional memanfaatkan fitur ORM modern.</p>
-            </div>
+            <a href="pertemuan3/" class="tugas-card">
+                <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia</span>
+                <div class="card-icon">🧮</div>
+                <h2>Tugas Pertemuan 3: Kalkulator Desktop (C# WinForms)</h2>
+                <p>Pengembangan aplikasi GUI desktop kalkulator dengan Windows Forms, event handler terpadu, dan exception handling.</p>
+            </a>
 
             <div class="tugas-card" style="cursor: default;">
                 <span class="badge-status">Mendatang</span>
