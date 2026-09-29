@@ -97,12 +97,12 @@
                 <p>Pengembangan aplikasi GUI desktop kalkulator dengan Windows Forms, event handler terpadu, dan exception handling.</p>
             </a>
 
-            <!-- <div class="tugas-card" style="cursor: default;">
-                <span class="badge-status">Mendatang</span>
-                <div class="card-icon">⚡</div>
-                <h2>Tugas Pertemuan 4: RESTful API & Autentikasi</h2>
-                <p>Pengembangan endpoint RESTful API dengan format JSON standar, validasi request, dan proteksi token (Sanctum/JWT).</p>
-            </div> -->
+            <a href="pertemuan4/" class="tugas-card">
+                <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia</span>
+                <div class="card-icon">📋</div>
+                <h2>Tugas Pertemuan 4: Student Registration App (WPF)</h2>
+                <p>Aplikasi GUI registrasi data mahasiswa dengan WPF, XAML layouting, input validation, dan data listing.</p>
+            </a>
 
             <!-- <div class="tugas-card" style="cursor: default;">
                 <span class="badge-status">Mendatang</span>

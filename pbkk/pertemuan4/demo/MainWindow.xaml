@@ -1,0 +1,149 @@
+<Window x:Class="StudentRegistrationApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Student Registration"
+        Height="640"
+        Width="880"
+        WindowStartupLocation="CenterScreen"
+        Background="#F8F9FA">
+    
+    <Grid Margin="30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="35"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ============================================== -->
+        <!-- KOLOM KIRI: FORM REGISTRASI MAHASISWA         -->
+        <!-- ============================================== -->
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="STUDENT REGISTRATION"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="#1E293B"
+                       Margin="0,0,0,20"/>
+
+            <!-- Input NIM -->
+            <TextBlock Text="NIM" 
+                       FontWeight="SemiBold" 
+                       Foreground="#475569" 
+                       Margin="0,0,0,5"/>
+            <TextBox x:Name="txtNim"
+                     Height="36"
+                     Margin="0,0,0,15"
+                     VerticalContentAlignment="Center"
+                     Padding="10,0"
+                     FontSize="14"/>
+
+            <!-- Input Nama Mahasiswa -->
+            <TextBlock Text="Nama Mahasiswa" 
+                       FontWeight="SemiBold" 
+                       Foreground="#475569" 
+                       Margin="0,0,0,5"/>
+            <TextBox x:Name="txtNama"
+                     Height="36"
+                     Margin="0,0,0,15"
+                     VerticalContentAlignment="Center"
+                     Padding="10,0"
+                     FontSize="14"/>
+
+            <!-- Input Program Studi -->
+            <TextBlock Text="Program Studi" 
+                       FontWeight="SemiBold" 
+                       Foreground="#475569" 
+                       Margin="0,0,0,5"/>
+            <ComboBox x:Name="cmbProdi"
+                      Height="36"
+                      Margin="0,0,0,15"
+                      VerticalContentAlignment="Center"
+                      FontSize="14">
+                <ComboBoxItem Content="Teknik Informatika"/>
+                <ComboBoxItem Content="Sistem Informasi"/>
+                <ComboBoxItem Content="Manajemen"/>
+                <ComboBoxItem Content="Akuntansi"/>
+            </ComboBox>
+
+            <!-- Input Jenis Kelamin -->
+            <TextBlock Text="Jenis Kelamin" 
+                       FontWeight="SemiBold" 
+                       Foreground="#475569" 
+                       Margin="0,0,0,8"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,25">
+                <RadioButton x:Name="rbLaki"
+                             Content="Laki-laki"
+                             Margin="0,0,25,0"
+                             VerticalContentAlignment="Center"
+                             FontSize="14"/>
+                <RadioButton x:Name="rbPerempuan"
+                             Content="Perempuan"
+                             VerticalContentAlignment="Center"
+                             FontSize="14"/>
+            </StackPanel>
+
+            <!-- Tombol Aksi: Simpan & Reset -->
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Simpan"
+                        Width="130"
+                        Height="42"
+                        Margin="0,0,12,0"
+                        Background="#0D6EFD"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        FontSize="14"
+                        Cursor="Hand"
+                        Click="BtnSimpan_Click"/>
+                <Button Content="Reset"
+                        Width="130"
+                        Height="42"
+                        Background="#6C757D"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        FontSize="14"
+                        Cursor="Hand"
+                        Click="BtnReset_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- ============================================== -->
+        <!-- KOLOM KANAN: DAFTAR DATA MAHASISWA            -->
+        <!-- ============================================== -->
+        <StackPanel Grid.Column="2">
+            <TextBlock Text="DATA MAHASISWA"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="#1E293B"
+                       Margin="0,0,0,20"/>
+
+            <!-- List Data Mahasiswa -->
+            <ListBox x:Name="lstMahasiswa"
+                     Height="360"
+                     Margin="0,0,0,15"
+                     FontSize="14"
+                     Padding="8"
+                     BorderBrush="#CBD5E1"
+                     BorderThickness="1"/>
+
+            <!-- Tombol Hapus -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Hapus"
+                        Width="130"
+                        Height="42"
+                        Background="#DC3545"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        FontSize="14"
+                        Cursor="Hand"
+                        Click="BtnHapus_Click"/>
+            </StackPanel>
+
+            <!-- Counter Jumlah Mahasiswa -->
+            <TextBlock x:Name="lblCount"
+                       Text="Jumlah Mahasiswa: 0"
+                       FontStyle="Italic"
+                       Foreground="#64748B"
+                       FontSize="13"
+                       Margin="0,10,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
