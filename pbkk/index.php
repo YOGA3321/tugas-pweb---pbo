@@ -97,10 +97,10 @@
                 <p>Pengembangan aplikasi GUI desktop kalkulator dengan Windows Forms, event handler terpadu, dan exception handling.</p>
             </a>
 
-            <a href="pertemuan5/" class="tugas-card">
+            <a href="pertemuan4/" class="tugas-card">
                 <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia</span>
                 <div class="card-icon">📋</div>
-                <h2>Tugas Pertemuan 5: Student Registration App (WPF)</h2>
+                <h2>Tugas Pertemuan 4: Student Registration App (WPF)</h2>
                 <p>Aplikasi GUI registrasi data mahasiswa dengan WPF, XAML layouting, input validation, dan data listing.</p>
             </a>
 
