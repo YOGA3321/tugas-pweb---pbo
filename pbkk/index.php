@@ -104,12 +104,12 @@
                 <p>Aplikasi GUI registrasi data mahasiswa dengan WPF, XAML layouting, input validation, dan data listing.</p>
             </a>
 
-            <!-- <div class="tugas-card" style="cursor: default;">
-                <span class="badge-status">Mendatang</span>
-                <div class="card-icon">🏆</div>
-                <h2>Evaluasi Tengah Semester (ETS)</h2>
-                <p>Pengembangan proyek aplikasi web interaktif berbasis kerangka kerja modern secara mandiri / tim.</p>
-            </div> -->
+            <a href="ets/" class="tugas-card">
+                <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia &bull; PRD &amp; Laporan</span>
+                <div class="card-icon">💼</div>
+                <h2>Evaluasi Tengah Semester (ETS): SkillForge</h2>
+                <p>Student Portfolio &amp; Internship Readiness System berbasis C# .NET 8 WPF, MVVM Pattern, ADO.NET Transaksional, dan SQL Server.</p>
+            </a>
 
             <!-- <div class="tugas-card" style="cursor: default;">
                 <span class="badge-status">Mendatang</span>
