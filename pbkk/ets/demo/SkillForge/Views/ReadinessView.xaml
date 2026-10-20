@@ -1,0 +1,150 @@
+<UserControl x:Class="SkillForge.Views.ReadinessView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="960"
+             Background="{DynamicResource AppBgBrush}">
+    <Grid Margin="28">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ============================================================== -->
+        <!-- HEADER                                                         -->
+        <!-- ============================================================== -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,24">
+            <TextBlock Text="Sistem Informasi Magang &amp; Asesmen Kesiapan" FontSize="22" FontWeight="Bold" 
+                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+            <TextBlock Text="Pilih lowongan magang mitra industri dan uji kecocokan portofolio proyek Anda secara instan." 
+                       FontSize="13" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- ============================================================== -->
+        <!-- ROLE SELECTOR BAR                                              -->
+        <!-- ============================================================== -->
+        <Border Grid.Row="1" Background="{DynamicResource CardBgBrush}" CornerRadius="8" 
+                Padding="20" Margin="0,0,0,24" BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Pilih Lowongan Magang Aktif:" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource TextPrimaryBrush}" FontSize="12" Margin="0,0,0,8"/>
+                    <ComboBox ItemsSource="{Binding AvailableRoles}" DisplayMemberPath="DisplayFull" 
+                              SelectedItem="{Binding SelectedRole}" 
+                              Height="38" VerticalContentAlignment="Center" Padding="10,4" FontSize="12"
+                              Background="{DynamicResource InnerCardBgBrush}"
+                              Foreground="{DynamicResource TextPrimaryBrush}"
+                              BorderBrush="{DynamicResource BorderBrushColor}"/>
+                </StackPanel>
+
+                <Button Grid.Column="1" Command="{Binding CheckReadinessCommand}"
+                        Style="{StaticResource ShadcnPrimaryButtonStyle}"
+                        Height="38" Padding="20,0" Margin="16,22,0,0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Path Data="{StaticResource GeomSparkles}" 
+                              Stroke="{DynamicResource PrimaryBtnFgBrush}" StrokeThickness="1.8" 
+                              Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Hitung Ulang Kesiapan" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- ============================================================== -->
+        <!-- EVALUATION RESULTS                                             -->
+        <!-- ============================================================== -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Score Metric Card -->
+            <Border Grid.Column="0" Background="{DynamicResource CardBgBrush}" CornerRadius="8" 
+                    Padding="24" Margin="0,0,16,0" BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border Width="40" Height="40" CornerRadius="20" 
+                            Background="{DynamicResource InnerCardBgBrush}" 
+                            BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1"
+                            HorizontalAlignment="Center" Margin="0,0,0,12">
+                        <Path Data="{StaticResource GeomAward}" 
+                              Stroke="{DynamicResource TextPrimaryBrush}" StrokeThickness="1.5" 
+                              Width="18" Height="18" Stretch="Uniform" 
+                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <TextBlock Text="Kecocokan Kualifikasi" FontSize="13" FontWeight="Medium" 
+                               Foreground="{DynamicResource TextSecondaryBrush}" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding CalculatedScore, StringFormat={}{0:F0}%}" 
+                               FontSize="54" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}" 
+                               HorizontalAlignment="Center" Margin="0,6"/>
+
+                    <Border Background="{DynamicResource BadgeSuccessBgBrush}" 
+                            BorderBrush="{DynamicResource BadgeSuccessFgBrush}" BorderThickness="1"
+                            CornerRadius="20" Padding="14,5" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding StatusText}" FontSize="12" FontWeight="SemiBold" 
+                                   Foreground="{DynamicResource BadgeSuccessFgBrush}"/>
+                    </Border>
+
+                    <TextBlock Text="Berdasarkan verifikasi portofolio proyek terdaftar di database" 
+                               TextWrapping="Wrap" TextAlignment="Center"
+                               FontSize="11" Foreground="{DynamicResource TextSecondaryBrush}" 
+                               HorizontalAlignment="Center" Margin="0,16,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Skills Requirement Breakdown Card -->
+            <Border Grid.Column="1" Background="{DynamicResource CardBgBrush}" CornerRadius="8" 
+                    Padding="24" BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="0" Margin="0,0,0,16">
+                        <TextBlock Text="Rincian Syarat Teknologi Lowongan" FontSize="15" FontWeight="SemiBold" 
+                                   Foreground="{DynamicResource TextPrimaryBrush}"/>
+                        <TextBlock Text="Analisis Gap Kompetensi Mahasiswa" 
+                                   Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" 
+                                   DockPanel.Dock="Right" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding RoleSkills}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="{DynamicResource InnerCardBgBrush}" 
+                                            BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1" 
+                                            CornerRadius="6" Padding="14,12" Margin="0,0,0,8">
+                                        <DockPanel>
+                                            <StackPanel DockPanel.Dock="Left" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding SkillName}" FontWeight="SemiBold" 
+                                                           Foreground="{DynamicResource TextPrimaryBrush}" FontSize="13"/>
+                                                <TextBlock Text="{Binding RequirementType}" 
+                                                           Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" Margin="0,2,0,0"/>
+                                            </StackPanel>
+                                            <Border DockPanel.Dock="Right" Background="{Binding BadgeBackground}" 
+                                                    CornerRadius="20" Padding="12,4" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding StatusLabel}" FontWeight="SemiBold" 
+                                                           Foreground="{Binding StatusBrush}" FontSize="11"/>
+                                            </Border>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

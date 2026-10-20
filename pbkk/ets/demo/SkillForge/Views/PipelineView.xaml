@@ -1,0 +1,181 @@
+<UserControl x:Class="SkillForge.Views.PipelineView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="960"
+             Background="{DynamicResource AppBgBrush}">
+    <Grid Margin="28">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ============================================================== -->
+        <!-- HEADER                                                         -->
+        <!-- ============================================================== -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,24">
+            <TextBlock Text="Papan Pelacakan Lamaran Magang" FontSize="22" FontWeight="Bold" 
+                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+            <TextBlock Text="Pantau tahapan seleksi posisi magang yang telah Anda minati, lamar, hingga proses penawaran." 
+                       FontSize="13" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- ============================================================== -->
+        <!-- KANBAN BOARD COLUMNS                                           -->
+        <!-- ============================================================== -->
+        <UniformGrid Grid.Row="1" Columns="4">
+            <!-- Kolom 1: Tersimpan (Wishlist) -->
+            <Border Background="{DynamicResource InnerCardBgBrush}" 
+                    BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1" 
+                    CornerRadius="8" Margin="0,0,8,0" Padding="14">
+                <StackPanel>
+                    <!-- Header Kolom -->
+                    <DockPanel Margin="0,0,0,14">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" DockPanel.Dock="Left">
+                            <Path Data="{StaticResource GeomBookmark}" 
+                                  Stroke="{DynamicResource TextPrimaryBrush}" StrokeThickness="1.5" 
+                                  Width="13" Height="13" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Wishlist" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource TextPrimaryBrush}" FontSize="13" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Border Background="{DynamicResource CardBgBrush}" 
+                                BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1"
+                                CornerRadius="10" Padding="8,2" DockPanel.Dock="Right">
+                            <TextBlock Text="1" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource TextSecondaryBrush}"/>
+                        </Border>
+                    </DockPanel>
+
+                    <!-- Card Item -->
+                    <Border Background="{DynamicResource CardBgBrush}" 
+                            BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1" 
+                            CornerRadius="6" Padding="12" Margin="0,0,0,10">
+                        <StackPanel>
+                            <TextBlock Text="Mobile App Flutter Intern" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource TextPrimaryBrush}" FontSize="13"/>
+                            <TextBlock Text="Nusantara Digital Lab • Surabaya" 
+                                       Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" Margin="0,3,0,8"/>
+                            <Border Background="{DynamicResource BadgeNeutralBgBrush}" 
+                                    BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1"
+                                    CornerRadius="4" Padding="6,2" HorizontalAlignment="Left">
+                                <TextBlock Text="Kecocokan: 60%" Foreground="{DynamicResource TextPrimaryBrush}" FontSize="10" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Kolom 2: Berkas Terkirim -->
+            <Border Background="{DynamicResource InnerCardBgBrush}" 
+                    BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1" 
+                    CornerRadius="8" Margin="4,0,4,0" Padding="14">
+                <StackPanel>
+                    <!-- Header Kolom -->
+                    <DockPanel Margin="0,0,0,14">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" DockPanel.Dock="Left">
+                            <Path Data="{StaticResource GeomSend}" 
+                                  Stroke="{DynamicResource BadgeInfoFgBrush}" StrokeThickness="1.5" 
+                                  Width="13" Height="13" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Terkirim" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource BadgeInfoFgBrush}" FontSize="13" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Border Background="{DynamicResource CardBgBrush}" 
+                                BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1"
+                                CornerRadius="10" Padding="8,2" DockPanel.Dock="Right">
+                            <TextBlock Text="1" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource BadgeInfoFgBrush}"/>
+                        </Border>
+                    </DockPanel>
+
+                    <!-- Card Item -->
+                    <Border Background="{DynamicResource CardBgBrush}" 
+                            BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1" 
+                            CornerRadius="6" Padding="12" Margin="0,0,0,10">
+                        <StackPanel>
+                            <TextBlock Text="Full-Stack Developer Intern" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource TextPrimaryBrush}" FontSize="13"/>
+                            <TextBlock Text="Global Digital Solusindo • Jakarta" 
+                                       Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" Margin="0,3,0,8"/>
+                            <TextBlock Text="Dikirim: 18 Okt 2026" Foreground="{DynamicResource MutedForegroundBrush}" FontSize="10"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Kolom 3: Wawancara -->
+            <Border Background="{DynamicResource InnerCardBgBrush}" 
+                    BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1" 
+                    CornerRadius="8" Margin="4,0,4,0" Padding="14">
+                <StackPanel>
+                    <!-- Header Kolom -->
+                    <DockPanel Margin="0,0,0,14">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" DockPanel.Dock="Left">
+                            <Path Data="{StaticResource GeomCalendar}" 
+                                  Stroke="{DynamicResource BadgeWarningFgBrush}" StrokeThickness="1.5" 
+                                  Width="13" Height="13" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Wawancara" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource BadgeWarningFgBrush}" FontSize="13" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Border Background="{DynamicResource CardBgBrush}" 
+                                BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1"
+                                CornerRadius="10" Padding="8,2" DockPanel.Dock="Right">
+                            <TextBlock Text="1" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource BadgeWarningFgBrush}"/>
+                        </Border>
+                    </DockPanel>
+
+                    <!-- Card Item -->
+                    <Border Background="{DynamicResource CardBgBrush}" 
+                            BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1" 
+                            CornerRadius="6" Padding="12" Margin="0,0,0,10">
+                        <StackPanel>
+                            <TextBlock Text=".NET Software Engineer Intern" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource TextPrimaryBrush}" FontSize="13"/>
+                            <TextBlock Text="PT Inovasi Teknologi Nusantara" 
+                                       Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" Margin="0,3,0,8"/>
+                            <Border Background="{DynamicResource BadgeWarningBgBrush}" 
+                                    BorderBrush="{DynamicResource BadgeWarningFgBrush}" BorderThickness="1"
+                                    CornerRadius="4" Padding="6,2" HorizontalAlignment="Left" Margin="0,0,0,6">
+                                <TextBlock Text="Jadwal: 25 Okt 2026" Foreground="{DynamicResource BadgeWarningFgBrush}" 
+                                           FontSize="10" FontWeight="SemiBold"/>
+                            </Border>
+                            <TextBlock Text="Fokus: Live Coding C# &amp; WPF" 
+                                       Foreground="{DynamicResource TextSecondaryBrush}" FontSize="10"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Kolom 4: Diterima -->
+            <Border Background="{DynamicResource InnerCardBgBrush}" 
+                    BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1" 
+                    CornerRadius="8" Margin="8,0,0,0" Padding="14">
+                <StackPanel>
+                    <!-- Header Kolom -->
+                    <DockPanel Margin="0,0,0,14">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" DockPanel.Dock="Left">
+                            <Path Data="{StaticResource GeomAward}" 
+                                  Stroke="{DynamicResource BadgeSuccessFgBrush}" StrokeThickness="1.5" 
+                                  Width="13" Height="13" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Diterima" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource BadgeSuccessFgBrush}" FontSize="13" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Border Background="{DynamicResource CardBgBrush}" 
+                                BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1"
+                                CornerRadius="10" Padding="8,2" DockPanel.Dock="Right">
+                            <TextBlock Text="0" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource BadgeSuccessFgBrush}"/>
+                        </Border>
+                    </DockPanel>
+
+                    <!-- Empty State Placeholder -->
+                    <Border Background="Transparent" 
+                            BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1" 
+                            CornerRadius="6" Padding="20">
+                        <TextBlock Text="Belum ada penawaran aktif" 
+                                   Foreground="{DynamicResource MutedForegroundBrush}" FontSize="11" 
+                                   HorizontalAlignment="Center" TextAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+    </Grid>
+</UserControl>

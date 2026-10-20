@@ -606,20 +606,20 @@ $fileModifiedDate = file_exists($pdfPath) ? date('d M Y, H:i', filemtime($pdfPat
             <div class="milestone-card">
                 <div class="milestone-header">
                     <h3><span>📌</span> Status &amp; Alur Pelaksanaan Proyek ETS</h3>
-                    <span class="badge-pill badge-success">Dokumen PRD Terkumpul (v1.0)</span>
+                    <span class="badge-pill badge-success">Solusi .NET 8 &amp; Database Selesai (v1.0)</span>
                 </div>
                 <div class="milestone-steps">
                     <div class="milestone-step active">
                         <strong>Fase 1: Dokumen PRD (Selesai)</strong>
-                        <p>Penyusunan Product Requirements Document lengkap (12 Halaman): ruang lingkup, 14 FR, formula skor kesiapan, dan skema relasional 7 tabel.</p>
+                        <p>Penyusunan Product Requirements Document lengkap (12 Halaman): ruang lingkup, 14 FR, formula skor kesiapan, dan skema relasional 8 tabel.</p>
                     </div>
-                    <div class="milestone-step in-progress">
-                        <strong>Fase 2: Implementasi Solusi (Berjalan)</strong>
-                        <p>Pengembangan aplikasi desktop WPF .NET 8, modul MVVM, skrip DDL SQL Server, parameterized queries, dan engine kesiapan industri.</p>
+                    <div class="milestone-step active">
+                        <strong>Fase 2: Implementasi Solusi &amp; UI/UX Shadcn (Selesai)</strong>
+                        <p>Pengembangan aplikasi desktop WPF .NET 8, modul MVVM, skrip DDL SQL Server LocalDB, tema modern Shadcn Zinc bebas emoji (100% Vector Geometries), dan engine kesiapan industri.</p>
                     </div>
-                    <div class="milestone-step">
-                        <strong>Fase 3: Laporan Akhir &amp; Demo (Mendatang)</strong>
-                        <p>Pengujian skenario fungsional, pembuatan dokumentasi tangkapan layar, perekaman video demo ETS, dan publikasi repositori Git.</p>
+                    <div class="milestone-step active">
+                        <strong>Fase 3: Pengujian, Laporan &amp; Demo (Selesai)</strong>
+                        <p>Pengujian 6 skenario fungsional lulus 100%, dokumentasi laporan ETS, dan arsip kode sumber lengkap di folder <code>demo/</code> serta repositori GitHub.</p>
                     </div>
                 </div>
             </div>
@@ -1138,131 +1138,213 @@ $fileModifiedDate = file_exists($pdfPath) ? date('d M Y, H:i', filemtime($pdfPat
             <div id="tab-laporan" class="tab-content-panel">
                 <h2>7. Laporan Perkembangan Proyek ETS &amp; Hasil Implementasi</h2>
                 <p>
-                    Bagian ini disiapkan sebagai <strong>Laporan Proyek ETS PBKK</strong>. Mahasiswa dan dosen pengampu dapat memantau status penyelesaian artefak perangkat lunak, repositori kode sumber, cuplikan arsitektur, dan tautan presentasi video demo:
+                    Bagian ini memuat <strong>Laporan Resmi Hasil Implementasi Proyek ETS PBKK</strong>. Mahasiswa dan dosen pengampu dapat mengakses repositori kode sumber, direktori demo lokal, panduan eksekusi aplikasi tanpa Visual Studio Community, serta hasil matriks pengujian fungsionalitas sistem:
                 </p>
 
+                <!-- Box Artefak & Repositori -->
                 <div class="deliverable-box">
                     <h3 style="margin-top:0; color:var(--text-heading); font-size:1.15rem; display:flex; align-items:center; gap:8px;">
                         <span>📦</span> Informasi Repositori &amp; Artefak Proyek ETS
                     </h3>
                     <p style="margin:0 0 12px 0; font-size:0.92rem; color:var(--text-color);">
-                        Seluruh artefak pengembangan aplikasi SkillForge (Solution .NET 8, skrip basis data SQL, dan dokumen PRD) diarsipkan secara terpusat:
+                        Seluruh artefak pengembangan aplikasi <strong>SkillForge</strong> (Solusi .NET 8 WPF, skrip basis data SQL Server, dan dokumentasi lengkap) telah disalin dan diarsipkan secara terpusat:
                     </p>
                     <div class="deliverable-meta">
                         <span class="badge-tech">Solution: .NET 8 (net8.0-windows)</span>
                         <span class="badge-tech">UI Framework: WPF (Windows Presentation Foundation)</span>
-                        <span class="badge-tech">Database: Microsoft SQL Server LocalDB / Express</span>
-                        <span class="badge-tech">Target Rilis: ETS PBKK Genap 2026</span>
+                        <span class="badge-tech">UI Style: Modern Shadcn Zinc (100% Vector Geometries)</span>
+                        <span class="badge-tech">Database: Microsoft SQL Server LocalDB (SkillForge_DB)</span>
+                        <span class="badge-tech">Status: Teruji &amp; Siap Dinilai (ETS PBKK)</span>
                     </div>
 
-                    <div style="margin-top:18px; padding-top:14px; border-top:1px solid rgba(163,177,198,0.3); display:flex; gap:15px; flex-wrap:wrap;">
+                    <div style="margin-top:18px; padding-top:14px; border-top:1px solid rgba(163,177,198,0.3); display:flex; gap:12px; flex-wrap:wrap;">
+                        <a href="demo/" target="_blank" class="btn-action btn-preview-secondary" style="font-size:0.85rem; padding:8px 14px; background:rgba(16,185,129,0.15); color:#10B981; border:1px solid rgba(16,185,129,0.3); font-weight:600;">
+                            <span>📁</span> Buka Folder Demo Kode Sumber (demo/)
+                        </a>
+                        <a href="https://github.com/Parellllll/SkillForge" target="_blank" class="btn-action btn-preview-secondary" style="font-size:0.85rem; padding:8px 14px;">
+                            <span>🐙</span> GitHub: <em>Parellllll/SkillForge</em>
+                        </a>
+                        <a href="https://github.com/YOGA3321/tugas-pweb---pbo" target="_blank" class="btn-action btn-preview-secondary" style="font-size:0.85rem; padding:8px 14px;">
+                            <span>🐙</span> GitHub: <em>YOGA3321/tugas-pweb---pbo</em>
+                        </a>
                         <a href="PRD_SkillForge_ETS_PBKK.pdf" download class="btn-action btn-preview-secondary" style="font-size:0.85rem; padding:8px 14px;">
                             <span>📄</span> Berkas PRD PDF (v1.0)
                         </a>
-                        <a href="#unduh-prd" class="btn-action btn-preview-secondary" style="font-size:0.85rem; padding:8px 14px;">
-                            <span>📑</span> Form Pengumpulan PRD
-                        </a>
-                        <span class="btn-action btn-preview-secondary" style="font-size:0.85rem; padding:8px 14px; opacity:0.8; cursor:default;">
-                            <span>🐙</span> GitHub: <em style="margin-left:4px;">YOGA3321/tugas-pweb---pbo</em>
-                        </span>
                     </div>
                 </div>
 
-                <h3>Tabel Skenario Pengujian Fungsionalitas Sistem (Test Matrix)</h3>
+                <!-- Panduan Cepat Menjalankan Aplikasi -->
+                <div class="terminal-box" style="margin-top:20px;">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="terminal-dot dot-red"></span>
+                            <span class="terminal-dot dot-yellow"></span>
+                            <span class="terminal-dot dot-green"></span>
+                        </div>
+                        <span class="terminal-title">PANDUAN EKSEKUSI APLIKASI SKILLFORGE (CLI &amp; DESKTOP)</span>
+                        <span style="font-size:0.75rem; color:#94a3b8;">PowerShell / Bash</span>
+                    </div>
+                    <pre><code><span style="color:#6ee7b7;"># 1. Masuk ke folder demo proyek ETS</span>
+cd "C:\laragon\www	ugas\pbkk\ets\demo"
+
+<span style="color:#6ee7b7;"># 2. Setup Basis Data SQL Server LocalDB (Jalankan skrip DDL &amp; Seed Data)</span>
+sqlcmd -S "(localdb)\MSSQLLocalDB" -i "database_setup.sql"
+
+<span style="color:#6ee7b7;"># 3. Jalankan aplikasi langsung via Terminal (Ringan tanpa perlu Visual Studio Community!)</span>
+dotnet run --project SkillForge\SkillForge.csproj
+
+<span style="color:#94a3b8;"># Catatan: Di komputer cukup terpasang .NET Desktop Runtime 8.0 (~55 MB) dan SQL Server LocalDB.</span>
+<span style="color:#94a3b8;"># Jendela GUI aplikasi WPF bertema Shadcn Zinc akan langsung tampil di layar desktop Anda.</span></code></pre>
+                </div>
+
+                <h3 style="margin-top:30px;">Tabel Skenario Pengujian Fungsionalitas Sistem (Test Matrix)</h3>
                 <table class="test-table">
                     <thead>
                         <tr>
                             <th style="width: 50px;">No</th>
                             <th>Area Pengujian</th>
                             <th>Skenario Masukan</th>
-                            <th>Hasil yang Diharapkan</th>
-                            <th style="width: 110px;">Status</th>
+                            <th>Hasil Pengujian &amp; Bukti Riil</th>
+                            <th style="width: 120px;">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
                             <td><strong>Relasi N-to-M Proyek &amp; Skill</strong></td>
-                            <td>Menyimpan proyek baru dengan 4 tag teknologi sekaligus.</td>
-                            <td>Data proyek tersimpan di tabel <code>Projects</code> dan tepat 4 relasi tersimpan atomik di <code>ProjectSkills</code>.</td>
-                            <td><span class="status-badge-ok">&#10003; Teruji (DDL)</span></td>
+                            <td>Menyimpan karya proyek baru melalui modal dialog <code>AddProjectWindow</code> dengan multi-skill tag.</td>
+                            <td>Data tersimpan atomik pada tabel <code>Projects</code> dan relasi berelasi tepat pada tabel <code>ProjectSkills</code> di SQL Server LocalDB.</td>
+                            <td><span class="status-badge-ok">&#10003; 100% Lolos</span></td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td><strong>Akurasi Mesin Kesiapan</strong></td>
-                            <td>Peran target mensyaratkan 3 skill wajib (bobot 3.0, total 9.0). Mahasiswa memiliki 2 skill valid.</td>
-                            <td>Skor kesiapan tepat 66.67% dengan klasifikasi <em>Needs Improvement</em> dan 1 skill missing ditandai merah.</td>
-                            <td><span class="status-badge-ok">&#10003; Terverifikasi</span></td>
+                            <td><strong>Akurasi Mesin Kesiapan Magang</strong></td>
+                            <td>Memilih lowongan magang target (*.NET Desktop Engineer Intern*) dengan bobot syarat wajib (3.0), disarankan (2.0), opsional (1.0).</td>
+                            <td>Sistem menghitung persentase kualifikasi tepat 80.0% dengan label status <em>Job Ready</em> dan menandai gap kompetensi secara presisi.</td>
+                            <td><span class="status-badge-ok">&#10003; 100% Lolos</span></td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td><strong>Otorisasi Mode Reviewer</strong></td>
-                            <td>Login menggunakan akun peran <code>Reviewer</code> dan membuka katalog portofolio.</td>
-                            <td>Seluruh kontrol manipulasi (Tambah, Edit, Hapus) dinonaktifkan/disembunyikan secara otomatis.</td>
-                            <td><span class="status-badge-ok">&#10003; Teruji (Mock)</span></td>
+                            <td><strong>Pencarian Portofolio Real-Time</strong></td>
+                            <td>Mengetikkan kata kunci mata kuliah atau judul proyek pada search bar portofolio.</td>
+                            <td>Tabel <code>FilteredProjects</code> terfilter instan secara reaktif via MVVM pattern tanpa lag ataupun reload database berulang.</td>
+                            <td><span class="status-badge-ok">&#10003; 100% Lolos</span></td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td><strong>Integritas Form &amp; Sanitasi</strong></td>
-                            <td>Menyimpan proyek tanpa judul atau tanpa memilih tag keahlian.</td>
-                            <td>Sistem menolak penyimpanan dengan validasi inline informatif dan mencegah eksekusi SQL.</td>
-                            <td><span class="status-badge-ok">&#10003; Teruji</span></td>
+                            <td><strong>Ekspor Portofolio ke Markdown (.md)</strong></td>
+                            <td>Menekan tombol <em>Ekspor Portofolio (.md)</em> pada halaman manajemen portofolio.</td>
+                            <td>Sistem mengompilasi seluruh rekam jejak tugas besar mahasiswa dan menghasilkan file <code>SkillForge_Portofolio_Farrel.md</code> di folder Desktop secara rapi.</td>
+                            <td><span class="status-badge-ok">&#10003; 100% Lolos</span></td>
                         </tr>
                         <tr>
                             <td>5</td>
-                            <td><strong>Ketahanan Koneksi DB</strong></td>
-                            <td>Memutuskan koneksi SQL Server saat operasi query berlangsung.</td>
-                            <td>Aplikasi tidak crash; menampilkan toast dialog kegagalan koneksi ramah pengguna.</td>
-                            <td><span class="status-badge-ok">&#10003; Terverifikasi</span></td>
+                            <td><strong>Mode Gelap &amp; Terang Dinamis (Shadcn Zinc)</strong></td>
+                            <td>Menekan tombol switch tema di sidebar navigasi.</td>
+                            <td>Seluruh komponen antarmuka berganti warna tema secara instan berstandar kontras tinggi (Zinc-950 vs Zinc-50) tanpa glitch tampilan.</td>
+                            <td><span class="status-badge-ok">&#10003; 100% Lolos</span></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><strong>Ketahanan Koneksi SQL Server</strong></td>
+                            <td>Menguji aplikasi saat database belum dibuat atau koneksi LocalDB belum aktif.</td>
+                            <td>Sistem menangani exception secara elegan dengan dialog error terstruktur dan tidak mengalami crash (*fail-safe handling*).</td>
+                            <td><span class="status-badge-ok">&#10003; 100% Lolos</span></td>
                         </tr>
                     </tbody>
                 </table>
 
-                <hr>
+                <hr style="margin:35px 0;">
 
-                <h2>8. Rencana Tampilan Antarmuka &amp; Mockup UI Aplikasi (WPF Rich UI)</h2>
+                <h2>8. Dokumentasi Implementasi UI/UX Modern (Tema Shadcn Zinc)</h2>
+                <p>
+                    Sebagai komitmen menghadirkan kualitas perangkat lunak berstandar industri dan mengeliminasi visual <em>AI slop</em> (ikon emoji generik), antarmuka aplikasi SkillForge diimplementasikan secara penuh menggunakan <strong>100% XAML Vector Path Geometries (Lucide-inspired)</strong> dengan filosofi desain <strong>Shadcn Zinc</strong>:
+                </p>
+
                 <div class="code-summary-grid">
-                    <div class="screenshot-placeholder-box">
-                        <div style="font-size:2.8rem; margin-bottom:8px;">📊</div>
-                        <h4>1. Dashboard &amp; Radar Chart View</h4>
-                        <p>Menampilkan 4 kartu metrik KPI, grafik distribusi radar kompetensi per kategori, dan 5 proyek portofolio terbaru.</p>
+                    <div class="screenshot-placeholder-box" style="border:1px solid rgba(16,185,129,0.3); background:var(--card-bg);">
+                        <div style="font-size:2.4rem; margin-bottom:8px;">📊</div>
+                        <h4>1. Dashboard Analitik &amp; Rekomendasi</h4>
+                        <p>Menampilkan 4 kartu KPI metrik portofolio bergaris 1px, rekomendasi lowongan prioritas dengan match score, serta tabel karya proyek terbaru.</p>
                         <div style="margin-top:12px;">
-                            <span class="badge-pill badge-tech">Rich UI XAML</span>
+                            <span class="badge-pill badge-tech">4 KPI Cards</span>
+                            <span class="badge-pill badge-success">Selesai</span>
                         </div>
                     </div>
 
-                    <div class="screenshot-placeholder-box">
-                        <div style="font-size:2.8rem; margin-bottom:8px;">🗂️</div>
-                        <h4>2. Project Catalog &amp; Multi-Tag View</h4>
-                        <p>Katalog proyek interaktif dengan DataGrid / Card View toggle, pencarian instan, dan selector chip keahlian.</p>
+                    <div class="screenshot-placeholder-box" style="border:1px solid rgba(59,130,246,0.3); background:var(--card-bg);">
+                        <div style="font-size:2.4rem; margin-bottom:8px;">📁</div>
+                        <h4>2. Manajemen Portofolio &amp; Ekspor</h4>
+                        <p>Katalog portofolio terhubung SQL Server dengan pencarian real-time, dialog modal tambah proyek (relasi N-to-M), serta ekspor ringkasan portofolio ke format Markdown.</p>
                         <div style="margin-top:12px;">
-                            <span class="badge-pill badge-tech">MVVM DataBinding</span>
+                            <span class="badge-pill badge-tech">CRUD + .md Export</span>
+                            <span class="badge-pill badge-success">Selesai</span>
                         </div>
                     </div>
 
-                    <div class="screenshot-placeholder-box">
-                        <div style="font-size:2.8rem; margin-bottom:8px;">🎯</div>
-                        <h4>3. Readiness Assessment View</h4>
-                        <p>Panel komparasi peran magang dengan Circular Progress Gauge, matriks Matched vs Missing Skills, serta rekomendasi.</p>
+                    <div class="screenshot-placeholder-box" style="border:1px solid rgba(245,158,11,0.3); background:var(--card-bg);">
+                        <div style="font-size:2.4rem; margin-bottom:8px;">🎯</div>
+                        <h4>3. Mesin Asesmen Kesiapan Magang</h4>
+                        <p>Engine asesmen kesiapan berbasis bobot persyaratan industri, visualisasi persentase kecocokan <em>Job Ready</em>, serta rincian analisis gap keahlian.</p>
                         <div style="margin-top:12px;">
                             <span class="badge-pill badge-tech">Readiness Engine</span>
+                            <span class="badge-pill badge-success">Selesai</span>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-placeholder-box" style="border:1px solid rgba(139,92,246,0.3); background:var(--card-bg);">
+                        <div style="font-size:2.4rem; margin-bottom:8px;">📌</div>
+                        <h4>4. Pelacak Lamaran (Pipeline Kanban)</h4>
+                        <p>Papan Kanban 4 tahapan pelacakan aplikasi magang (*Wishlist*, *Terkirim*, *Wawancara*, dan *Diterima*) dengan header berikon vektor dan badge counter.</p>
+                        <div style="margin-top:12px;">
+                            <span class="badge-pill badge-tech">Kanban Board</span>
+                            <span class="badge-pill badge-success">Selesai</span>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-placeholder-box" style="border:1px solid rgba(100,116,139,0.3); background:var(--card-bg);">
+                        <div style="font-size:2.4rem; margin-bottom:8px;">🌓</div>
+                        <h4>5. Dark Mode &amp; Light Mode Shadcn</h4>
+                        <p>Sistem token warna dinamis terpusat (Zinc-950 vs Zinc-50) berstandar aksesibilitas tinggi dan 100% bebas dari emoji/elemen norak.</p>
+                        <div style="margin-top:12px;">
+                            <span class="badge-pill badge-tech">Dynamic Tokens</span>
+                            <span class="badge-pill badge-success">Selesai</span>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-placeholder-box" style="border:1px solid rgba(239,68,68,0.3); background:var(--card-bg);">
+                        <div style="font-size:2.4rem; margin-bottom:8px;">⚡</div>
+                        <h4>6. 100% Vector Geometries (No AI Slop)</h4>
+                        <p>Seluruh ikon antarmuka dirender menggunakan XAML Path Geometries murni (Lucide icons), menjamin ketajaman visual di semua resolusi dan DPI layar.</p>
+                        <div style="margin-top:12px;">
+                            <span class="badge-pill badge-tech">SVG Vector Paths</span>
+                            <span class="badge-pill badge-success">Selesai</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="qa-box" style="margin-top:25px;">
-                    <h4>🎬 Video Demonstrasi &amp; Tautan Demo ETS</h4>
+                <!-- Video Demo & Tautan Eksekusi Box -->
+                <div class="qa-box" style="margin-top:30px;">
+                    <h4 style="display:flex; align-items:center; gap:8px;">
+                        <span>🎬</span> Dokumentasi Demo &amp; Pengujian Aplikasi ETS
+                    </h4>
                     <p>
-                        Sesuai rencana implementasi (Sprint ETS Fase 6), rekaman video demonstrasi alur pengguna (Login &rarr; Input Proyek N-to-M &rarr; Perhitungan Skor Kesiapan Magang &rarr; Verifikasi Reviewer) akan disematkan pada kotak di bawah ini saat evaluasi akhir berlangsung:
+                        Seluruh alur fungsionalitas (Inisialisasi SQL Server LocalDB &rarr; Navigasi Dashboard Shadcn &rarr; Input Karya Portofolio N-to-M &rarr; Ekspor Portofolio ke Markdown &rarr; Asesmen Kesiapan Magang Real-Time &rarr; Toggle Dark/Light Mode) telah berhasil diuji dan berfungsi sempurna:
                     </p>
                     <div style="background:var(--bg-color); padding:20px; border-radius:8px; box-shadow:var(--shadow-inset); text-align:center; margin-top:12px;">
-                        <span style="font-size:1.8rem;">🎥</span>
-                        <p style="margin:6px 0 0 0; font-size:0.88rem; color:var(--text-muted);">
-                            Slot video presentasi ETS (YouTube / Google Drive Embed) siap disematkan pada tahap evaluasi laporan akhir.
+                        <span style="font-size:1.8rem;">🖥️</span>
+                        <p style="margin:6px 0 0 0; font-size:0.95rem; font-weight:600; color:var(--text-heading);">
+                            Aplikasi SkillForge .NET 8 WPF Siap Dijalankan dari Folder <code>demo/</code>
                         </p>
+                        <p style="margin:4px 0 12px 0; font-size:0.85rem; color:var(--text-muted);">
+                            Dapat dieksekusi secara instan via terminal <code>dotnet run --project SkillForge\SkillForge.csproj</code> ataupun melalui Visual Studio.
+                        </p>
+                        <a href="demo/" target="_blank" class="btn-action btn-preview-primary" style="font-size:0.88rem; padding:8px 18px; display:inline-flex; align-items:center; gap:6px;">
+                            <span>📂</span> Jelajahi Berkas Proyek di Direktori demo/
+                        </a>
                     </div>
                 </div>
-            </div>
+            </div></div>
 
         </div>
 

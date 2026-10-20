@@ -1,0 +1,221 @@
+<Window x:Class="SkillForge.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:SkillForge.ViewModels"
+        xmlns:views="clr-namespace:SkillForge.Views"
+        mc:Ignorable="d"
+        Title="SkillForge - Sistem Informasi Magang &amp; Asesmen Kesiapan Portofolio" 
+        Height="780" Width="1280" MinHeight="700" MinWidth="1100"
+        WindowStartupLocation="CenterScreen" 
+        Background="{DynamicResource AppBgBrush}">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+            <views:DashboardView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProjectsViewModel}">
+            <views:ProjectsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ReadinessViewModel}">
+            <views:ReadinessView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PipelineViewModel}">
+            <views:PipelineView/>
+        </DataTemplate>
+
+        <!-- Sidebar Navigation Item Style -->
+        <Style x:Key="SidebarNavItemStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource SidebarTextSecondaryBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{DynamicResource SidebarActiveBrush}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource SidebarTextPrimaryBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ============================================================== -->
+        <!-- MODERN SHADCN SIDEBAR                                          -->
+        <!-- ============================================================== -->
+        <Border Grid.Column="0" Background="{DynamicResource SidebarBgBrush}" 
+                BorderBrush="{DynamicResource SidebarBorderBrush}" BorderThickness="0,0,1,0">
+            <DockPanel Margin="16,20">
+                <!-- Header Brand Logo -->
+                <StackPanel DockPanel.Dock="Top" Margin="0,0,0,24">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Background="{DynamicResource PrimaryBtnBgBrush}" Width="34" Height="34" CornerRadius="8" Margin="0,0,12,0">
+                            <Path Data="{StaticResource GeomSparkles}" 
+                                  Stroke="{DynamicResource PrimaryBtnFgBrush}" 
+                                  StrokeThickness="1.5"
+                                  Width="18" Height="18" 
+                                  Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="SkillForge" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource SidebarTextPrimaryBrush}"/>
+                            <TextBlock Text="Portfolio &amp; Career Hub" FontSize="11" Foreground="{DynamicResource SidebarTextSecondaryBrush}" Margin="0,1,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <!-- Subtle 1px Divider -->
+                    <Border Height="1" Background="{DynamicResource BorderBrushColor}" Margin="0,18,0,0"/>
+                </StackPanel>
+
+                <!-- Footer User Profile & Theme Switcher -->
+                <StackPanel DockPanel.Dock="Bottom">
+                    <Border Height="1" Background="{DynamicResource BorderBrushColor}" Margin="0,0,0,16"/>
+
+                    <!-- Tombol Ganti Tema (Dark / Light Mode) -->
+                    <Button Command="{Binding ToggleThemeCommand}"
+                            Style="{StaticResource ShadcnOutlineButtonStyle}"
+                            Height="38" Margin="0,0,0,12" HorizontalContentAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource GeomMoon}" 
+                                  Stroke="{DynamicResource TextPrimaryBrush}" 
+                                  StrokeThickness="1.5" 
+                                  Width="14" Height="14" 
+                                  Stretch="Uniform" 
+                                  Margin="0,0,8,0"
+                                  VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding ThemeButtonText}" FontSize="12" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Profile Card -->
+                    <Border Background="{DynamicResource InnerCardBgBrush}" 
+                            BorderBrush="{DynamicResource BorderBrushColor}" 
+                            BorderThickness="1" 
+                            CornerRadius="8" 
+                            Padding="12">
+                        <DockPanel>
+                            <Border Width="34" Height="34" CornerRadius="17" 
+                                    Background="{DynamicResource PrimaryBtnBgBrush}" 
+                                    Margin="0,0,10,0" DockPanel.Dock="Left">
+                                <TextBlock Text="FP" Foreground="{DynamicResource PrimaryBtnFgBrush}" 
+                                           FontWeight="Bold" FontSize="12" 
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Farrel Prastita R." Foreground="{DynamicResource SidebarTextPrimaryBrush}" FontWeight="SemiBold" FontSize="12"/>
+                                <TextBlock Text="NRP: 5025241219" Foreground="{DynamicResource SidebarTextSecondaryBrush}" FontSize="10"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                                    <Border Width="6" Height="6" CornerRadius="3" Background="#10B981" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Mahasiswa Aktif" Foreground="#10B981" FontSize="10" FontWeight="Medium"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DockPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Navigation Menu Items -->
+                <StackPanel DockPanel.Dock="Top">
+                    <TextBlock Text="NAVIGASI UTAMA" FontSize="11" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MutedForegroundBrush}" Margin="8,0,0,10"/>
+
+                    <!-- Dashboard Button -->
+                    <Button Command="{Binding NavigateCommand}" CommandParameter="Dashboard"
+                            Style="{StaticResource SidebarNavItemStyle}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource GeomDashboard}" 
+                                  Stroke="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                  StrokeThickness="1.5" Width="16" Height="16" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock Text="Dashboard Analitik" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Readiness Button -->
+                    <Button Command="{Binding NavigateCommand}" CommandParameter="Readiness"
+                            Style="{StaticResource SidebarNavItemStyle}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource GeomBriefcase}" 
+                                  Stroke="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                  StrokeThickness="1.5" Width="16" Height="16" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock Text="Lowongan &amp; Kesiapan" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Projects Button -->
+                    <Button Command="{Binding NavigateCommand}" CommandParameter="Projects"
+                            Style="{StaticResource SidebarNavItemStyle}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource GeomFolder}" 
+                                  Stroke="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                  StrokeThickness="1.5" Width="16" Height="16" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock Text="Portofolio Proyek" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Pipeline Button -->
+                    <Button Command="{Binding NavigateCommand}" CommandParameter="Pipeline"
+                            Style="{StaticResource SidebarNavItemStyle}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource GeomKanban}" 
+                                  Stroke="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                  StrokeThickness="1.5" Width="16" Height="16" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock Text="Pelacak Lamaran" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Database Status Card -->
+                    <TextBlock Text="KONEKTIVITAS DATA" FontSize="11" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MutedForegroundBrush}" Margin="8,24,0,10"/>
+
+                    <Border Background="{DynamicResource InnerCardBgBrush}" 
+                            BorderBrush="{DynamicResource BorderBrushColor}" 
+                            BorderThickness="1" CornerRadius="8" Padding="12,10">
+                        <StackPanel>
+                            <TextBlock Text="Status SQL Server" FontSize="11" Foreground="{DynamicResource SidebarTextSecondaryBrush}"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,4,0,0" VerticalAlignment="Center">
+                                <Path Data="{StaticResource GeomCheckCircle}" 
+                                      Stroke="{DynamicResource BadgeSuccessFgBrush}" 
+                                      StrokeThickness="1.8" Width="13" Height="13" Stretch="Uniform" 
+                                      Margin="0,0,6,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="Terhubung (SkillForge_DB)" FontSize="11" FontWeight="SemiBold" 
+                                           Foreground="{DynamicResource BadgeSuccessFgBrush}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <!-- ============================================================== -->
+        <!-- MAIN CONTENT AREA                                              -->
+        <!-- ============================================================== -->
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}"/>
+    </Grid>
+</Window>

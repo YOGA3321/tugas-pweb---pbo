@@ -1,0 +1,206 @@
+<UserControl x:Class="SkillForge.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="960"
+             Background="{DynamicResource AppBgBrush}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="28">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="{DynamicResource CardBgBrush}" 
+                    BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1" 
+                    CornerRadius="8" Padding="24" Margin="0,0,0,24">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <Border Background="{DynamicResource BadgeNeutralBgBrush}" 
+                                BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1"
+                                CornerRadius="4" Padding="8,4" HorizontalAlignment="Left" Margin="0,0,0,10">
+                            <TextBlock Text="PORTAL ASESMEN MAGANG &amp; PORTOFOLIO" 
+                                       Foreground="{DynamicResource TextSecondaryBrush}" FontSize="10" FontWeight="Bold"/>
+                        </Border>
+                        <TextBlock Text="Selamat Datang Kembali, Farrel Prastita" 
+                                   FontSize="22" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                        <TextBlock Text="Portofolio karya proyek Anda terhubung secara langsung dengan sistem kualifikasi mitra industri." 
+                                   FontSize="13" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,6,0,0"/>
+                    </StackPanel>
+
+                    <Border Grid.Column="1" VerticalAlignment="Center" 
+                            Background="{DynamicResource InnerCardBgBrush}" 
+                            BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1"
+                            CornerRadius="8" Padding="14,10">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource GeomSparkles}" 
+                                  Stroke="{DynamicResource TextPrimaryBrush}" StrokeThickness="1.5"
+                                  Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Semester Aktif 2026/2027" FontSize="11" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource TextPrimaryBrush}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,24">
+                <!-- KPI 1 -->
+                <Border Background="{DynamicResource CardBgBrush}" CornerRadius="8" Padding="18" Margin="0,0,8,0" 
+                        BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1">
+                    <StackPanel>
+                        <DockPanel Margin="0,0,0,8">
+                            <TextBlock Text="Lowongan Aktif" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="12" FontWeight="Medium"/>
+                            <Path Data="{StaticResource GeomBriefcase}" Stroke="{DynamicResource TextSecondaryBrush}" 
+                                  StrokeThickness="1.5" Width="14" Height="14" Stretch="Uniform" DockPanel.Dock="Right"/>
+                        </DockPanel>
+                        <TextBlock Text="12 Posisi" Foreground="{DynamicResource TextPrimaryBrush}" FontSize="24" FontWeight="Bold"/>
+                        <TextBlock Text="Mitra ITS &amp; Industri" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- KPI 2 -->
+                <Border Background="{DynamicResource CardBgBrush}" CornerRadius="8" Padding="18" Margin="4,0,4,0" 
+                        BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1">
+                    <StackPanel>
+                        <DockPanel Margin="0,0,0,8">
+                            <TextBlock Text="Proyek Portofolio" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="12" FontWeight="Medium"/>
+                            <Path Data="{StaticResource GeomFolder}" Stroke="{DynamicResource TextSecondaryBrush}" 
+                                  StrokeThickness="1.5" Width="14" Height="14" Stretch="Uniform" DockPanel.Dock="Right"/>
+                        </DockPanel>
+                        <TextBlock Text="{Binding TotalProjects}" Foreground="{DynamicResource TextPrimaryBrush}" FontSize="24" FontWeight="Bold"/>
+                        <TextBlock Text="Terverifikasi di Database" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- KPI 3 -->
+                <Border Background="{DynamicResource CardBgBrush}" CornerRadius="8" Padding="18" Margin="4,0,4,0" 
+                        BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1">
+                    <StackPanel>
+                        <DockPanel Margin="0,0,0,8">
+                            <TextBlock Text="Teknologi Terbukti" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="12" FontWeight="Medium"/>
+                            <Path Data="{StaticResource GeomSparkles}" Stroke="{DynamicResource TextSecondaryBrush}" 
+                                  StrokeThickness="1.5" Width="14" Height="14" Stretch="Uniform" DockPanel.Dock="Right"/>
+                        </DockPanel>
+                        <TextBlock Text="{Binding TotalSkills}" Foreground="{DynamicResource TextPrimaryBrush}" FontSize="24" FontWeight="Bold"/>
+                        <TextBlock Text="C#, WPF, SQL Server, Git" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- KPI 4 -->
+                <Border Background="{DynamicResource CardBgBrush}" CornerRadius="8" Padding="18" Margin="8,0,0,0" 
+                        BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1">
+                    <StackPanel>
+                        <DockPanel Margin="0,0,0,8">
+                            <TextBlock Text="Kesiapan Tertinggi" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="12" FontWeight="Medium"/>
+                            <Path Data="{StaticResource GeomCheckCircle}" Stroke="{DynamicResource BadgeSuccessFgBrush}" 
+                                  StrokeThickness="1.5" Width="14" Height="14" Stretch="Uniform" DockPanel.Dock="Right"/>
+                        </DockPanel>
+                        <TextBlock Text="{Binding TopReadinessScore, StringFormat={}{0}%}" 
+                                   Foreground="{DynamicResource BadgeSuccessFgBrush}" FontSize="24" FontWeight="Bold"/>
+                        <TextBlock Text=".NET Software Engineer" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <Border Grid.Row="2" Background="{DynamicResource CardBgBrush}" CornerRadius="8" 
+                    Padding="20" Margin="0,0,0,24" BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1">
+                <StackPanel>
+                    <DockPanel Margin="0,0,0,14">
+                        <TextBlock Text="Rekomendasi Magang Prioritas" FontSize="15" FontWeight="SemiBold" 
+                                   Foreground="{DynamicResource TextPrimaryBrush}"/>
+                        <TextBlock Text="Kecocokan Tertinggi Berdasarkan Portofolio" 
+                                   Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" 
+                                   DockPanel.Dock="Right" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <Border Background="{DynamicResource InnerCardBgBrush}" CornerRadius="6" 
+                            Padding="16" BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1">
+                        <DockPanel>
+                            <Border Width="40" Height="40" CornerRadius="6" 
+                                    Background="{DynamicResource CardBgBrush}" 
+                                    BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1"
+                                    Margin="0,0,14,0" DockPanel.Dock="Left">
+                                <Path Data="{StaticResource GeomBuilding}" Stroke="{DynamicResource TextPrimaryBrush}" 
+                                      StrokeThickness="1.5" Width="18" Height="18" Stretch="Uniform" 
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+
+                            <StackPanel DockPanel.Dock="Left" VerticalAlignment="Center">
+                                <TextBlock Text=".NET Desktop Software Engineer Intern" FontWeight="SemiBold" FontSize="13" 
+                                           Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                <TextBlock Text="PT Inovasi Teknologi Nusantara • Surabaya (Hybrid) • Kuota: 3 Orang" 
+                                           Foreground="{DynamicResource TextSecondaryBrush}" FontSize="11" Margin="0,3,0,0"/>
+                            </StackPanel>
+
+                            <Border DockPanel.Dock="Right" Background="{DynamicResource BadgeSuccessBgBrush}" 
+                                    BorderBrush="{DynamicResource BadgeSuccessFgBrush}" BorderThickness="1"
+                                    CornerRadius="20" Padding="12,4" VerticalAlignment="Center">
+                                <TextBlock Text="Match 80% • Job Ready" FontWeight="SemiBold" 
+                                           Foreground="{DynamicResource BadgeSuccessFgBrush}" FontSize="11"/>
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- ============================================================== -->
+            <!-- TABEL PORTOFOLIO TERBARU                                       -->
+            <!-- ============================================================== -->
+            <Border Grid.Row="3" Background="{DynamicResource CardBgBrush}" CornerRadius="8" 
+                    Padding="20" BorderBrush="{DynamicResource BorderBrushColor}" BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Karya Portofolio Terbaru" FontSize="15" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,14"/>
+
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding RecentProjects}" AutoGenerateColumns="False" 
+                              IsReadOnly="True" GridLinesVisibility="Horizontal" HeadersVisibility="Column"
+                              HorizontalGridLinesBrush="{DynamicResource BorderBrushColor}" 
+                              Background="Transparent" BorderThickness="0"
+                              RowBackground="Transparent" AlternatingRowBackground="Transparent">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{DynamicResource InnerCardBgBrush}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}"/>
+                                <Setter Property="FontSize" Value="11"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="Padding" Value="10,8"/>
+                                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                <Setter Property="BorderBrush" Value="{DynamicResource BorderBrushColor}"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+                                <Setter Property="FontSize" Value="12"/>
+                                <Setter Property="Height" Value="38"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource InnerCardBgBrush}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Judul Karya Proyek" Binding="{Binding Title}" Width="2*" FontWeight="Medium"/>
+                            <DataGridTextColumn Header="Mata Kuliah / Asal" Binding="{Binding CourseName}" Width="1.5*"/>
+                            <DataGridTextColumn Header="Kompleksitas" Binding="{Binding DifficultyDisplay}" Width="120"/>
+                            <DataGridTextColumn Header="Repositori GitHub" Binding="{Binding RepoUrl}" Width="2*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
