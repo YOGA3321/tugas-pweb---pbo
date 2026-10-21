@@ -619,7 +619,7 @@ $fileModifiedDate = file_exists($pdfPath) ? date('d M Y, H:i', filemtime($pdfPat
                     </div>
                     <div class="milestone-step active">
                         <strong>Fase 3: Pengujian, Laporan &amp; Demo (Selesai)</strong>
-                        <p>Pengujian 6 skenario fungsional lulus 100%, dokumentasi laporan ETS, dan arsip kode sumber lengkap di folder <code>demo/</code> serta repositori GitHub.</p>
+                        <p>Pengujian 6 skenario fungsional lulus 100%, jawaban 3 butir soal ETS, publikasi poster infografis 1 halaman, dan arsip kode sumber lengkap di folder <code>demo/</code>.</p>
                     </div>
                 </div>
             </div>
@@ -692,7 +692,7 @@ $fileModifiedDate = file_exists($pdfPath) ? date('d M Y, H:i', filemtime($pdfPat
                     <span>🧮</span> 3. Simulasi Readiness Engine
                 </button>
                 <button type="button" class="tab-btn" onclick="switchTab('tab-laporan', this)">
-                    <span>📊</span> 4. Laporan Proyek &amp; Artefak ETS
+                    <span>📊</span> 4. Laporan, Jawaban ETS &amp; Poster Infografis
                 </button>
                 <button type="button" class="tab-btn" onclick="showAllTabs(this)">
                     <span>📜</span> Tampilkan Semua Bagian
@@ -1256,7 +1256,113 @@ dotnet run --project SkillForge\SkillForge.csproj
 
                 <hr style="margin:35px 0;">
 
-                <h2>8. Dokumentasi Implementasi UI/UX Modern (Tema Shadcn Zinc)</h2>
+                <h2>8. Jawaban Resmi Soal Penugasan ETS &amp; Poster Infografis Aplikasi</h2>
+                <p>
+                    Bagian ini menyajikan secara eksplisit jawaban atas <strong>3 butir soal penugasan resmi Evaluasi Tengah Semester (ETS) PBKK</strong>, dilengkapi dengan <strong>Poster Infografis 1 Halaman</strong> yang merangkum keseluruhan konsep, arsitektur, dan fitur aplikasi:
+                </p>
+
+                <!-- Box Soal ETS PBKK -->
+                <div class="milestone-card" style="margin:20px 0 25px 0; border-left: 5px solid var(--pbkk-color); background:linear-gradient(135deg, rgba(124, 58, 237, 0.05), rgba(99, 102, 241, 0.03));">
+                    <div class="milestone-header" style="margin-bottom:12px;">
+                        <h3 style="margin:0; font-size:1.1rem; color:var(--text-heading); display:flex; align-items:center; gap:8px;">
+                            <span>📝</span> Butir Soal Penugasan ETS PBKK (Kelas D)
+                        </h3>
+                        <span class="badge-pill badge-tech">3 Butir Penugasan</span>
+                    </div>
+                    <ol style="margin:0; padding-left:22px; font-size:0.92rem; color:var(--text-color); line-height:1.65;">
+                        <li><strong>Soal 1:</strong> Jelaskan deskripsi dan ruang lingkup fitur aplikasi Desktop Rich UI yang dibuat.</li>
+                        <li><strong>Soal 2:</strong> Apa latar belakang dan Manfaat aplikasi tersebut dibuat.</li>
+                        <li><strong>Soal 3:</strong> Buat Poster Infografis aplikasi yang telah dibuat dalam 1 halaman.</li>
+                    </ol>
+                </div>
+
+                <!-- Grid Jawaban Soal 1 & Soal 2 -->
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:20px; margin:25px 0;">
+                    <!-- Card Jawaban Soal 1 -->
+                    <div class="deliverable-box" style="margin:0; border-left: 4px solid #2563eb;">
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                            <span class="badge-pill badge-must" style="font-size:0.75rem;">Jawaban Soal 1</span>
+                            <h4 style="margin:0; font-size:1.05rem; color:var(--text-heading);">Deskripsi &amp; Ruang Lingkup Fitur Desktop Rich UI</h4>
+                        </div>
+                        <p style="font-size:0.88rem; line-height:1.55; color:var(--text-color); margin-bottom:12px;">
+                            <strong>SkillForge</strong> adalah aplikasi desktop <em>Rich UI</em> berbasis <strong>.NET 8 WPF (Windows Presentation Foundation)</strong> yang dirancang dengan pola arsitektur <strong>MVVM murni</strong> (CommunityToolkit.Mvvm) dan terintegrasi secara relasional ke basis data <strong>Microsoft SQL Server</strong>. Aplikasi ini bertindak sebagai hub digital cerdas bagi mahasiswa rumpun informatika untuk menginventarisasi rekam jejak karya perkuliahan serta menguji kesiapannya menghadapi bursa magang industri.
+                        </p>
+                        <strong style="font-size:0.86rem; color:var(--text-heading); display:block; margin-bottom:6px;">Ruang Lingkup Fitur Utama Sistem:</strong>
+                        <ul style="font-size:0.84rem; color:var(--text-color); padding-left:18px; margin:0; line-height:1.6;">
+                            <li><strong>Dashboard Analitik:</strong> Agregasi 4 kartu metrik KPI (Total Proyek, Total Skill Terbukti, Skor Tertinggi, Target Aktif) dan rekomendasi magang prioritas.</li>
+                            <li><strong>Manajemen Portofolio Proyek (CRUD):</strong> Pencatatan karya dengan relasi Many-to-Many ke tag keahlian, pencarian instan reaktif, dan sanitasi form input.</li>
+                            <li><strong>Ekspor Portofolio (.md):</strong> Fitur kompilasi rekam jejak tugas besar mahasiswa langsung menjadi berkas Markdown siap cetak di Desktop.</li>
+                            <li><strong>Mesin Asesmen Kesiapan (Readiness Engine):</strong> Perhitungan skor matematis terukur (0–100%) membandingkan bobot syarat peran industri vs bukti portofolio.</li>
+                            <li><strong>Pelacak Lamaran (Pipeline Kanban):</strong> Papan Kanban 4 tahapan alur lamaran (<em>Wishlist, Terkirim, Wawancara, Diterima</em>).</li>
+                            <li><strong>Desain Modern Shadcn Zinc:</strong> Transisi instan Mode Gelap/Terang (DynamicResource) dengan 100% ikon vektor Path Geometri bebas emoji.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card Jawaban Soal 2 -->
+                    <div class="deliverable-box" style="margin:0; border-left: 4px solid #10b981;">
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                            <span class="badge-pill badge-should" style="font-size:0.75rem;">Jawaban Soal 2</span>
+                            <h4 style="margin:0; font-size:1.05rem; color:var(--text-heading);">Latar Belakang &amp; Manfaat Pembuatan Aplikasi</h4>
+                        </div>
+                        <p style="font-size:0.88rem; line-height:1.55; color:var(--text-color); margin-bottom:12px;">
+                            <strong>Latar Belakang:</strong> Selama masa perkuliahan, mahasiswa teknik informatika menghasilkan banyak artefak proyek tugas besar dan tugas akhir. Namun, karya-karya ini umumnya <em>terfragmentasi</em> di berbagai folder lokal tanpa dokumentasi yang terstruktur. Selain itu, mahasiswa kerap mengalami <em>Skill Gap Blindness</em> saat melamar magang—mereka tidak mengetahui secara pasti apakah portofolio mereka telah memenuhi standar teknis industri. CV konvensional juga minim pembuktian autentik.
+                        </p>
+                        <strong style="font-size:0.86rem; color:var(--text-heading); display:block; margin-bottom:6px;">Manfaat Nyata Aplikasi:</strong>
+                        <ul style="font-size:0.84rem; color:var(--text-color); padding-left:18px; margin:0; line-height:1.6;">
+                            <li><strong>Bagi Mahasiswa:</strong> Memiliki portofolio digital terpusat yang terbukti dengan bukti repositori GitHub, serta mendapatkan evaluasi objektif mengenai kekurangan keahlian (gap skill) sebelum melamar magang.</li>
+                            <li><strong>Bagi Mentor / Reviewer Kampus:</strong> Menyediakan sarana pemantauan kapabilitas mahasiswa secara transparan berbasis bukti riil proyek akademik.</li>
+                            <li><strong>Bagi Mitra Industri:</strong> Mempermudah verifikasi kompetensi kandidat magang secara terukur tanpa sekadar bergantung pada klaim tekstual di resume.</li>
+                            <li><strong>Efisiensi Waktu:</strong> Menghilangkan proses kurasi manual melalui otomasi ekspor portofolio dan pelacak status lamaran magang.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card Jawaban Soal 3: Poster Infografis 1 Halaman -->
+                <div class="deliverable-box" style="margin:25px 0; border-left: 4px solid var(--pbkk-color);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+                        <div>
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                                <span class="badge-pill badge-success" style="font-size:0.75rem;">Jawaban Soal 3</span>
+                                <h3 style="margin:0; color:var(--text-heading); font-size:1.2rem;">
+                                    🎨 Poster Infografis Aplikasi SkillForge (1 Halaman)
+                                </h3>
+                            </div>
+                            <p style="margin:0; font-size:0.88rem; color:var(--text-muted);">
+                                Poster infografis visual beresolusi tinggi (1 Halaman Penuh) yang merangkum latar belakang, arsitektur solusi, alur kerja, dan keunggulan Rich UI SkillForge:
+                            </p>
+                        </div>
+                        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                            <a href="Infografis-SkillForge.png" target="_blank" class="btn-action btn-preview-primary" style="font-size:0.85rem; padding:8px 16px;">
+                                <span>🔍</span> Buka Ukuran Penuh (HD)
+                            </a>
+                            <a href="Infografis-SkillForge.png" download="Infografis-SkillForge.png" class="btn-action btn-preview-secondary" style="font-size:0.85rem; padding:8px 16px;">
+                                <span>📥</span> Unduh Poster PNG (2.0 MB)
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Frame Tampilan Poster Infografis -->
+                    <div style="background:var(--bg-color); border:1.5px solid rgba(124, 58, 237, 0.25); border-radius:12px; padding:18px; box-shadow:var(--shadow-raised-sm); text-align:center;">
+                        <a href="Infografis-SkillForge.png" target="_blank" title="Klik untuk membuka dan memperbesar poster infografis dalam ukuran penuh">
+                            <img src="Infografis-SkillForge.png" alt="Poster Infografis SkillForge - Student Portfolio &amp; Internship Readiness System" 
+                                 style="width:100%; max-width:980px; height:auto; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.15); display:inline-block; transition:transform 0.2s ease; cursor:pointer;"
+                                 onmouseover="this.style.transform='scale(1.008)'" onmouseout="this.style.transform='scale(1)'">
+                        </a>
+                        <div style="margin-top:16px; padding-top:12px; border-top:1px solid rgba(163,177,198,0.3); display:flex; justify-content:center; align-items:center; gap:18px; font-size:0.85rem; color:var(--text-muted); flex-wrap:wrap;">
+                            <span><strong>Nama Berkas:</strong> <code>Infografis-SkillForge.png</code></span>
+                            <span>&bull;</span>
+                            <span><strong>Ukuran File:</strong> ~2.0 MB (High Definition)</span>
+                            <span>&bull;</span>
+                            <span><strong>Format:</strong> 1 Halaman Vertikal</span>
+                            <span>&bull;</span>
+                            <span><strong>Penyusun:</strong> Kelompok 10 (Farrel Prastita Ramadhan &amp; Ageng Prayogo)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="margin:35px 0;">
+
+                <h3>Rincian Implementasi UI/UX Modern (Tema Shadcn Zinc &bull; Zero AI Slop)</h3>
                 <p>
                     Sebagai komitmen menghadirkan kualitas perangkat lunak berstandar industri dan mengeliminasi visual <em>AI slop</em> (ikon emoji generik), antarmuka aplikasi SkillForge diimplementasikan secara penuh menggunakan <strong>100% XAML Vector Path Geometries (Lucide-inspired)</strong> dengan filosofi desain <strong>Shadcn Zinc</strong>:
                 </p>
@@ -1344,7 +1450,7 @@ dotnet run --project SkillForge\SkillForge.csproj
                         </a>
                     </div>
                 </div>
-            </div></div>
+            </div></div></div>
 
         </div>
 

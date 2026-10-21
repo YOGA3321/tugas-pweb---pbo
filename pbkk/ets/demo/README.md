@@ -50,3 +50,9 @@ Buka terminal di folder SkillForge dan jalankan perintah:
 dotnet run --project SkillForge\SkillForge.csproj
 `
 *(Atau buka file solusi SkillForge.slnx di Visual Studio 2022/2026 dan tekan **Ctrl + F5**).*
+
+---
+
+## 🎨 Poster Infografis (1 Halaman)
+Poster infografis resmi proyek SkillForge (ETS PBKK) dapat dilihat pada berkas:
+- **Infografis-SkillForge.png** (Tersedia di root direktori ETS dan direktori demo ini).
