@@ -1362,7 +1362,7 @@ dotnet run --project SkillForge\SkillForge.csproj
 
                 <hr style="margin:35px 0;">
 
-                <h3>Rincian Implementasi UI/UX Modern (Tema Shadcn Zinc &bull; Zero AI Slop)</h3>
+                <h3>Rincian Implementasi UI/UX Modern (Tema Shadcn Zinc)</h3>
                 <p>
                     Sebagai komitmen menghadirkan kualitas perangkat lunak berstandar industri dan mengeliminasi visual <em>AI slop</em> (ikon emoji generik), antarmuka aplikasi SkillForge diimplementasikan secara penuh menggunakan <strong>100% XAML Vector Path Geometries (Lucide-inspired)</strong> dengan filosofi desain <strong>Shadcn Zinc</strong>:
                 </p>
