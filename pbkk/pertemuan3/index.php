@@ -121,6 +121,45 @@
             font-size: 0.9rem;
             color: var(--text-muted);
         }
+        .github-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.04), rgba(124, 58, 237, 0.06));
+            border: 1px solid rgba(124, 58, 237, 0.25);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            margin: 20px 0 25px;
+        }
+        .github-box-info strong {
+            display: block;
+            color: var(--text-heading);
+            font-size: 0.96rem;
+        }
+        .github-box-info span {
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            word-break: break-all;
+        }
+        .btn-github {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: #1e293b;
+            color: #ffffff !important;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .btn-github:hover {
+            background: var(--pbkk-color);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -138,6 +177,14 @@
                 <strong>NRP:</strong> 5025241225 &bull; 
                 <strong>Teknologi:</strong> C# .NET Windows Forms App &bull; 
                 <strong>Fitur Unggulan:</strong> Riwayat Ekspresi (Expression History) &amp; Perhitungan Berantai (Chaining)
+            </div>
+
+            <div class="github-box">
+                <div class="github-box-info">
+                    <strong>📦 Repositori GitHub Source Code</strong>
+                    <span>https://github.com/YOGA3321/tugas-pweb---pbo/tree/main/pbkk/pertemuan3/demo</span>
+                </div>
+                <a href="https://github.com/YOGA3321/tugas-pweb---pbo/tree/main/pbkk/pertemuan3/demo" target="_blank" rel="noopener noreferrer" class="btn-github">🔗 Lihat di GitHub &rarr;</a>
             </div>
 
             <hr>
