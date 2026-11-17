@@ -104,11 +104,32 @@
                 <p>Aplikasi GUI registrasi data mahasiswa dengan WPF, XAML layouting, input validation, dan data listing.</p>
             </a>
 
+            <a href="pertemuan5/" class="tugas-card">
+                <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia</span>
+                <div class="card-icon">🏛️</div>
+                <h2>Tugas Pertemuan 5: Student Management System (MVVM)</h2>
+                <p>Aplikasi manajemen mahasiswa berbasis .NET Avalonia UI dengan pola arsitektur MVVM, DataGrid, pencarian, dan dashboard statistik.</p>
+            </a>
+
+            <a href="pertemuan6/" class="tugas-card">
+                <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia</span>
+                <div class="card-icon">🗄️</div>
+                <h2>Tugas Pertemuan 6: Student Management + Database (SQLite)</h2>
+                <p>Integrasi persisten Student Management System MVVM ke database SQLite menggunakan Entity Framework Core dan Repository Pattern.</p>
+            </a>
+
             <a href="ets/" class="tugas-card">
                 <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia &bull; PRD &amp; Laporan</span>
                 <div class="card-icon">💼</div>
                 <h2>Evaluasi Tengah Semester (ETS): SkillForge</h2>
                 <p>Student Portfolio &amp; Internship Readiness System berbasis C# .NET 8 WPF, MVVM Pattern, ADO.NET Transaksional, dan SQL Server.</p>
+            </a>
+
+            <a href="pertemuan8/" class="tugas-card">
+                <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia</span>
+                <div class="card-icon">🔥</div>
+                <h2>Tugas Pertemuan 8: Profil Mahasiswa Statis (CodeIgniter 4)</h2>
+                <p>Halaman data diri statis mahasiswa (Nama, NRP, Teknik Informatika, Angkatan 2024, Semester 5) dengan layout terpusat menggunakan CodeIgniter 4.</p>
             </a>
 
             <!-- <div class="tugas-card" style="cursor: default;">
@@ -120,7 +141,7 @@
         </main>
 
         <footer class="portal-footer">
-            <p>&copy; 2026 <strong>Ageng Prayogo</strong> (NRP: 5025241225) &bull; Pemrograman Berbasis Kerangka Kerja &bull; <a href="../">Kembali ke Portal Kelas</a></p>
+            <p>&copy; 2026 <strong>Ageng Prayogo</strong> (NRP: 5025241225) &bull; Pemrograman Berbasis Kerangka Kerja &bull; <a href="https://github.com/YOGA3321/tugas-pweb---pbo" target="_blank" rel="noopener noreferrer">GitHub Repository</a> &bull; <a href="../">Kembali ke Portal Kelas</a></p>
         </footer>
     </div>
 
