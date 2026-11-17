@@ -125,10 +125,10 @@
                 <p>Student Portfolio &amp; Internship Readiness System berbasis C# .NET 8 WPF, MVVM Pattern, ADO.NET Transaksional, dan SQL Server.</p>
             </a>
 
-            <a href="pertemuan8/" class="tugas-card">
+            <a href="pertemuan9/" class="tugas-card">
                 <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia</span>
                 <div class="card-icon">🔥</div>
-                <h2>Tugas Pertemuan 8: Profil Mahasiswa Statis (CodeIgniter 4)</h2>
+                <h2>Tugas Pertemuan 9: Profil Mahasiswa Statis (CodeIgniter 4)</h2>
                 <p>Halaman data diri statis mahasiswa (Nama, NRP, Teknik Informatika, Angkatan 2024, Semester 5) dengan layout terpusat menggunakan CodeIgniter 4.</p>
             </a>
 

@@ -165,7 +165,7 @@
         <a href="../" class="tombol-kembali">&larr; Kembali ke Daftar Tugas PBKK</a>
 
         <div class="konten-tugas">
-            <span class="badge-subject">🔥 Pertemuan 8 &bull; PBKK (Pemrograman Berbasis Kerangka Kerja)</span>
+            <span class="badge-subject">🔥 Pertemuan 9 &bull; PBKK (Pemrograman Berbasis Kerangka Kerja)</span>
             <h1>Halaman Profil Data Diri Statis dengan Framework CodeIgniter 4</h1>
             
             <div class="meta-info">
@@ -179,11 +179,11 @@
             <div class="github-box">
                 <div class="github-box-info">
                     <strong>📦 Repositori GitHub Source Code</strong>
-                    <span>https://github.com/YOGA3321/tugas-pweb---pbo/tree/main/pbkk/pertemuan8/demo</span>
+                    <span>https://github.com/YOGA3321/tugas-pweb---pbo/tree/main/pbkk/pertemuan9/demo</span>
                 </div>
                 <div style="display:flex; gap:10px; flex-wrap:wrap;">
                     <a href="demo/public/" class="btn-github" style="background: var(--pbkk-color);">🚀 Buka Demo CI4</a>
-                    <a href="https://github.com/YOGA3321/tugas-pweb---pbo/tree/main/pbkk/pertemuan8/demo" target="_blank" rel="noopener noreferrer" class="btn-github">🔗 Lihat di GitHub &rarr;</a>
+                    <a href="https://github.com/YOGA3321/tugas-pweb---pbo/tree/main/pbkk/pertemuan9/demo" target="_blank" rel="noopener noreferrer" class="btn-github">🔗 Lihat di GitHub &rarr;</a>
                 </div>
             </div>
 
@@ -192,7 +192,7 @@
             <!-- 1. Ringkasan Tugas -->
             <h2>1. Tujuan &amp; Ringkasan Tugas</h2>
             <p>
-                Pada Pertemuan 8 mata kuliah <strong>Pemrograman Berbasis Kerangka Kerja (PBKK)</strong>, diperkenalkan framework PHP modern <strong>CodeIgniter 4 (CI4)</strong> dengan arsitektur <strong>MVC (Model-View-Controller)</strong>. Tugas pada pertemuan ini adalah membuat halaman web <strong>Data Diri / Profil Mahasiswa</strong> yang simpel, statis (tanpa koneksi database), dan diposisikan tepat di tengah layar (<em>centered card layout</em>).
+                Pada Pertemuan 9 mata kuliah <strong>Pemrograman Berbasis Kerangka Kerja (PBKK)</strong>, diperkenalkan framework PHP modern <strong>CodeIgniter 4 (CI4)</strong> dengan arsitektur <strong>MVC (Model-View-Controller)</strong>. Tugas pada pertemuan ini adalah membuat halaman web <strong>Data Diri / Profil Mahasiswa</strong> yang simpel, statis (tanpa koneksi database), dan diposisikan tepat di tengah layar (<em>centered card layout</em>).
             </p>
 
             <div class="code-summary-grid">
@@ -217,8 +217,8 @@
             <p>Aplikasi dapat dijalankan menggunakan built-in development server milik CodeIgniter 4 (<code>spark serve</code>):</p>
 
             <div class="terminal-box">
-                <span class="prompt"># 1. Masuk ke folder project CodeIgniter 4 Pertemuan 8:</span><br>
-                cd pbkk/pertemuan8/demo<br><br>
+                <span class="prompt"># 1. Masuk ke folder project CodeIgniter 4 Pertemuan 9:</span><br>
+                cd pbkk/pertemuan9/demo<br><br>
                 <span class="prompt"># 2. Jalankan server development CodeIgniter 4:</span><br>
                 php spark serve<br><br>
                 <span class="prompt"># 3. Buka di browser:</span><br>
@@ -451,7 +451,7 @@ class Profil extends BaseController
 
             <div id="screenshot-container">
                 <div class="screenshot-frame">
-                    <img src="../../img/pbkk-m8-ci4.png" alt="Profil Statis CodeIgniter 4 Ageng Prayogo" onclick="openModal(this)">
+                    <img src="../../img/pbkk-m9-ci4.png" alt="Profil Statis CodeIgniter 4 Ageng Prayogo" onclick="openModal(this)">
                     <p class="caption">Gambar 1: Tampilan kartu data diri statis berada di tengah halaman pada framework CodeIgniter 4.</p>
                 </div>
             </div>
@@ -471,7 +471,7 @@ class Profil extends BaseController
         </div>
 
         <footer class="portal-footer">
-            <p>&copy; 2026 <strong>Ageng Prayogo</strong> (NRP: 5025241225) &bull; PBKK Pertemuan 8 &bull; <a href="https://github.com/YOGA3321/tugas-pweb---pbo" target="_blank" rel="noopener noreferrer">GitHub Repository</a> &bull; <a href="../">Kembali ke Daftar Tugas PBKK</a></p>
+            <p>&copy; 2026 <strong>Ageng Prayogo</strong> (NRP: 5025241225) &bull; PBKK Pertemuan 9 &bull; <a href="https://github.com/YOGA3321/tugas-pweb---pbo" target="_blank" rel="noopener noreferrer">GitHub Repository</a> &bull; <a href="../">Kembali ke Daftar Tugas PBKK</a></p>
         </footer>
     </div>
 
