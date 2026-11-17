@@ -1,0 +1,300 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:StudentManagementDB.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1480" d:DesignHeight="790"
+        x:Class="StudentManagementDB.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Student Management System — Pertemuan 6 (MVVM + SQLite EF Core)"
+        Width="1480" Height="790"
+        MinWidth="1060" MinHeight="680"
+        WindowStartupLocation="CenterScreen"
+        Background="#F1F5F9">
+
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*,Auto" Margin="20">
+        <!-- HEADER BANNER -->
+        <Border Grid.Row="0" Background="#FFFFFF" CornerRadius="14" Padding="20,14"
+                BorderBrush="#E2E8F0" BorderThickness="1" Margin="0,0,0,14">
+            <Grid ColumnDefinitions="*,Auto,10,Auto">
+                <StackPanel Grid.Column="0" Spacing="2">
+                    <TextBlock Text="STUDENT MANAGEMENT SYSTEM • DATABASE EDITION"
+                               FontSize="20.5" FontWeight="Bold" Foreground="#0F172A" />
+                    <TextBlock Text="Integrasi Persisten SQLite + Entity Framework Core (Repository Pattern &amp; Async MVVM)"
+                               FontSize="12.5" Foreground="#64748B" />
+                </StackPanel>
+                <Border Grid.Column="1" VerticalAlignment="Center"
+                        Background="#ECFDF5" CornerRadius="20" Padding="14,7"
+                        BorderBrush="#A7F3D0" BorderThickness="1">
+                    <TextBlock Text="{Binding DbConnectionBadge}"
+                               FontSize="12" FontWeight="SemiBold" Foreground="#047857" />
+                </Border>
+                <Border Grid.Column="3" VerticalAlignment="Center"
+                        Background="#EDE9FE" CornerRadius="20" Padding="14,7"
+                        BorderBrush="#DDD6FE" BorderThickness="1">
+                    <TextBlock Text="Pertemuan 6 • EF Core SQLite"
+                               FontSize="12" FontWeight="SemiBold" Foreground="#6D28D9" />
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- KONTEN UTAMA: SPLIT LAYOUT -->
+        <Grid Grid.Row="1" ColumnDefinitions="330,16,*">
+
+            <!-- PANEL KIRI: FORM INPUT DATABASE -->
+            <Border Grid.Column="0" Background="#FFFFFF" CornerRadius="14" Padding="16,14"
+                    BorderBrush="#E2E8F0" BorderThickness="1">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Spacing="8">
+                        <Border Background="#F8FAFC" CornerRadius="8" Padding="10,7"
+                                BorderBrush="#E2E8F0" BorderThickness="1">
+                            <TextBlock Text="{Binding FormTitle}"
+                                       FontSize="13.5" FontWeight="Bold" Foreground="#1E293B" />
+                        </Border>
+
+                        <!-- NIM -->
+                        <StackPanel Spacing="3">
+                            <TextBlock Text="NIM" FontSize="12" FontWeight="SemiBold" Foreground="#475569" />
+                            <TextBox Text="{Binding Nim}" PlaceholderText="Contoh: 5025241225" Height="33" />
+                        </StackPanel>
+
+                        <!-- Nama -->
+                        <StackPanel Spacing="3">
+                            <TextBlock Text="Nama Lengkap" FontSize="12" FontWeight="SemiBold" Foreground="#475569" />
+                            <TextBox Text="{Binding Nama}" PlaceholderText="Masukkan nama lengkap mahasiswa" Height="33" />
+                        </StackPanel>
+
+                        <!-- Program Studi -->
+                        <StackPanel Spacing="3">
+                            <TextBlock Text="Program Studi" FontSize="12" FontWeight="SemiBold" Foreground="#475569" />
+                            <ComboBox ItemsSource="{Binding ProdiOptions}"
+                                      SelectedItem="{Binding SelectedProdi}"
+                                      PlaceholderText="-- Pilih Program Studi --"
+                                      HorizontalAlignment="Stretch" Height="33" />
+                        </StackPanel>
+
+                        <!-- Jenis Kelamin -->
+                        <StackPanel Spacing="3">
+                            <TextBlock Text="Jenis Kelamin" FontSize="12" FontWeight="SemiBold" Foreground="#475569" />
+                            <StackPanel Orientation="Horizontal" Spacing="22" Margin="0,1">
+                                <RadioButton GroupName="GenderGroup" Content="Laki-laki"
+                                             IsChecked="{Binding IsLakiLaki}" FontSize="12.5" />
+                                <RadioButton GroupName="GenderGroup" Content="Perempuan"
+                                             IsChecked="{Binding IsPerempuan}" FontSize="12.5" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Tanggal Lahir -->
+                        <StackPanel Spacing="3">
+                            <TextBlock Text="Tanggal Lahir" FontSize="12" FontWeight="SemiBold" Foreground="#475569" />
+                            <CalendarDatePicker SelectedDate="{Binding TanggalLahir}"
+                                                HorizontalAlignment="Stretch"
+                                                Height="33"
+                                                PlaceholderText="Pilih tanggal lahir" />
+                        </StackPanel>
+
+                        <!-- No Telepon -->
+                        <StackPanel Spacing="3">
+                            <TextBlock Text="Nomor Telepon" FontSize="12" FontWeight="SemiBold" Foreground="#475569" />
+                            <TextBox Text="{Binding NoTelepon}" PlaceholderText="Contoh: 081234567890" Height="33" />
+                        </StackPanel>
+
+                        <!-- Alamat -->
+                        <StackPanel Spacing="3">
+                            <TextBlock Text="Alamat Domisili" FontSize="12" FontWeight="SemiBold" Foreground="#475569" />
+                            <TextBox Text="{Binding Alamat}"
+                                     PlaceholderText="Masukkan alamat lengkap"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     Height="54" />
+                        </StackPanel>
+
+                        <!-- Tombol Simpan & Reset -->
+                        <Grid ColumnDefinitions="*,10,*" Margin="0,6,0,0">
+                            <Button Grid.Column="0"
+                                    Content="{Binding SubmitButtonText}"
+                                    Command="{Binding SimpanDataCommand}"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Height="38"
+                                    Background="#2563EB" Foreground="#FFFFFF"
+                                    FontWeight="Bold" CornerRadius="8" />
+                            <Button Grid.Column="2"
+                                    Content="Reset Form"
+                                    Command="{Binding ResetFormCommand}"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Height="38"
+                                    Background="#64748B" Foreground="#FFFFFF"
+                                    FontWeight="SemiBold" CornerRadius="8" />
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- PANEL KANAN: DASHBOARD STATISTIK + FILTER + DATAGRID -->
+            <Grid Grid.Column="2" RowDefinitions="Auto,Auto,*,Auto">
+
+                <!-- 1. DASHBOARD STATISTIK CARDS -->
+                <Grid Grid.Row="0" ColumnDefinitions="*,*,*,*,*" Margin="0,0,0,12">
+                    <Border Grid.Column="0" Background="#FFFFFF" CornerRadius="12" Padding="14,10"
+                            BorderBrush="#E2E8F0" BorderThickness="1" Margin="0,0,8,0">
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="Total di DB" FontSize="11.5" Foreground="#64748B" FontWeight="SemiBold" />
+                            <TextBlock Text="{Binding TotalStudents}" FontSize="22" FontWeight="Bold" Foreground="#1E293B" />
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="1" Background="#EFF6FF" CornerRadius="12" Padding="14,10"
+                            BorderBrush="#BFDBFE" BorderThickness="1" Margin="0,0,8,0">
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="Informatika" FontSize="11.5" Foreground="#1D4ED8" FontWeight="SemiBold" />
+                            <TextBlock Text="{Binding TotalInformatika}" FontSize="22" FontWeight="Bold" Foreground="#1E40AF" />
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="2" Background="#F5F3FF" CornerRadius="12" Padding="14,10"
+                            BorderBrush="#DDD6FE" BorderThickness="1" Margin="0,0,8,0">
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="Sistem Info" FontSize="11.5" Foreground="#6D28D9" FontWeight="SemiBold" />
+                            <TextBlock Text="{Binding TotalSistemInformasi}" FontSize="22" FontWeight="Bold" Foreground="#5B21B6" />
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="3" Background="#ECFDF5" CornerRadius="12" Padding="14,10"
+                            BorderBrush="#A7F3D0" BorderThickness="1" Margin="0,0,8,0">
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="Laki-laki" FontSize="11.5" Foreground="#047857" FontWeight="SemiBold" />
+                            <TextBlock Text="{Binding TotalLakiLaki}" FontSize="22" FontWeight="Bold" Foreground="#065F46" />
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="4" Background="#FDF2F8" CornerRadius="12" Padding="14,10"
+                            BorderBrush="#FBCFE8" BorderThickness="1">
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="Perempuan" FontSize="11.5" Foreground="#BE185D" FontWeight="SemiBold" />
+                            <TextBlock Text="{Binding TotalPerempuan}" FontSize="22" FontWeight="Bold" Foreground="#9D174D" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- 2. TOOLBAR PENCARIAN, FILTER & AKSI DB -->
+                <Border Grid.Row="1" Background="#FFFFFF" CornerRadius="12" Padding="12"
+                        BorderBrush="#E2E8F0" BorderThickness="1" Margin="0,0,0,12">
+                    <Grid ColumnDefinitions="*,10,165,10,Auto,8,Auto,8,Auto">
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding SearchQuery}"
+                                 PlaceholderText="Query SQLite: Cari NIM, Nama, Prodi, atau Alamat..."
+                                 Height="35" />
+                        <ComboBox Grid.Column="2"
+                                  ItemsSource="{Binding FilterProdiOptions}"
+                                  SelectedItem="{Binding SelectedFilterProdi}"
+                                  HorizontalAlignment="Stretch"
+                                  Height="35" />
+                        <Button Grid.Column="4"
+                                Content="Refresh DB"
+                                Command="{Binding RefreshDatabaseCommand}"
+                                Height="35" Padding="12,0"
+                                VerticalContentAlignment="Center"
+                                Background="#0EA5E9" Foreground="#FFFFFF"
+                                FontWeight="SemiBold" CornerRadius="8" />
+                        <Button Grid.Column="6"
+                                Content="Edit"
+                                Command="{Binding MulaiEditCommand}"
+                                Height="35" Padding="14,0"
+                                VerticalContentAlignment="Center"
+                                Background="#F59E0B" Foreground="#FFFFFF"
+                                FontWeight="SemiBold" CornerRadius="8" />
+                        <Button Grid.Column="8"
+                                Content="Hapus"
+                                Command="{Binding MintaKonfirmasiHapusCommand}"
+                                Height="35" Padding="14,0"
+                                VerticalContentAlignment="Center"
+                                Background="#DC2626" Foreground="#FFFFFF"
+                                FontWeight="SemiBold" CornerRadius="8" />
+                    </Grid>
+                </Border>
+
+                <!-- 3. TABEL DATA MAHASISWA DARI SQLITE (DATAGRID) -->
+                <Border Grid.Row="2" Background="#FFFFFF" CornerRadius="14" Padding="14"
+                        BorderBrush="#E2E8F0" BorderThickness="1">
+                    <Grid RowDefinitions="Auto,*">
+                        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="4,0,4,8">
+                            <TextBlock Text="DATA MAHASISWA TERSIMPAN (TABEL: Students)"
+                                       FontSize="13.5" FontWeight="Bold" Foreground="#1E293B" />
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding FilteredCount, StringFormat='Query result: {0} baris'}"
+                                       FontSize="12" Foreground="#64748B" VerticalAlignment="Center" />
+                        </Grid>
+
+                        <DataGrid Grid.Row="1"
+                                  ItemsSource="{Binding Students}"
+                                  SelectedItem="{Binding SelectedStudent}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  SelectionMode="Single"
+                                  GridLinesVisibility="All"
+                                  HeadersVisibility="Column"
+                                  FontSize="12.5"
+                                  BorderThickness="1"
+                                  BorderBrush="#E2E8F0"
+                                  CornerRadius="8">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" />
+                                <DataGridTextColumn Header="NIM" Binding="{Binding NIM}" Width="Auto" />
+                                <DataGridTextColumn Header="Nama Lengkap" Binding="{Binding Nama}" Width="Auto" />
+                                <DataGridTextColumn Header="Program Studi" Binding="{Binding Prodi}" Width="Auto" />
+                                <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" Width="Auto" />
+                                <DataGridTextColumn Header="Tgl Lahir" Binding="{Binding TanggalLahirDisplay}" Width="Auto" />
+                                <DataGridTextColumn Header="No. Telepon" Binding="{Binding NoTelepon}" Width="Auto" />
+                                <DataGridTextColumn Header="Alamat" Binding="{Binding Alamat}" Width="*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+
+                <!-- 4. PANEL KONFIRMASI HAPUS INLINE (MVVM) -->
+                <Border Grid.Row="3"
+                        IsVisible="{Binding IsDeleteConfirmVisible}"
+                        Background="#FEF2F2" BorderBrush="#F87171" BorderThickness="1.5"
+                        CornerRadius="12" Padding="14,10" Margin="0,10,0,0">
+                    <Grid ColumnDefinitions="*,Auto,8,Auto">
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding DeleteConfirmMessage}"
+                                   Foreground="#991B1B" FontWeight="SemiBold"
+                                   VerticalAlignment="Center" TextWrapping="Wrap" />
+                        <Button Grid.Column="1"
+                                Content="Ya, Hapus dari DB"
+                                Command="{Binding KonfirmasiHapusCommand}"
+                                Background="#DC2626" Foreground="#FFFFFF"
+                                FontWeight="Bold" Padding="14,7" CornerRadius="8" />
+                        <Button Grid.Column="3"
+                                Content="Batal"
+                                Command="{Binding BatalHapusCommand}"
+                                Background="#E2E8F0" Foreground="#1E293B"
+                                FontWeight="SemiBold" Padding="14,7" CornerRadius="8" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <!-- FOOTER STATUS BAR -->
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto" Margin="0,12,0,0">
+            <Border Grid.Column="0"
+                    IsVisible="{Binding HasStatusMessage}"
+                    Background="{Binding StatusBackground}"
+                    BorderBrush="{Binding StatusBorderBrush}"
+                    BorderThickness="1" CornerRadius="10" Padding="14,8" Margin="0,0,14,0">
+                <TextBlock Text="{Binding StatusMessage}"
+                           Foreground="{Binding StatusForeground}"
+                           FontSize="12.5" FontWeight="SemiBold" />
+            </Border>
+            <TextBlock Grid.Column="1"
+                       Text="Ageng Prayogo (5025241225) • PBKK Pertemuan 6"
+                       FontSize="12" Foreground="#64748B" VerticalAlignment="Center" />
+        </Grid>
+    </Grid>
+</Window>
