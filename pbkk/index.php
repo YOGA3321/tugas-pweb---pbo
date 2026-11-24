@@ -132,6 +132,13 @@
                 <p>Halaman data diri statis mahasiswa (Nama, NRP, Teknik Informatika, Angkatan 2024, Semester 5) dengan layout terpusat menggunakan CodeIgniter 4.</p>
             </a>
 
+            <a href="pertemuan10/" class="tugas-card">
+                <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia</span>
+                <div class="card-icon">🛒</div>
+                <h2>Tugas Pertemuan 10: ShopEase Online Store (CI4 + MariaDB)</h2>
+                <p>Implementasi aplikasi toko online ShopEase dengan CodeIgniter 4, database MariaDB, Login/Register, AuthFilter, CRUD Kategori, dan CRUD Produk + Upload Gambar.</p>
+            </a>
+
             <!-- <div class="tugas-card" style="cursor: default;">
                 <span class="badge-status">Mendatang</span>
                 <div class="card-icon">🎯</div>
