@@ -9,7 +9,7 @@ class AuthController extends BaseController
     public function loginForm()
     {
         if (session()->get('logged_in')) {
-            return redirect()->to(session()->get('role') === 'admin' ? '/admin/products' : '/');
+            return redirect()->to(session()->get('role') === 'admin' ? '/admin/dashboard' : '/');
         }
 
         return view('auth/login', [
@@ -48,7 +48,7 @@ class AuthController extends BaseController
             ]);
 
             if ($user['role'] === 'admin') {
-                return redirect()->to('/admin/products')
+                return redirect()->to('/admin/dashboard')
                     ->with('success', 'Selamat datang kembali, ' . $user['name'] . '!');
             }
 

@@ -1,27 +1,27 @@
-<?= $this->extend('layouts/main') ?>
+<?= $this->extend('layouts/admin') ?>
 
 <?= $this->section('content') ?>
 
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
     <div>
-        <h1 class="h3 fw-bold mb-0">Manajemen Kategori</h1>
-        <p class="text-muted small mb-0">Kelola kategori produk pada toko online ShopEase</p>
+        <h1 class="h4 fw-bold mb-1">MANAJEMEN KATEGORI PRODUK</h1>
+        <p class="text-muted small mb-0">Kelola kategori, slug URL, dan pantau jumlah produk yang terhubung.</p>
     </div>
-    <a href="/admin/categories/create" class="btn btn-primary">
-        <i class="bi bi-plus-lg me-1"></i> Tambah Kategori
+    <a href="/admin/categories/create" class="btn btn-dark fw-bold px-3">
+        <i class="bi bi-plus-lg me-1"></i> TAMBAH KATEGORI
     </a>
 </div>
 
-<div class="card shadow-sm">
+<div class="admin-panel">
     <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0">
-            <thead class="table-light">
+        <table class="table admin-table table-hover align-middle mb-0">
+            <thead>
                 <tr>
                     <th style="width: 60px;">No</th>
                     <th>Nama Kategori</th>
                     <th>Slug</th>
                     <th>Deskripsi</th>
-                    <th style="width: 120px;">Produk</th>
+                    <th style="width: 130px;">Produk</th>
                     <th style="width: 170px;">Aksi</th>
                 </tr>
             </thead>
@@ -34,16 +34,16 @@
                     <?php foreach ($categories as $i => $item): ?>
                         <tr>
                             <td><?= $i + 1 ?></td>
-                            <td class="fw-semibold"><?= esc($item['name']) ?></td>
+                            <td class="fw-bold text-dark"><?= esc($item['name']) ?></td>
                             <td><code><?= esc($item['slug']) ?></code></td>
                             <td class="text-muted small"><?= esc($item['description'] ?: '-') ?></td>
-                            <td><span class="badge bg-secondary"><?= (int) $item['product_count'] ?> produk</span></td>
+                            <td><span class="badge bg-dark"><?= (int) $item['product_count'] ?> produk</span></td>
                             <td>
-                                <a href="/admin/categories/edit/<?= (int) $item['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="/admin/categories/edit/<?= (int) $item['id'] ?>" class="btn btn-sm btn-outline-dark">Edit</a>
                                 <form method="post" action="/admin/categories/delete/<?= (int) $item['id'] ?>" class="d-inline"
                                       onsubmit="return confirm('Yakin ingin menghapus kategori ini?');">
                                     <?= csrf_field() ?>
-                                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
                                 </form>
                             </td>
                         </tr>

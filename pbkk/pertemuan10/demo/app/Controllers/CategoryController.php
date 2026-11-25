@@ -19,6 +19,7 @@ class CategoryController extends BaseController
 
         return view('admin/categories/index', [
             'title'      => 'Manajemen Kategori – Admin ShopEase',
+            'pageHeader' => 'KATEGORI PRODUK',
             'active'     => 'categories',
             'categories' => $categories,
         ]);
@@ -27,8 +28,9 @@ class CategoryController extends BaseController
     public function create(): string
     {
         return view('admin/categories/create', [
-            'title'  => 'Tambah Kategori – Admin ShopEase',
-            'active' => 'categories',
+            'title'      => 'Tambah Kategori – Admin ShopEase',
+            'pageHeader' => 'TAMBAH KATEGORI',
+            'active'     => 'categories_create',
         ]);
     }
 
@@ -67,9 +69,10 @@ class CategoryController extends BaseController
         }
 
         return view('admin/categories/edit', [
-            'title'    => 'Edit Kategori – Admin ShopEase',
-            'active'   => 'categories',
-            'category' => $category,
+            'title'      => 'Edit Kategori – Admin ShopEase',
+            'pageHeader' => 'EDIT KATEGORI',
+            'active'     => 'categories',
+            'category'   => $category,
         ]);
     }
 

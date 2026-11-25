@@ -18,8 +18,11 @@ $routes->get('register', 'AuthController::registerForm', ['as' => 'register']);
 $routes->post('register', 'AuthController::register');
 $routes->get('logout', 'AuthController::logout', ['as' => 'logout']);
 
-// Praktikum 4 & 5: Admin Panel (Dilindungi AuthFilter role admin)
+// Praktikum 4, 5, 6: Admin Panel (Dilindungi AuthFilter role admin)
 $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
+    $routes->get('/', 'AdminDashboardController::index');
+    $routes->get('dashboard', 'AdminDashboardController::index');
+
     // CRUD Kategori Produk
     $routes->get('categories', 'CategoryController::index');
     $routes->get('categories/create', 'CategoryController::create');

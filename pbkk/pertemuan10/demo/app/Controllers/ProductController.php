@@ -20,9 +20,10 @@ class ProductController extends BaseController
             ->findAll();
 
         return view('admin/products/index', [
-            'title'    => 'Manajemen Produk – Admin ShopEase',
-            'active'   => 'products',
-            'products' => $products,
+            'title'      => 'Manajemen Produk – Admin ShopEase',
+            'pageHeader' => 'PRODUCT CATALOG',
+            'active'     => 'products',
+            'products'   => $products,
         ]);
     }
 
@@ -32,7 +33,8 @@ class ProductController extends BaseController
 
         return view('admin/products/create', [
             'title'      => 'Tambah Produk – Admin ShopEase',
-            'active'     => 'products',
+            'pageHeader' => 'TAMBAH PRODUK BARU',
+            'active'     => 'products_create',
             'categories' => $category->orderBy('name', 'ASC')->findAll(),
         ]);
     }
@@ -95,6 +97,7 @@ class ProductController extends BaseController
 
         return view('admin/products/edit', [
             'title'      => 'Edit Produk – Admin ShopEase',
+            'pageHeader' => 'EDIT PRODUK',
             'active'     => 'products',
             'product'    => $product,
             'categories' => $categoryModel->orderBy('name', 'ASC')->findAll(),
