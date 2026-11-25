@@ -135,8 +135,22 @@
             <a href="pertemuan10/" class="tugas-card">
                 <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia</span>
                 <div class="card-icon">🛒</div>
-                <h2>Tugas Pertemuan 10: ShopEase Online Store (CI4 + MariaDB)</h2>
-                <p>Implementasi aplikasi toko online ShopEase dengan CodeIgniter 4, database MariaDB, Login/Register, AuthFilter, CRUD Kategori, dan CRUD Produk + Upload Gambar.</p>
+                <h2>Tugas Pertemuan 10: ShopEase Landing Page &amp; Routing (CI4)</h2>
+                <p>Setup CodeIgniter 4, koneksi MariaDB, Routing, Controller, View Layouting, serta desain Landing Page ShopEase (Beranda, Tentang Kami, Kontak).</p>
+            </a>
+
+            <a href="pertemuan11/" class="tugas-card">
+                <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia</span>
+                <div class="card-icon">🔐</div>
+                <h2>Tugas Pertemuan 11: Authentication &amp; AuthFilter (CI4)</h2>
+                <p>Implementasi Registrasi, Login, Logout, password hashing, session management, dan pembatasan akses role admin menggunakan AuthFilter.</p>
+            </a>
+
+            <a href="pertemuan12/" class="tugas-card">
+                <span class="badge-status" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Tersedia</span>
+                <div class="card-icon">📦</div>
+                <h2>Tugas Pertemuan 12: Admin Sidebar &amp; CRUD Kategori + Produk</h2>
+                <p>Panel Admin Terminal bergaya sidebar kiri, Dashboard inventaris, CRUD Kategori berelasi FK, dan CRUD Produk + Upload Gambar di ShopEase.</p>
             </a>
 
             <!-- <div class="tugas-card" style="cursor: default;">
